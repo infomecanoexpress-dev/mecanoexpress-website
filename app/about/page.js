@@ -1,269 +1,140 @@
 'use client'
 
-import { useState } from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
 
-export default function Home() {
+export default function AboutPage() {
   return (
-    <div>
-      <HeroSection />
-      <ServicesSection />
-      <ZonesSection />
-      <TestimonialsSection />
-    </div>
-  )
-}
+    <div className="min-h-screen bg-black">
+      <section className="relative py-20 bg-gradient-to-b from-gray-900 to-black">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-orange-500 to-orange-300 bg-clip-text text-transparent">
+              À propos de Mecano Express
+            </h1>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Votre service mobile de confiance pour le changement de pneus à Montréal
+            </p>
+          </div>
 
-function HeroSection() {
-  return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="https://images.unsplash.com/photo-1643700973089-baa86a1ab9ee"
-          alt="Professional mechanic service"
-          fill
-          className="object-cover opacity-50"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/80 via-gray-800/70 to-gray-900/90"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 via-transparent to-orange-500/5"></div>
-      </div>
-      
-      <div className="relative z-10 container mx-auto px-4 text-center">
-        <div className="animate-fade-in-up">
-          <Image
-            src="https://customer-assets.emergentagent.com/job_tire-mobile-mtl/artifacts/8sfn157u_Untitled-1-03-Photoroom.png?v=2"
-            alt="Mecano Logo"
-            width={700}
-            height={210}
-            className="mx-auto mb-8 drop-shadow-[0_0_30px_rgba(255,107,0,0.8)] animate-glow"
-            unoptimized
-          />
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,107,0,0.3)]">
-            Changement de pneus chez vous, sans effort !
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Service mobile professionnel à Montréal, Laval, Rive-Nord et Rive-Sud
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/contact" 
-              className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-orange-500/50 hover:scale-105"
-            >
-              Prendre RDV
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+            <div className="relative h-96 rounded-2xl overflow-hidden">
+              <Image
+                src="https://images.unsplash.com/photo-1619642737579-a7474bee1044"
+                alt="Professional mechanic"
+                fill
+                className="object-cover"
+              />
+            </div>
+            
+            <div>
+              <h2 className="text-4xl font-bold mb-6 text-orange-500">Notre Histoire</h2>
+              <div className="space-y-4 text-gray-300 text-lg">
+                <p>
+                  <strong className="text-white">Mecano Express</strong> est un service fiable et rapide de mécanique mobile à Montréal.
+                </p>
+                <p>
+                  Nous avons créé Mecano Express avec une vision simple : rendre le changement de pneus aussi facile et pratique que possible. Plus besoin de perdre du temps dans les garages ou de prendre rendez-vous des semaines à l avance.
+                </p>
+                <p>
+                  Notre service mobile vous permet de faire changer vos pneus directement chez vous, à votre travail, ou n importe où à Montréal et ses environs.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-12 rounded-2xl border border-gray-700 mb-20">
+            <h2 className="text-4xl font-bold mb-8 text-center text-orange-500">Nos Valeurs</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="text-6xl mb-4">🎯</div>
+                <h3 className="text-2xl font-bold text-white mb-3">Fiabilité</h3>
+                <p className="text-gray-300">Nous sommes toujours à l heure et respectons nos engagements.</p>
+              </div>
+              <div className="text-center">
+                <div className="text-6xl mb-4">⚡</div>
+                <h3 className="text-2xl font-bold text-white mb-3">Rapidité</h3>
+                <p className="text-gray-300">Service express sans compromis sur la qualité.</p>
+              </div>
+              <div className="text-center">
+                <div className="text-6xl mb-4">🏆</div>
+                <h3 className="text-2xl font-bold text-white mb-3">Qualité</h3>
+                <p className="text-gray-300">Équipement moderne et techniques professionnelles.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+            <div>
+              <h2 className="text-4xl font-bold mb-6 text-orange-500">Notre Zone de Service</h2>
+              <p className="text-gray-300 text-lg mb-6">Nous couvrons toute l île de Montréal, Laval, la Rive-Nord et la Rive-Sud.</p>
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <span className="text-orange-500 text-2xl mr-4">📍</span>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-1">Montréal</h3>
+                    <p className="text-gray-400">Tous les arrondissements incluant Westmount, Outremont, Verdun, Rosemont et plus</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-orange-500 text-2xl mr-4">📍</span>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-1">Laval</h3>
+                    <p className="text-gray-400">Toute la ville de Laval et ses secteurs</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-orange-500 text-2xl mr-4">📍</span>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-1">Rive-Nord</h3>
+                    <p className="text-gray-400">Blainville, Terrebonne, Mirabel, Saint-Jérôme et environs</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-orange-500 text-2xl mr-4">📍</span>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-1">Rive-Sud</h3>
+                    <p className="text-gray-400">Brossard, Longueuil, Saint-Hubert, Boucherville et plus</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="relative h-96 rounded-2xl overflow-hidden">
+              <Image
+                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64"
+                alt="Service area"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-orange-500/20 to-orange-600/20 border-2 border-orange-500 rounded-2xl p-12 text-center">
+            <h2 className="text-4xl font-bold mb-6 text-white">Contactez-nous</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+              <div>
+                <div className="text-4xl mb-3">📞</div>
+                <h3 className="text-xl font-bold text-orange-500 mb-2">Téléphone</h3>
+                <a href="tel:5146497372" className="text-white text-2xl hover:text-orange-300 transition-colors">514 649-7372</a>
+              </div>
+              <div>
+                <div className="text-4xl mb-3">✉️</div>
+                <h3 className="text-xl font-bold text-orange-500 mb-2">Email</h3>
+                <a href="mailto:info.mecanoexpress@gmail.com" className="text-white text-xl hover:text-orange-300 transition-colors">info.mecanoexpress@gmail.com</a>
+              </div>
+              <div>
+                <div className="text-4xl mb-3">📍</div>
+                <h3 className="text-xl font-bold text-orange-500 mb-2">Service</h3>
+                <p className="text-white text-xl">Montréal et environs</p>
+              </div>
+            </div>
+            <Link href="/contact" className="inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300">
+              Prendre rendez-vous
             </Link>
-            <a 
-              href="tel:5146497372" 
-              className="bg-white/10 backdrop-blur-md text-white border-2 border-orange-500 px-8 py-4 rounded-full text-lg font-semibold hover:bg-orange-500 transition-all duration-300 hover:scale-105"
-            >
-              📞 514 649-7372
-            </a>
           </div>
         </div>
-      </div>
-      
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <svg className="w-8 h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
-      </div>
-    </section>
-  )
-}
-
-function ServicesSection() {
-  const services = [
-    {
-      icon: '❄️',
-      title: 'Pneus Hiver',
-      description: 'Installation complète de pneus d\'hiver pour une conduite sécuritaire'
-    },
-    {
-      icon: '☀️',
-      title: 'Pneus Été',
-      description: 'Changement de pneus d\'été pour une performance optimale'
-    },
-    {
-      icon: '⚖️',
-      title: 'Équilibrage',
-      description: 'Équilibrage professionnel pour une conduite douce et stable'
-    },
-    {
-      icon: '🔄',
-      title: 'Rotation',
-      description: 'Rotation des pneus pour prolonger leur durée de vie'
-    },
-    {
-      icon: '🔧',
-      title: 'Réparation Crevaison',
-      description: 'Réparation rapide de crevaison sur place'
-    },
-    {
-      icon: '🚗',
-      title: 'Tous Véhicules',
-      description: 'Service pour voitures de luxe et régulières'
-    }
-  ]
-
-  return (
-    <section className="py-20 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,107,0,0.1),transparent_50%)]"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(255,107,0,0.1),transparent_50%)]"></div>
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,107,0,0.3)]">
-            Nos Services
-          </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Des services complets de changement de pneus et d'entretien, directement chez vous
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
-          {services.map((service, index) => (
-            <div 
-              key={index}
-              className="group bg-gradient-to-br from-gray-700/80 to-gray-800/80 backdrop-blur-sm p-8 rounded-2xl border-2 border-gray-600 hover:border-orange-500 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/40 hover:-translate-y-2"
-            >
-              <div className="text-6xl mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 filter drop-shadow-lg">{service.icon}</div>
-              <h3 className="text-2xl font-bold mb-2 text-orange-400 group-hover:text-orange-300 transition-colors">{service.title}</h3>
-              <p className="text-gray-300 group-hover:text-white transition-colors">{service.description}</p>
-            </div>
-          ))}
-        </div>
-        
-        <div className="text-center mt-12">
-          <Link 
-            href="/services" 
-            className="inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-3 rounded-full font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-orange-500/50"
-          >
-            Voir tous les services →
-          </Link>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function ZonesSection() {
-  const zones = [
-    { name: 'Montréal', cities: ['Westmount', 'Outremont', 'Verdun', 'Rosemont', 'Villeray', 'Plateau', 'NDG', 'LaSalle'] },
-    { name: 'Laval', cities: ['Chomedey', 'Fabreville', 'Vimont', 'Sainte-Rose', 'Pont-Viau', 'Laval-des-Rapides'] },
-    { name: 'Rive-Nord', cities: ['Blainville', 'Terrebonne', 'Mirabel', 'Saint-Jérôme', 'Boisbriand', 'Rosemère'] },
-    { name: 'Rive-Sud', cities: ['Brossard', 'Longueuil', 'Saint-Hubert', 'Boucherville', 'La Prairie', 'Candiac'] }
-  ]
-
-  return (
-    <section className="py-20 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 relative">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ff6b0010_1px,transparent_1px),linear-gradient(to_bottom,#ff6b0010_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,107,0,0.3)]">
-            Zones Couvertes
-          </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Nous nous déplaçons dans toute la région métropolitaine de Montréal
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {zones.map((zone, index) => (
-            <div 
-              key={index}
-              className="group bg-gradient-to-br from-gray-700/80 to-gray-800/80 backdrop-blur-sm p-6 rounded-2xl border-2 border-gray-600 hover:border-orange-500 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/30"
-            >
-              <h3 className="text-2xl font-bold mb-4 text-orange-500 flex items-center group-hover:text-orange-400 transition-colors">
-                <span className="text-3xl mr-2">📍</span> {zone.name}
-              </h3>
-              <ul className="space-y-2">
-                {zone.cities.map((city, idx) => (
-                  <li key={idx} className="text-gray-300 flex items-center group-hover:text-white transition-colors">
-                    <span className="text-orange-500 mr-2 font-bold">✓</span> {city}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        
-        <div className="bg-gradient-to-r from-orange-500/20 to-orange-600/20 border-2 border-orange-500/50 rounded-2xl p-8 text-center hover:border-orange-500 transition-all duration-300">
-          <p className="text-xl text-gray-200">
-            <span className="text-orange-500 font-bold">🚗 Zone pas listée?</span> Contactez-nous! Nous desservons plusieurs autres secteurs.
-          </p>
-          <a href="tel:5146497372" className="inline-block mt-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-orange-500/50">
-            📞 514 649-7372
-          </a>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function TestimonialsSection() {
-  const testimonials = [
-    {
-      name: 'Marc Tremblay',
-      location: 'Westmount',
-      rating: 5,
-      text: 'Service impeccable! Ils sont venus chez moi pour changer mes pneus d\'hiver. Rapide, professionnel et à un prix très compétitif. Je recommande à 100%!',
-      image: 'https://images.unsplash.com/photo-1619642737579-a7474bee1044'
-    },
-    {
-      name: 'Sophie Gagné',
-      location: 'Laval',
-      rating: 5,
-      text: 'Enfin un service mobile de qualité! Plus besoin de perdre du temps au garage. L\'équipe est très professionnelle et sympathique. Mon auto roule comme neuve!',
-      image: 'https://images.pexels.com/photos/8986119/pexels-photo-8986119.jpeg'
-    },
-    {
-      name: 'Jean-François Leblanc',
-      location: 'Brossard',
-      rating: 5,
-      text: 'J\'ai eu une crevaison et ils sont venus en moins d\'une heure! Service d\'urgence excellent. Merci Mecano Express!',
-      image: 'https://images.unsplash.com/photo-1764015805414-df7de89d405b'
-    }
-  ]
-
-  return (
-    <section className="py-20 bg-gradient-to-b from-black to-gray-900">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-500 to-orange-300 bg-clip-text text-transparent">
-            Ce que nos clients disent
-          </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Des centaines de clients satisfaits dans toute la région
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div 
-              key={index}
-              className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-orange-500 transition-all duration-300 hover:scale-105"
-            >
-              <div className="flex items-center mb-4">
-                <div className="w-16 h-16 rounded-full bg-orange-500 flex items-center justify-center text-2xl font-bold mr-4">
-                  {testimonial.name.charAt(0)}
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold text-white">{testimonial.name}</h4>
-                  <p className="text-gray-400 text-sm">📍 {testimonial.location}</p>
-                </div>
-              </div>
-              
-              <div className="flex mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <span key={i} className="text-orange-500 text-xl">★</span>
-                ))}
-              </div>
-              
-              <p className="text-gray-300 italic">"{testimonial.text}"</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   )
 }
