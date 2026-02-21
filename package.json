@@ -1,0 +1,27 @@
+https://github.com/infomecanoexpress-dev/mecanoexpress-website
+Étape 2 : Créer le premier fichier (package.json)
+Cliquez sur "creating a new file" (lien bleu sur la page)
+Dans le champ "Name your file", tapez : package.json
+Copiez-collez ce contenu :
+{
+  "name": "mecanoexpress-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "mongodb": "^6.3.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3"
+  }
+}
