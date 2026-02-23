@@ -11,7 +11,8 @@ const montserrat = Montserrat({ subsets: ['latin'] })
 export default function RootLayout({ children }) {
   return (
     <html lang="fr" className="scroll-smooth">
-      <head>
+<head>
+  <meta name="google-site-verification" content="p2qNahnWtSfK0JUKCPZZxDaujsAY8W9-CK9UjUEHpdI" />
   <link rel="icon" href="https://customer-assets.emergentagent.com/job_search-bar-logo/artifacts/n94m2eds_Untitled-1-03.jpg" />
   <title>Mecano Express | Changement de Pneus à Domicile Montréal</title>
   <meta name="description" content="Service mobile de changement de pneus à domicile à Montréal, Laval, Rive-Nord et Rive-Sud. Pneus hiver, été, équilibrage, rotation. Appelez 514 649-7372"/>
