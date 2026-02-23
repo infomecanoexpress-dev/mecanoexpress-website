@@ -12,10 +12,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr" className="scroll-smooth">
       <head>
-        <title>Mecano Express | Changement de Pneus à Domicile Montréal</title>
-        <meta name="description" content="Service mobile de changement de pneus à domicile à Montréal, Laval, Rive-Nord et Rive-Sud. Pneus hiver, été, équilibrage, rotation. Appelez 514 649-7372" />
-        <meta name="keywords" content="changement pneus domicile Montréal, mécanicien mobile, pneus hiver Montréal, service pneus à domicile, Laval, Rive-Nord, Rive-Sud" />
-      </head>
+  <link rel="icon" href="https://customer-assets.emergentagent.com/job_search-bar-logo/artifacts/n94m2eds_Untitled-1-03.jpg" />
+  <title>Mecano Express | Changement de Pneus à Domicile Montréal</title>
+  <meta name="description" content="Service mobile de changement de pneus à domicile à Montréal, Laval, Rive-Nord et Rive-Sud. Pneus hiver, été, équilibrage, rotation. Appelez 514 649-7372"/>
+  <meta name="keywords" content="changement pneus domicile Montréal, mécanicien mobile, pneus hiver Montréal, service pneus à domicile, Laval, Rive-Nord, Rive-Sud"/>
+</head>
       <body className={`${montserrat.className} bg-black text-white`}>
         <Navbar />
         <main className="min-h-screen">{children}</main>
