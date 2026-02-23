@@ -39,7 +39,7 @@ function Navbar() {
               alt="Mecano Logo" 
               width={500} 
               height={150}
-              className="h-28 w-auto object-contain drop-shadow-[0_0_35px_rgba(255,107,0,1)] animate-pulse-glow"
+              className="h-40 w-auto object-contain drop-shadow-[0_0_35px_rgba(255,107,0,1)] animate-pulse-glow"
               unoptimized
               priority
             />
@@ -96,7 +96,7 @@ function Footer() {
               alt="Mecano Logo" 
               width={300} 
               height={90}
-              className="h-20 w-auto object-contain mb-4 drop-shadow-[0_0_30px_rgba(255,107,0,1)] animate-pulse-glow"
+              className="h-32 w-auto object-contain mb-4 drop-shadow-[0_0_30px_rgba(255,107,0,1)] animate-pulse-glow"
               unoptimized
             />
             <p className="text-gray-400 text-sm">Service mobile de changement de pneus à domicile</p>
