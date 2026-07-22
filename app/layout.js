@@ -43,7 +43,7 @@ function Navbar() {
               alt="Mecano Logo" 
               width={500} 
               height={150}
-              className="h-40 w-auto object-contain drop-shadow-[0_0_35px_rgba(255,107,0,1)] animate-pulse-glow"
+              className="h-40 w-auto object-contain drop-shadow-[0_2px_10px_rgba(255,107,0,0.35)]"
               unoptimized
               priority
             />
@@ -54,7 +54,7 @@ function Navbar() {
             <Link href="/services" className="text-gray-300 hover:text-orange-500 transition-colors duration-300">Services</Link>
             <Link href="/about" className="text-gray-300 hover:text-orange-500 transition-colors duration-300">À propos</Link>
             <Link href="/contact" className="text-gray-300 hover:text-orange-500 transition-colors duration-300">Contact</Link>
-            <a href="tel:5146497372" className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-2 rounded-full hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-orange-500/50 font-semibold">📞 Appeler maintenant</a>
+            <Link href="/contact" className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-2 rounded-full hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-orange-500/50 font-semibold">Prendre RDV maintenant</Link>
           </div>
 
           <button 
@@ -100,7 +100,7 @@ function Footer() {
               alt="Mecano Logo" 
               width={300} 
               height={90}
-              className="h-32 w-auto object-contain mb-4 drop-shadow-[0_0_30px_rgba(255,107,0,1)] animate-pulse-glow"
+              className="h-32 w-auto object-contain mb-4 drop-shadow-[0_2px_10px_rgba(255,107,0,0.3)]"
               unoptimized
             />
             <p className="text-gray-400 text-sm">Service mobile de changement de pneus à domicile</p>
@@ -143,6 +143,7 @@ function Footer() {
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
           <p>© 2025 Mecano Express. Tous droits réservés.</p>
+          <a href="/mx-gestion-9f3k7.html" className="text-gray-700 hover:text-gray-500 transition-colors text-xs">Accès interne</a>
         </div>
       </div>
     </footer>

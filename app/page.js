@@ -37,10 +37,10 @@ function HeroSection() {
             alt="Mecano Logo"
             width={700}
             height={210}
-            className="mx-auto mb-8 drop-shadow-[0_0_30px_rgba(255,107,0,0.8)] animate-glow"
+            className="mx-auto mb-8 drop-shadow-[0_4px_20px_rgba(255,107,0,0.45)]"
             unoptimized
           />
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,107,0,0.3)]">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(255,107,0,0.25)]">
             Changement de pneus chez vous, sans effort !
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
@@ -88,13 +88,13 @@ function ServicesSection() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(255,107,0,0.1),transparent_50%)]"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">Nos Services</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-orange-500">Nos Services</h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">Des services complets de changement de pneus et d entretien, directement chez vous</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
           {services.map((service, index) => (
-            <div key={index} className="group bg-gradient-to-br from-gray-700/80 to-gray-800/80 backdrop-blur-sm p-8 rounded-2xl border-2 border-gray-600 hover:border-orange-500 transition-all duration-300 hover:scale-105">
-              <div className="text-6xl mb-4">{service.icon}</div>
+            <div key={index} className="group bg-gradient-to-br from-gray-700/80 to-gray-800/80 backdrop-blur-sm p-8 rounded-2xl border-2 border-gray-600 hover:border-orange-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10">
+              <div className="w-16 h-16 flex items-center justify-center rounded-xl bg-orange-500/10 text-4xl mb-5 group-hover:bg-orange-500/20 transition-colors duration-300">{service.icon}</div>
               <h3 className="text-2xl font-bold mb-2 text-orange-400">{service.title}</h3>
               <p className="text-gray-300">{service.description}</p>
             </div>
@@ -120,12 +120,12 @@ function ZonesSection() {
     <section className="py-20 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 relative">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">Zones Couvertes</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-orange-500">Zones Couvertes</h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">Nous nous déplaçons dans toute la région métropolitaine de Montréal</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {zones.map((zone, index) => (
-            <div key={index} className="group bg-gradient-to-br from-gray-700/80 to-gray-800/80 p-6 rounded-2xl border-2 border-gray-600 hover:border-orange-500 transition-all duration-300 hover:scale-105">
+            <div key={index} className="group bg-gradient-to-br from-gray-700/80 to-gray-800/80 p-6 rounded-2xl border-2 border-gray-600 hover:border-orange-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10">
               <h3 className="text-2xl font-bold mb-4 text-orange-500 flex items-center">
                 <span className="text-3xl mr-2">📍</span> {zone.name}
               </h3>
@@ -152,34 +152,43 @@ function ZonesSection() {
 
 function TestimonialsSection() {
   const testimonials = [
-    { name: 'Marc Tremblay', location: 'Westmount', rating: 5, text: "Service impeccable! Ils sont venus chez moi pour changer mes pneus d'hiver. Rapide, professionnel et à un prix très compétitif. Je recommande à 100%!" },
-    { name: 'Sophie Gagné', location: 'Laval', rating: 5, text: "Enfin un service mobile de qualité! Plus besoin de perdre du temps au garage. L'équipe est très professionnelle et sympathique." },
-    { name: 'Jean-François Leblanc', location: 'Brossard', rating: 5, text: "J'ai eu une crevaison et ils sont venus en moins d'une heure! Service d'urgence excellent. Merci Mecano Express!" }
+    { name: 'Wahib Semlali', rating: 5, text: "Service absolument incroyable. Ils ont fait plusieurs véhicules pour les changements de pneus durant la tempête au début de l'hiver. Ils sont même venus à minuit pour terminer le dernier véhicule. Une équipe ultra professionnelle avec des équipements de qualité. Je recommande à 100 % et ils feront définitivement les pneus de nos véhicules pour très longtemps." },
+    { name: 'Maryse Bergeron', rating: 5, text: "Service impeccable, aucun problème, rapide et efficace." },
+    { name: 'Eric Bélanger', rating: 5, text: "Très bon service, très fiable, très poli." }
   ]
 
   return (
     <section className="py-20 bg-gradient-to-b from-black to-gray-900">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-500 to-orange-300 bg-clip-text text-transparent">Ce que nos clients disent</h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">Des centaines de clients satisfaits dans toute la région</p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-orange-500">Ce que nos clients disent</h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">De vrais avis de nos clients sur Google</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-orange-500 transition-all duration-300 hover:scale-105">
+            <div key={index} className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-orange-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10">
               <div className="flex items-center mb-4">
                 <div className="w-16 h-16 rounded-full bg-orange-500 flex items-center justify-center text-2xl font-bold mr-4">{testimonial.name.charAt(0)}</div>
                 <div>
                   <h4 className="text-xl font-bold text-white">{testimonial.name}</h4>
-                  <p className="text-gray-400 text-sm">📍 {testimonial.location}</p>
+                  <div className="flex">
+                    {[...Array(testimonial.rating)].map((_, i) => (<span key={i} className="text-orange-500 text-lg">★</span>))}
+                  </div>
                 </div>
-              </div>
-              <div className="flex mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (<span key={i} className="text-orange-500 text-xl">★</span>))}
               </div>
               <p className="text-gray-300 italic">{testimonial.text}</p>
             </div>
           ))}
+        </div>
+        <div className="text-center mt-12">
+          <a
+            href="https://g.page/r/CdvmX_7mbx1qEAE/review"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-white/10 border-2 border-orange-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-500 transition-all duration-300"
+          >
+            Voir tous nos avis sur Google →
+          </a>
         </div>
       </div>
     </section>
