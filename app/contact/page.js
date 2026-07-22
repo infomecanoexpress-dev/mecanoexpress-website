@@ -102,12 +102,6 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
-
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
-                <h3 className="text-2xl font-bold mb-4 text-orange-500">Besoin d aide rapidement?</h3>
-                <p className="text-gray-300 mb-6">Pour les urgences et les rendez-vous le jour même, appelez-nous directement!</p>
-                <a href="tel:5146497372" className="block w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-4 rounded-full text-center text-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300">📞 Appeler maintenant</a>
-              </div>
             </div>
 
             <div>
