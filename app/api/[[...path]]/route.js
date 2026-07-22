@@ -7,7 +7,7 @@ export async function POST(request) {
 
     if (path.includes('/api/contact')) {
       const body = await request.json()
-      const { name, email, phone, address, message } = body
+      const { name, email, phone, address, client_type, message } = body
 
       const hasPhone = !!(phone && phone.trim())
       const hasEmail = !!(email && email.trim())
@@ -26,6 +26,7 @@ export async function POST(request) {
           phone: hasPhone ? phone : undefined,
           email: hasEmail ? email : undefined,
           address: address,
+          client_type: client_type === 'business' ? 'business' : 'residentiel',
           description: message
         })
       })

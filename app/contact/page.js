@@ -9,6 +9,7 @@ export default function ContactPage() {
     email: '',
     phone: '',
     address: '',
+    client_type: 'residentiel',
     message: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -43,7 +44,7 @@ export default function ContactPage() {
 
       if (response.ok) {
         setSubmitStatus('success')
-        setFormData({ name: '', email: '', phone: '', address: '', message: '' })
+        setFormData({ name: '', email: '', phone: '', address: '', client_type: 'residentiel', message: '' })
       } else {
         setSubmitStatus('error')
       }
@@ -154,6 +155,14 @@ export default function ContactPage() {
                   <div>
                     <label htmlFor="address" className="block text-white font-semibold mb-2">Adresse *</label>
                     <input type="text" id="address" name="address" value={formData.address} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="Votre adresse" />
+                  </div>
+
+                  <div>
+                    <label htmlFor="client_type" className="block text-white font-semibold mb-2">Type de client</label>
+                    <select id="client_type" name="client_type" value={formData.client_type} onChange={handleChange} className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors">
+                      <option value="residentiel">Résidentiel</option>
+                      <option value="business">Business / Entreprise</option>
+                    </select>
                   </div>
 
                   <div>
