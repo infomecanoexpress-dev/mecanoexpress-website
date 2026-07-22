@@ -1,12 +1,14 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    address: '',
     message: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -41,7 +43,7 @@ export default function ContactPage() {
 
       if (response.ok) {
         setSubmitStatus('success')
-        setFormData({ name: '', email: '', phone: '', message: '' })
+        setFormData({ name: '', email: '', phone: '', address: '', message: '' })
       } else {
         setSubmitStatus('error')
       }
@@ -110,14 +112,23 @@ export default function ContactPage() {
 
             <div>
               <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
-                <h2 className="text-3xl font-bold mb-6 text-orange-500">Formulaire de Contact</h2>
-                
+                <Image
+                  src="https://i.imgur.com/GnreRdD.png"
+                  alt="MecanoExpress"
+                  width={180}
+                  height={46}
+                  unoptimized
+                  className="mx-auto mb-4"
+                />
+                <h2 className="text-3xl font-bold mb-2 text-center text-orange-500">Demande de service</h2>
+                <p className="text-gray-300 text-center mb-6">Décrivez votre besoin, un technicien vous recontacte rapidement.</p>
+
                 {submitStatus === 'success' && (
                   <div className="bg-green-500/20 border border-green-500 rounded-lg p-4 mb-6">
-                    <p className="text-green-500 font-semibold">✓ Message envoyé avec succès! Nous vous contacterons bientôt.</p>
+                    <p className="text-green-500 font-semibold">✓ Demande envoyée avec succès! Un technicien vous recontactera sous peu.</p>
                   </div>
                 )}
-                
+
                 {submitStatus === 'error' && (
                   <div className="bg-red-500/20 border border-red-500 rounded-lg p-4 mb-6">
                     <p className="text-red-500 font-semibold">✗ Erreur lors de l envoi. Veuillez réessayer ou nous appeler.</p>
@@ -137,22 +148,27 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-white font-semibold mb-2">Email <span className="text-gray-400 font-normal text-sm">(au moins un des deux)</span></label>
+                    <label htmlFor="phone" className="block text-white font-semibold mb-2">Téléphone <span className="text-gray-400 font-normal text-sm">(au moins un des deux : téléphone ou courriel)</span></label>
+                    <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="514-555-1234" />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-white font-semibold mb-2">Courriel <span className="text-gray-400 font-normal text-sm">(au moins un des deux)</span></label>
                     <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="votre.email@exemple.com" />
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-white font-semibold mb-2">Téléphone <span className="text-gray-400 font-normal text-sm">(au moins un des deux)</span></label>
-                    <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="514-123-4567" />
+                    <label htmlFor="address" className="block text-white font-semibold mb-2">Adresse <span className="text-gray-400 font-normal text-sm">(optionnel)</span></label>
+                    <input type="text" id="address" name="address" value={formData.address} onChange={handleChange} className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="Votre adresse" />
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-white font-semibold mb-2">Message *</label>
-                    <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows="4" className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors resize-none" placeholder="Décrivez votre besoin (type de service, modèle de véhicule, etc.)"></textarea>
+                    <label htmlFor="message" className="block text-white font-semibold mb-2">Décrivez votre problème ou le service désiré *</label>
+                    <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows="4" className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors resize-none" placeholder="Ex: J'aimerais faire changer mes 4 pneus d'hiver."></textarea>
                   </div>
 
                   <button type="submit" disabled={isSubmitting} className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-4 rounded-full text-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
-                    {isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}
+                    {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
                   </button>
                 </form>
               </div>

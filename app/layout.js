@@ -54,7 +54,7 @@ function Navbar() {
             <Link href="/services" className="text-gray-300 hover:text-orange-500 transition-colors duration-300">Services</Link>
             <Link href="/about" className="text-gray-300 hover:text-orange-500 transition-colors duration-300">À propos</Link>
             <Link href="/contact" className="text-gray-300 hover:text-orange-500 transition-colors duration-300">Contact</Link>
-            <a href="tel:5146497372" className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-2 rounded-full hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-orange-500/50 font-semibold">📞 Appeler maintenant</a>
+            <Link href="/contact" className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-2 rounded-full hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-orange-500/50 font-semibold">Prendre RDV maintenant</Link>
           </div>
 
           <button 
