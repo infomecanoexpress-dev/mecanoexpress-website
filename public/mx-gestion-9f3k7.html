@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terminer une demande — MecanoExpress (interne)</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root {
+    --bg: #f4f5f7;
+    --card-bg: #ffffff;
+    --text: #16181d;
+    --muted: #5b6472;
+    --border: #e2e5ea;
+    --accent: #d9541f;
+    --accent-dark: #b64214;
+    --success-bg: #e8f6ed;
+    --success-text: #1e6b3c;
+    --error-bg: #fdecec;
+    --error-text: #a4271d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121316;
+      --card-bg: #1b1d22;
+      --text: #edeef0;
+      --muted: #9aa1ab;
+      --border: #2c2f36;
+      --accent: #e2652c;
+      --accent-dark: #f07a3f;
+      --success-bg: #133623;
+      --success-text: #7fe3a4;
+      --error-bg: #3a1a18;
+      --error-text: #ff9d92;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 32px 16px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 24px 32px;
+    max-width: 560px;
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  }
+  h1 { font-size: 1.25rem; margin: 0 0 4px; }
+  p.subtitle { color: var(--muted); font-size: 0.88rem; margin: 0 0 22px; }
+  label { display: block; font-size: 0.85rem; font-weight: 600; margin: 14px 0 6px; }
+  label .opt { font-weight: 400; color: var(--muted); }
+  input, select, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.95rem;
+    font-family: inherit;
+  }
+  textarea { min-height: 60px; resize: vertical; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+  button {
+    margin-top: 20px;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.98rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  button:hover { background: var(--accent-dark); }
+  button:disabled { opacity: 0.6; cursor: not-allowed; }
+  button.secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    margin-top: 10px;
+  }
+  .msg {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    display: none;
+  }
+  .msg.success { display: block; background: var(--success-bg); color: var(--success-text); }
+  .msg.error { display: block; background: var(--error-bg); color: var(--error-text); }
+  #step2 { display: none; }
+  .preview-box {
+    margin-top: 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 0.9rem;
+    background: var(--bg);
+  }
+  .preview-box div { margin-bottom: 4px; }
+  .preview-box .label { color: var(--muted); }
+  iframe#invoice-frame {
+    width: 100%;
+    height: 380px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-top: 14px;
+    background: #fff;
+  }
+  .service-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    align-items: center;
+  }
+  .service-row select { flex: 1; }
+  .service-row input.qty { width: 70px; flex: none; text-align: center; }
+  .service-row button.remove-row {
+    flex: none;
+    width: auto;
+    margin: 0;
+    padding: 8px 12px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--error-text);
+    font-weight: 700;
+  }
+  button.add-service {
+    background: transparent;
+    border: 1px dashed var(--border);
+    color: var(--text);
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Terminer une demande</h1>
+    <p class="subtitle">Usage interne — page protégée par code d'accès. Fonctionne aussi pour un client qui n'a jamais rempli le formulaire (une fiche sera créée automatiquement). Étape 1 : identifier le client et les services. Étape 2 : vérifier et confirmer l'envoi.</p>
+
+    <label for="access-key">Code d'accès</label>
+    <input type="password" id="access-key" autocomplete="off" placeholder="Code d'accès interne">
+
+    <div id="step1">
+      <label for="client_name">Nom du client</label>
+      <input type="text" id="client_name" placeholder="Nom complet">
+
+      <label for="phone">Téléphone <span class="opt">(au moins un des deux : téléphone ou courriel)</span></label>
+      <input type="tel" id="phone" placeholder="514-555-1234">
+
+      <label for="email">Courriel <span class="opt">(optionnel)</span></label>
+      <input type="email" id="email" placeholder="client@example.com">
+
+      <label for="address">Adresse <span class="opt">(optionnel)</span></label>
+      <input type="text" id="address" placeholder="Adresse du client">
+
+      <label for="note">Note / description <span class="opt">(optionnel — utile si ce client n'a pas rempli le formulaire)</span></label>
+      <textarea id="note" placeholder="Ex: Changement de pneus fait sur place, client rencontré directement."></textarea>
+
+      <label>Services rendus</label>
+      <div id="services-list"></div>
+      <button type="button" class="add-service" id="add-service-btn">+ Ajouter un service</button>
+
+      <button id="terminer-btn">Terminer la demande</button>
+      <div class="msg" id="msg1"></div>
+    </div>
+
+    <div id="step2">
+      <div class="preview-box" id="preview-summary"></div>
+      <iframe id="invoice-frame" sandbox=""></iframe>
+      <button id="confirmer-btn">Confirmer et envoyer</button>
+      <button class="secondary" id="recommencer-btn">Recommencer (nouvelle demande)</button>
+      <div class="msg" id="msg2"></div>
+    </div>
+  </div>
+
+<script>
+  const BASE_URL = "https://n8nprof.tech/webhook/mecanoexpress";
+  const SERVICE_OPTIONS = [
+    { value: "PNEUS_AUTO", label: "Pneus — Auto (100$)" },
+    { value: "PNEUS_CAMION", label: "Pneus — Camion/Pick-up (140$)" },
+    { value: "HUILE_AUTO", label: "Huile — Auto (90$)" },
+    { value: "HUILE_CAMION", label: "Huile — Camion/Pick-up (120$)" }
+  ];
+
+  const accessKeyEl = document.getElementById("access-key");
+  const step1 = document.getElementById("step1");
+  const step2 = document.getElementById("step2");
+  const msg1 = document.getElementById("msg1");
+  const msg2 = document.getElementById("msg2");
+  const terminerBtn = document.getElementById("terminer-btn");
+  const confirmerBtn = document.getElementById("confirmer-btn");
+  const recommencerBtn = document.getElementById("recommencer-btn");
+  const previewSummary = document.getElementById("preview-summary");
+  const invoiceFrame = document.getElementById("invoice-frame");
+  const servicesList = document.getElementById("services-list");
+  const addServiceBtn = document.getElementById("add-service-btn");
+
+  let currentInvoiceId = null;
+
+  function buildServiceRow() {
+    const row = document.createElement("div");
+    row.className = "service-row";
+
+    const select = document.createElement("select");
+    select.className = "service-select";
+    SERVICE_OPTIONS.forEach(opt => {
+      const o = document.createElement("option");
+      o.value = opt.value;
+      o.textContent = opt.label;
+      select.appendChild(o);
+    });
+
+    const qty = document.createElement("input");
+    qty.type = "number";
+    qty.className = "qty";
+    qty.min = "1";
+    qty.step = "1";
+    qty.value = "1";
+
+    const removeBtn = document.createElement("button");
+    removeBtn.type = "button";
+    removeBtn.className = "remove-row";
+    removeBtn.textContent = "✕";
+    removeBtn.addEventListener("click", () => {
+      if (servicesList.children.length > 1) row.remove();
+    });
+
+    row.appendChild(select);
+    row.appendChild(qty);
+    row.appendChild(removeBtn);
+    return row;
+  }
+
+  addServiceBtn.addEventListener("click", () => {
+    servicesList.appendChild(buildServiceRow());
+  });
+
+  // Toujours au moins une ligne de service au chargement
+  servicesList.appendChild(buildServiceRow());
+
+  function collectServices() {
+    return Array.from(servicesList.querySelectorAll(".service-row")).map(row => ({
+      service_code: row.querySelector(".service-select").value,
+      qty: parseInt(row.querySelector(".qty").value, 10) || 1
+    }));
+  }
+
+  function setMsg(el, text, type) {
+    el.className = "msg " + type;
+    el.textContent = text;
+  }
+
+  function clearMsg(el) {
+    el.className = "msg";
+    el.textContent = "";
+  }
+
+  terminerBtn.addEventListener("click", async () => {
+    clearMsg(msg1);
+    const key = accessKeyEl.value.trim();
+    const client_name = document.getElementById("client_name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const description = document.getElementById("note").value.trim();
+    const services = collectServices();
+
+    if (!key) { setMsg(msg1, "Entrez le code d'accès.", "error"); return; }
+    if (!client_name) { setMsg(msg1, "Entrez le nom du client.", "error"); return; }
+    if (!phone && !email) { setMsg(msg1, "Entrez au moins un téléphone ou un courriel.", "error"); return; }
+
+    terminerBtn.disabled = true;
+    terminerBtn.textContent = "Recherche en cours...";
+
+    try {
+      const res = await fetch(BASE_URL + "/ui/terminer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-UI-Key": key },
+        body: JSON.stringify({ client_name, phone, email, address, description, services })
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.status === 403) {
+        setMsg(msg1, "Code d'accès incorrect.", "error");
+      } else if (!res.ok) {
+        setMsg(msg1, data.message || "Erreur lors de la recherche/création de la demande.", "error");
+      } else {
+        currentInvoiceId = data.invoice_id;
+        previewSummary.innerHTML =
+          '<div><span class="label">Client :</span> ' + (data.client_name || "") + '</div>' +
+          '<div><span class="label">Téléphone :</span> ' + (data.client_phone || "") + '</div>' +
+          '<div><span class="label">Courriel :</span> ' + (data.client_email || "(aucun — envoi par SMS)") + '</div>' +
+          '<div><span class="label">Services :</span> ' + (data.description || "") + '</div>' +
+          '<div><span class="label">Montant total :</span> ' + (data.amount || "") + '$</div>' +
+          '<div><span class="label">Facture #</span> ' + (data.invoice_number || "") + ' (brouillon, pas encore envoyée)</div>';
+        invoiceFrame.srcdoc = data.invoice_html || "";
+        step1.style.display = "none";
+        step2.style.display = "block";
+      }
+    } catch (err) {
+      setMsg(msg1, "Impossible de contacter le serveur. Vérifiez votre connexion.", "error");
+    } finally {
+      terminerBtn.disabled = false;
+      terminerBtn.textContent = "Terminer la demande";
+    }
+  });
+
+  confirmerBtn.addEventListener("click", async () => {
+    clearMsg(msg2);
+    const key = accessKeyEl.value.trim();
+    if (!currentInvoiceId) return;
+
+    confirmerBtn.disabled = true;
+    confirmerBtn.textContent = "Envoi en cours...";
+
+    try {
+      const res = await fetch(BASE_URL + "/ui/confirmer-facture", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-UI-Key": key },
+        body: JSON.stringify({ invoice_id: currentInvoiceId })
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.status === 403) {
+        setMsg(msg2, "Code d'accès incorrect.", "error");
+      } else if (!res.ok) {
+        setMsg(msg2, data.message || "Erreur lors de l'envoi de la facture.", "error");
+      } else {
+        let text = "Facture envoyée avec succès.";
+        if (data.review_email_sent) {
+          text += " Un courriel de demande d'avis Google a aussi été envoyé (première visite de ce client).";
+        }
+        setMsg(msg2, text, "success");
+        confirmerBtn.disabled = true;
+      }
+    } catch (err) {
+      setMsg(msg2, "Impossible de contacter le serveur. Vérifiez votre connexion.", "error");
+      confirmerBtn.disabled = false;
+      confirmerBtn.textContent = "Confirmer et envoyer";
+    }
+  });
+
+  recommencerBtn.addEventListener("click", () => {
+    currentInvoiceId = null;
+    document.getElementById("client_name").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("address").value = "";
+    document.getElementById("note").value = "";
+    servicesList.innerHTML = "";
+    servicesList.appendChild(buildServiceRow());
+    clearMsg(msg1);
+    clearMsg(msg2);
+    confirmerBtn.disabled = false;
+    confirmerBtn.textContent = "Confirmer et envoyer";
+    step2.style.display = "none";
+    step1.style.display = "block";
+  });
+</script>
+</body>
+</html>
