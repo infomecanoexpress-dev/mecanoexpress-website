@@ -21,8 +21,14 @@ export default function ContactPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setIsSubmitting(true)
     setSubmitStatus(null)
+
+    if (!formData.phone.trim() && !formData.email.trim()) {
+      setSubmitStatus('missing_contact')
+      return
+    }
+
+    setIsSubmitting(true)
 
     try {
       const response = await fetch('/api/contact', {
@@ -118,6 +124,12 @@ export default function ContactPage() {
                   </div>
                 )}
 
+                {submitStatus === 'missing_contact' && (
+                  <div className="bg-red-500/20 border border-red-500 rounded-lg p-4 mb-6">
+                    <p className="text-red-500 font-semibold">✗ Merci d indiquer au moins un téléphone ou un courriel.</p>
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-white font-semibold mb-2">Nom complet *</label>
@@ -125,13 +137,13 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-white font-semibold mb-2">Email *</label>
-                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="votre.email@exemple.com" />
+                    <label htmlFor="email" className="block text-white font-semibold mb-2">Email <span className="text-gray-400 font-normal text-sm">(au moins un des deux)</span></label>
+                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="votre.email@exemple.com" />
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-white font-semibold mb-2">Téléphone *</label>
-                    <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="514-123-4567" />
+                    <label htmlFor="phone" className="block text-white font-semibold mb-2">Téléphone <span className="text-gray-400 font-normal text-sm">(au moins un des deux)</span></label>
+                    <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="514-123-4567" />
                   </div>
 
                   <div>
