@@ -143,6 +143,7 @@ function Footer() {
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
           <p>© 2025 Mecano Express. Tous droits réservés.</p>
+          <a href="/mx-gestion-9f3k7.html" className="text-gray-700 hover:text-gray-500 transition-colors text-xs">Accès interne</a>
         </div>
       </div>
     </footer>
