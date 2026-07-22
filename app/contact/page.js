@@ -152,8 +152,8 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="address" className="block text-white font-semibold mb-2">Adresse <span className="text-gray-400 font-normal text-sm">(optionnel)</span></label>
-                    <input type="text" id="address" name="address" value={formData.address} onChange={handleChange} className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="Votre adresse" />
+                    <label htmlFor="address" className="block text-white font-semibold mb-2">Adresse *</label>
+                    <input type="text" id="address" name="address" value={formData.address} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="Votre adresse" />
                   </div>
 
                   <div>
