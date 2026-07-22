@@ -59,7 +59,7 @@ export default function ContactPage() {
       <section className="relative py-20 bg-gradient-to-b from-gray-900 to-black">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-orange-500 to-orange-300 bg-clip-text text-transparent">Contactez-nous</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-orange-500">Contactez-nous</h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">Prenez rendez-vous ou contactez-nous pour toute question</p>
           </div>
 
