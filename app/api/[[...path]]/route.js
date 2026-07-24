@@ -7,13 +7,12 @@ export async function POST(request) {
 
     if (path.includes('/api/contact')) {
       const body = await request.json()
-      const { name, email, phone, address, client_type, message } = body
+      const { name, phone, address, client_type, message } = body
 
       const hasPhone = !!(phone && phone.trim())
-      const hasEmail = !!(email && email.trim())
 
-      if (!name || !message || !address || !address.trim() || (!hasPhone && !hasEmail)) {
-        return NextResponse.json({ error: 'Nom, adresse, message, et au moins un téléphone ou courriel sont requis' }, { status: 400 })
+      if (!name || !message || !address || !address.trim() || !hasPhone) {
+        return NextResponse.json({ error: 'Nom, téléphone, adresse et message sont requis' }, { status: 400 })
       }
 
       const intakeResponse = await fetch('https://n8nprof.tech/webhook/mecanoexpress/intake', {
@@ -23,8 +22,7 @@ export async function POST(request) {
         },
         body: JSON.stringify({
           client_name: name,
-          phone: hasPhone ? phone : undefined,
-          email: hasEmail ? email : undefined,
+          phone: phone,
           address: address,
           client_type: client_type === 'business' ? 'business' : 'residentiel',
           description: message

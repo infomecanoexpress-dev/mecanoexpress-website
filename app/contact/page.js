@@ -6,7 +6,6 @@ import Image from 'next/image'
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
     phone: '',
     address: '',
     client_type: 'residentiel',
@@ -26,7 +25,7 @@ export default function ContactPage() {
     e.preventDefault()
     setSubmitStatus(null)
 
-    if (!formData.phone.trim() && !formData.email.trim()) {
+    if (!formData.phone.trim()) {
       setSubmitStatus('missing_contact')
       return
     }
@@ -44,7 +43,7 @@ export default function ContactPage() {
 
       if (response.ok) {
         setSubmitStatus('success')
-        setFormData({ name: '', email: '', phone: '', address: '', client_type: 'residentiel', message: '' })
+        setFormData({ name: '', phone: '', address: '', client_type: 'residentiel', message: '' })
       } else {
         setSubmitStatus('error')
       }
@@ -132,7 +131,7 @@ export default function ContactPage() {
 
                 {submitStatus === 'missing_contact' && (
                   <div className="bg-red-500/20 border border-red-500 rounded-lg p-4 mb-6">
-                    <p className="text-red-500 font-semibold">✗ Merci d indiquer au moins un téléphone ou un courriel.</p>
+                    <p className="text-red-500 font-semibold">✗ Merci d indiquer votre téléphone.</p>
                   </div>
                 )}
 
@@ -143,13 +142,8 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-white font-semibold mb-2">Téléphone <span className="text-gray-400 font-normal text-sm">(au moins un des deux : téléphone ou courriel)</span></label>
-                    <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="514-555-1234" />
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="block text-white font-semibold mb-2">Courriel <span className="text-gray-400 font-normal text-sm">(au moins un des deux)</span></label>
-                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="votre.email@exemple.com" />
+                    <label htmlFor="phone" className="block text-white font-semibold mb-2">Téléphone *</label>
+                    <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="514-555-1234" />
                   </div>
 
                   <div>
