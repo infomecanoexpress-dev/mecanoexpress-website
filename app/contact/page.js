@@ -38,7 +38,7 @@ export default function ContactPage() {
           const feats = (data.features || []).filter(f => f.properties.countrycode === 'CA')
           setAddressSuggestions(feats.map(f => {
             const p = f.properties
-            return [p.housenumber, p.street || p.name, p.city, p.state, p.postcode].filter(Boolean).join(', ')
+            return [p.housenumber, p.street || p.name, p.city, p.state].filter(Boolean).join(', ')
           }))
         } catch (err) {
           setAddressSuggestions([])

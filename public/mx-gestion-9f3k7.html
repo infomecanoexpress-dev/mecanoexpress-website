@@ -276,7 +276,7 @@
           list.innerHTML = "";
           feats.forEach(f => {
             const p = f.properties;
-            const parts = [p.housenumber, p.street || p.name, p.city, p.state, p.postcode].filter(Boolean);
+            const parts = [p.housenumber, p.street || p.name, p.city, p.state].filter(Boolean);
             const label = parts.join(", ");
             const item = document.createElement("div");
             item.className = "autocomplete-item";
