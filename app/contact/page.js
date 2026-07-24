@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 
 export default function ContactPage() {
@@ -13,13 +13,54 @@ export default function ContactPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null)
+  const [addressSuggestions, setAddressSuggestions] = useState([])
+  const addressDebounce = useRef(null)
+  const addressWrapperRef = useRef(null)
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     })
+
+    if (e.target.name === 'address') {
+      const q = e.target.value.trim()
+      clearTimeout(addressDebounce.current)
+      if (q.length < 4) {
+        setAddressSuggestions([])
+        return
+      }
+      addressDebounce.current = setTimeout(async () => {
+        try {
+          const url = 'https://photon.komoot.io/api/?q=' + encodeURIComponent(q) + '&limit=5&lon=-73.5673&lat=45.5017&lang=fr'
+          const res = await fetch(url)
+          const data = await res.json()
+          const feats = (data.features || []).filter(f => f.properties.countrycode === 'CA')
+          setAddressSuggestions(feats.map(f => {
+            const p = f.properties
+            return [p.housenumber, p.street || p.name, p.city, p.state, p.postcode].filter(Boolean).join(', ')
+          }))
+        } catch (err) {
+          setAddressSuggestions([])
+        }
+      }, 300)
+    }
   }
+
+  const selectAddress = (label) => {
+    setFormData(prev => ({ ...prev, address: label }))
+    setAddressSuggestions([])
+  }
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (addressWrapperRef.current && !addressWrapperRef.current.contains(e.target)) {
+        setAddressSuggestions([])
+      }
+    }
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -146,9 +187,18 @@ export default function ContactPage() {
                     <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="514-555-1234" />
                   </div>
 
-                  <div>
+                  <div className="relative" ref={addressWrapperRef}>
                     <label htmlFor="address" className="block text-white font-semibold mb-2">Adresse *</label>
-                    <input type="text" id="address" name="address" value={formData.address} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="Votre adresse" />
+                    <input type="text" id="address" name="address" autoComplete="off" value={formData.address} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="Votre adresse" />
+                    {addressSuggestions.length > 0 && (
+                      <div className="absolute z-50 top-full left-0 right-0 mt-1 bg-gray-700 border border-gray-600 rounded-lg overflow-hidden shadow-xl">
+                        {addressSuggestions.map((label, i) => (
+                          <div key={i} onClick={() => selectAddress(label)} className="px-4 py-2 text-sm text-white hover:bg-gray-600 cursor-pointer">
+                            {label}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   <div>
