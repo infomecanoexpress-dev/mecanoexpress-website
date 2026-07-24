@@ -141,6 +141,39 @@
     color: var(--text);
     margin-top: 10px;
   }
+  table#items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+    font-size: 0.88rem;
+  }
+  table#items-table th, table#items-table td {
+    border: 1px solid var(--border);
+    padding: 6px;
+    text-align: left;
+  }
+  table#items-table th { color: var(--muted); font-weight: 600; }
+  table#items-table input {
+    padding: 6px 8px;
+    font-size: 0.88rem;
+  }
+  table#items-table input.item-price, table#items-table input.item-qty { width: 70px; text-align: center; }
+  table#items-table td.item-total { white-space: nowrap; font-weight: 600; }
+  table#items-table button.remove-item {
+    width: auto;
+    margin: 0;
+    padding: 6px 10px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--error-text);
+    font-weight: 700;
+  }
+  .grand-total {
+    text-align: right;
+    font-weight: 700;
+    margin-top: 8px;
+    font-size: 1rem;
+  }
 </style>
 </head>
 <body>
@@ -164,6 +197,12 @@
       <label for="address">Adresse <span class="opt">(optionnel)</span></label>
       <input type="text" id="address" placeholder="Adresse du client">
 
+      <label for="client_type">Type de client</label>
+      <select id="client_type">
+        <option value="residentiel" selected>Résidentiel</option>
+        <option value="business">Business / Entreprise</option>
+      </select>
+
       <label for="note">Note / description <span class="opt">(optionnel — utile si ce client n'a pas rempli le formulaire)</span></label>
       <textarea id="note" placeholder="Ex: Changement de pneus fait sur place, client rencontré directement."></textarea>
 
@@ -177,7 +216,15 @@
 
     <div id="step2">
       <div class="preview-box" id="preview-summary"></div>
-      <iframe id="invoice-frame" sandbox=""></iframe>
+      <label>Détail de la facture <span class="opt">(modifiable avant l'envoi)</span></label>
+      <table id="items-table">
+        <thead>
+          <tr><th>Description</th><th>Prix</th><th>Qté</th><th>Total</th><th></th></tr>
+        </thead>
+        <tbody id="items-tbody"></tbody>
+      </table>
+      <button type="button" class="add-service" id="add-item-btn">+ Ajouter une ligne</button>
+      <div class="grand-total" id="grand-total"></div>
       <button id="confirmer-btn">Confirmer et envoyer</button>
       <button class="secondary" id="recommencer-btn">Recommencer (nouvelle demande)</button>
       <div class="msg" id="msg2"></div>
@@ -202,11 +249,99 @@
   const confirmerBtn = document.getElementById("confirmer-btn");
   const recommencerBtn = document.getElementById("recommencer-btn");
   const previewSummary = document.getElementById("preview-summary");
-  const invoiceFrame = document.getElementById("invoice-frame");
   const servicesList = document.getElementById("services-list");
   const addServiceBtn = document.getElementById("add-service-btn");
+  const itemsTbody = document.getElementById("items-tbody");
+  const addItemBtn = document.getElementById("add-item-btn");
+  const grandTotalEl = document.getElementById("grand-total");
 
   let currentInvoiceId = null;
+
+  function buildItemRow(item) {
+    item = item || { description: "", unit_price: 0, qty: 1 };
+    const tr = document.createElement("tr");
+
+    const tdDesc = document.createElement("td");
+    const descInput = document.createElement("input");
+    descInput.type = "text";
+    descInput.className = "item-desc";
+    descInput.value = item.description || "";
+    tdDesc.appendChild(descInput);
+
+    const tdPrice = document.createElement("td");
+    const priceInput = document.createElement("input");
+    priceInput.type = "number";
+    priceInput.step = "0.01";
+    priceInput.min = "0";
+    priceInput.className = "item-price";
+    priceInput.value = item.unit_price != null ? item.unit_price : 0;
+    tdPrice.appendChild(priceInput);
+
+    const tdQty = document.createElement("td");
+    const qtyInput = document.createElement("input");
+    qtyInput.type = "number";
+    qtyInput.step = "1";
+    qtyInput.min = "1";
+    qtyInput.className = "item-qty";
+    qtyInput.value = item.qty != null ? item.qty : 1;
+    tdQty.appendChild(qtyInput);
+
+    const tdTotal = document.createElement("td");
+    tdTotal.className = "item-total";
+
+    const tdRemove = document.createElement("td");
+    const removeBtn = document.createElement("button");
+    removeBtn.type = "button";
+    removeBtn.className = "remove-item";
+    removeBtn.textContent = "✕";
+    removeBtn.addEventListener("click", () => {
+      if (itemsTbody.children.length > 1) { tr.remove(); recalcTotal(); }
+    });
+    tdRemove.appendChild(removeBtn);
+
+    tr.appendChild(tdDesc);
+    tr.appendChild(tdPrice);
+    tr.appendChild(tdQty);
+    tr.appendChild(tdTotal);
+    tr.appendChild(tdRemove);
+
+    [priceInput, qtyInput].forEach(inp => inp.addEventListener("input", recalcTotal));
+
+    return tr;
+  }
+
+  function renderItems(items) {
+    itemsTbody.innerHTML = "";
+    (items && items.length ? items : [{ description: "", unit_price: 0, qty: 1 }]).forEach(item => {
+      itemsTbody.appendChild(buildItemRow(item));
+    });
+    recalcTotal();
+  }
+
+  function recalcTotal() {
+    let total = 0;
+    Array.from(itemsTbody.querySelectorAll("tr")).forEach(tr => {
+      const price = parseFloat(tr.querySelector(".item-price").value) || 0;
+      const qty = parseFloat(tr.querySelector(".item-qty").value) || 0;
+      const lineTotal = Math.round(price * qty * 100) / 100;
+      tr.querySelector(".item-total").textContent = lineTotal.toFixed(2) + "$";
+      total += lineTotal;
+    });
+    grandTotalEl.textContent = "Total : " + (Math.round(total * 100) / 100).toFixed(2) + "$";
+  }
+
+  function collectItems() {
+    return Array.from(itemsTbody.querySelectorAll("tr")).map(tr => ({
+      description: tr.querySelector(".item-desc").value.trim() || "Service",
+      unit_price: parseFloat(tr.querySelector(".item-price").value) || 0,
+      qty: parseInt(tr.querySelector(".item-qty").value, 10) || 1
+    }));
+  }
+
+  addItemBtn.addEventListener("click", () => {
+    itemsTbody.appendChild(buildItemRow());
+    recalcTotal();
+  });
 
   function buildServiceRow() {
     const row = document.createElement("div");
@@ -273,6 +408,7 @@
     const phone = document.getElementById("phone").value.trim();
     const email = document.getElementById("email").value.trim();
     const address = document.getElementById("address").value.trim();
+    const client_type = document.getElementById("client_type").value;
     const description = document.getElementById("note").value.trim();
     const services = collectServices();
 
@@ -287,7 +423,7 @@
       const res = await fetch(BASE_URL + "/ui/terminer", {
         method: "POST",
         headers: { "Content-Type": "application/json", "X-UI-Key": key },
-        body: JSON.stringify({ client_name, phone, email, address, description, services })
+        body: JSON.stringify({ client_name, phone, email, address, client_type, description, services })
       });
       const data = await res.json().catch(() => ({}));
 
@@ -304,7 +440,7 @@
           '<div><span class="label">Services :</span> ' + (data.description || "") + '</div>' +
           '<div><span class="label">Montant total :</span> ' + (data.amount || "") + '$</div>' +
           '<div><span class="label">Facture #</span> ' + (data.invoice_number || "") + ' (brouillon, pas encore envoyée)</div>';
-        invoiceFrame.srcdoc = data.invoice_html || "";
+        renderItems(data.line_items || []);
         step1.style.display = "none";
         step2.style.display = "block";
       }
@@ -328,7 +464,7 @@
       const res = await fetch(BASE_URL + "/ui/confirmer-facture", {
         method: "POST",
         headers: { "Content-Type": "application/json", "X-UI-Key": key },
-        body: JSON.stringify({ invoice_id: currentInvoiceId })
+        body: JSON.stringify({ invoice_id: currentInvoiceId, line_items: collectItems() })
       });
       const data = await res.json().catch(() => ({}));
 
@@ -357,6 +493,7 @@
     document.getElementById("phone").value = "";
     document.getElementById("email").value = "";
     document.getElementById("address").value = "";
+    document.getElementById("client_type").value = "residentiel";
     document.getElementById("note").value = "";
     servicesList.innerHTML = "";
     servicesList.appendChild(buildServiceRow());
