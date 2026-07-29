@@ -184,12 +184,12 @@ export default function ContactPage() {
 
                   <div>
                     <label htmlFor="phone" className="block text-white font-semibold mb-2">Téléphone *</label>
-                    <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="514-555-1234" />
+                    <input type="tel" id="phone" name="phone" autoComplete="tel" value={formData.phone} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="514-555-1234" />
                   </div>
 
                   <div className="relative" ref={addressWrapperRef}>
                     <label htmlFor="address" className="block text-white font-semibold mb-2">Adresse *</label>
-                    <input type="text" id="address" name="address" autoComplete="off" value={formData.address} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="Votre adresse" />
+                    <input type="text" id="address" name="address" autoComplete="street-address" value={formData.address} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="Votre adresse" />
                     {addressSuggestions.length > 0 && (
                       <div className="absolute z-50 top-full left-0 right-0 mt-1 bg-gray-700 border border-gray-600 rounded-lg overflow-hidden shadow-xl">
                         {addressSuggestions.map((label, i) => (
