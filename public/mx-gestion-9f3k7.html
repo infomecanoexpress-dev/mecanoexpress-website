@@ -208,17 +208,17 @@
 
     <div id="step1">
       <label for="client_name">Nom du client</label>
-      <input type="text" id="client_name" placeholder="Nom complet">
+      <input type="text" id="client_name" name="client_name" autocomplete="off" placeholder="Nom complet">
 
       <label for="phone">Téléphone <span class="opt">(au moins un des deux : téléphone ou courriel)</span></label>
-      <input type="tel" id="phone" placeholder="514-555-1234">
+      <input type="tel" id="phone" name="phone_number" autocomplete="off" placeholder="514-555-1234">
 
       <label for="email">Courriel <span class="opt">(optionnel)</span></label>
-      <input type="email" id="email" placeholder="client@example.com">
+      <input type="email" id="email" name="email_address" autocomplete="off" placeholder="client@example.com">
 
       <label for="address">Adresse <span class="opt">(optionnel)</span></label>
       <div class="autocomplete-wrapper">
-        <input type="text" id="address" autocomplete="off" placeholder="Adresse du client">
+        <input type="text" id="address" name="street_address_search" autocomplete="off" placeholder="Adresse du client">
         <div class="autocomplete-list" id="address-list"></div>
       </div>
 
