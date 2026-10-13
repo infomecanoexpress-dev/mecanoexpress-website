@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-13T08:54:17-04:00",
+  "title": "Design System: MecanoExpress — site public",
+  "extensions": {
+    "colorMeta": {
+      "orange": {
+        "role": "primary",
+        "displayName": "Orange gyrophare",
+        "canonical": "#f97316",
+        "tonalRamp": [
+          "#431407",
+          "#7c2d12",
+          "#9a3412",
+          "#c2410c",
+          "#ea580c",
+          "#f97316",
+          "#fdba74",
+          "#ffedd5"
+        ]
+      },
+      "night": {
+        "role": "neutral",
+        "displayName": "Nuit",
+        "canonical": "#111827",
+        "tonalRamp": [
+          "#030712",
+          "#111827",
+          "#1f2937",
+          "#374151",
+          "#4b5563",
+          "#9ca3af",
+          "#d1d5db",
+          "#f3f4f6"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Hero",
+        "purpose": "Titre du hero, en dégradé orange."
+      },
+      "headline": {
+        "displayName": "Titre de section",
+        "purpose": "Nos Services, Zones Couvertes…"
+      },
+      "title": {
+        "displayName": "Titre de carte",
+        "purpose": "Services et zones."
+      },
+      "body": {
+        "displayName": "Texte",
+        "purpose": "Sous-titres et paragraphes, gris doux."
+      },
+      "label": {
+        "displayName": "Bouton / lien",
+        "purpose": "Boutons et navigation."
+      }
+    },
+    "shadows": [
+      {
+        "name": "glow",
+        "value": "drop-shadow(0 4px 14px rgba(255, 107, 0, 0.25))",
+        "purpose": "Lueur orange sous le logo et les titres."
+      },
+      {
+        "name": "button-glow",
+        "value": "0 10px 15px -3px rgba(249, 115, 22, 0.5)",
+        "purpose": "Survol des boutons orange."
+      }
+    ],
+    "motion": [
+      {
+        "name": "fade-in-up",
+        "value": "0.7s ease-out",
+        "purpose": "Apparition des blocs."
+      },
+      {
+        "name": "hover",
+        "value": "300ms",
+        "purpose": "Survol des liens, cartes et boutons."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Bouton principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Prendre RDV, Voir les services.",
+      "html": "<button class=\"ds-btn\">Prendre RDV maintenant</button>",
+      "css": ".ds-btn { font-family: Montserrat, sans-serif; background: linear-gradient(90deg, #f97316, #ea580c); color: #fff; font-weight: 600; padding: .75rem 2rem; border: none; border-radius: 9999px; cursor: pointer; transition: all .3s; } .ds-btn:hover { background: linear-gradient(90deg, #ea580c, #c2410c); box-shadow: 0 10px 15px -3px rgba(249,115,22,.5); } .ds-btn:focus-visible { outline: 2px solid #fb923c; outline-offset: 2px; }"
+    },
+    {
+      "name": "Bouton contour",
+      "kind": "button",
+      "refersTo": "button-ghost-outline",
+      "description": "Action secondaire du hero (téléphone).",
+      "html": "<button class=\"ds-btn-ghost\">📞 514 649-7372</button>",
+      "css": ".ds-btn-ghost { font-family: Montserrat, sans-serif; background: rgba(255,255,255,.1); backdrop-filter: blur(12px); color: #fff; border: 2px solid #f97316; font-weight: 600; padding: 1rem 2rem; border-radius: 9999px; cursor: pointer; transition: all .3s; } .ds-btn-ghost:hover { background: #f97316; } .ds-btn-ghost:focus-visible { outline: 2px solid #fb923c; outline-offset: 2px; }"
+    },
+    {
+      "name": "Carte de service",
+      "kind": "card",
+      "refersTo": "card-service",
+      "description": "Carte de la grille des services.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-ico\">❄️</div><div class=\"ds-t\">Pneus Hiver</div><p class=\"ds-p\">Installation complète de pneus d'hiver.</p></div>",
+      "css": ".ds-card { font-family: Montserrat, sans-serif; background: linear-gradient(180deg, #1f2937, #111827); border: 1px solid rgba(107,114,128,.4); border-radius: 1rem; padding: 1.5rem; color: #d1d5db; transition: border-color .3s; } .ds-card:hover { border-color: rgba(249,115,22,.5); } .ds-ico { width: 4rem; height: 4rem; display: flex; align-items: center; justify-content: center; border-radius: .75rem; background: rgba(249,115,22,.1); font-size: 2rem; margin-bottom: 1.25rem; } .ds-t { color: #fb923c; font-weight: 700; font-size: 1.5rem; margin-bottom: .5rem; } .ds-p { margin: 0; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Barre collante du haut.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-logo\">MECANOEXPRESS</span><a>Accueil</a><a>Services</a><a>Contact</a><button class=\"ds-cta\">Prendre RDV</button></nav>",
+      "css": ".ds-nav { font-family: Montserrat, sans-serif; display: flex; align-items: center; gap: 2rem; padding: .75rem 1rem; background: linear-gradient(90deg, #111827, #1f2937, #111827); border-bottom: 1px solid rgba(249,115,22,.3); } .ds-logo { color: #f97316; font-weight: 800; margin-right: auto; } .ds-nav a { color: #d1d5db; cursor: pointer; transition: color .3s; } .ds-nav a:hover { color: #f97316; } .ds-cta { font-family: Montserrat, sans-serif; background: linear-gradient(90deg, #f97316, #ea580c); color: #fff; border: none; border-radius: 9999px; padding: .5rem 1.5rem; font-weight: 600; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Le gyrophare",
+    "overview": "Un site de nuit, éclairé par un seul orange vif, comme le gyrophare d'un véhicule de service sur le bord de la route. Fonds en dégradés presque noirs, titres et boutons orange, texte gris clair, photo de mécanicien assombrie en haut de l'accueil.",
+    "keyCharacteristics": [
+      "Fond sombre en dégradés (gris 900 → 800 → noir).",
+      "Un orange unique (orange 500), décliné du 400 au 600, pour les titres, les boutons et les lueurs.",
+      "Montserrat partout, titres en gras (700).",
+      "Boutons en pilule, cartes à coins de 1rem avec bordure translucide.",
+      "Mise en page centrée, en sections de 5rem de hauteur de marge."
+    ],
+    "rules": [
+      {
+        "name": "The Single Beacon Rule",
+        "body": "L'orange est la seule couleur vive du site. Les autres teintes sont des gris.",
+        "section": "colors"
+      },
+      {
+        "name": "The Glow Not Shadow Rule",
+        "body": "Ce qui doit ressortir s'éclaire en orange. On n'ajoute pas d'ombres noires portées.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do garder l'orange comme seule couleur vive, du 400 au 600.",
+      "Do utiliser des pilules pour toute action et des cartes à coins de 1rem.",
+      "Do écrire les titres en Montserrat 700, et le texte courant en gris doux sur fond sombre."
+    ],
+    "donts": [
+      "Don't introduire une deuxième couleur d'accent.",
+      "Don't utiliser d'ombres noires lourdes : la profondeur passe par la lueur orange et les dégradés.",
+      "Don't mettre du texte noir ou très foncé sur le fond sombre (le mot « EXPRESS » du logo y est presque invisible)."
+    ]
+  }
+}
