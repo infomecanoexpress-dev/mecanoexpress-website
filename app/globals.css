@@ -8,703 +8,737 @@
    pour les données, lignes fines, coins précis.
    ============================================================ */
 
-:root {
-  color-scheme: dark;
-}
+/* Dans des couches Tailwind : les classes utilitaires (pt-10, h-12, border-t-0…) gardent le dernier mot. */
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  background: theme('colors.graphite.900');
-  color: theme('colors.encre.DEFAULT');
-  font-family: theme('fontFamily.sans');
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-::selection {
-  background: theme('colors.accent.DEFAULT');
-  color: theme('colors.graphite.900');
-}
-
-:focus-visible {
-  outline: 2px solid theme('colors.accent.DEFAULT');
-  outline-offset: 3px;
-}
-
-html {
-  scrollbar-color: theme('colors.ligne.forte') theme('colors.graphite.950');
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: theme('colors.graphite.950');
-}
-
-::-webkit-scrollbar-thumb {
-  background: theme('colors.ligne.forte');
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: theme('colors.accent.DEFAULT');
-}
-
-@media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: theme('colors.graphite.900');
+    color: theme('colors.encre.DEFAULT');
+    font-family: theme('fontFamily.sans');
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: theme('colors.accent.DEFAULT');
+    color: theme('colors.graphite.900');
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.accent.DEFAULT');
+    outline-offset: 3px;
+  }
+
+  html {
+    scrollbar-color: theme('colors.ligne.forte') theme('colors.graphite.950');
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: theme('colors.graphite.950');
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: theme('colors.ligne.forte');
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.accent.DEFAULT');
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
-/* Chiffres et données (téléphone, dates, tailles de pneus) : monospace. */
-.chiffres {
-  font-family: theme('fontFamily.mono');
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.01em;
-  word-spacing: -0.3em;
-}
+@layer components {
+  /* Chiffres et données (téléphone, dates, tailles de pneus) : monospace. */
+  .chiffres {
+    font-family: theme('fontFamily.mono');
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.01em;
+    word-spacing: -0.3em;
+  }
 
-.sans-coupure {
-  white-space: nowrap;
-}
+  .sans-coupure {
+    white-space: nowrap;
+  }
 
-/* ---------- Boutons ---------- */
-/* Lueur et dégradé : seulement sur l’action principale (.btn-primaire). */
+  /* ---------- Boutons ---------- */
+  /* Lueur et dégradé : seulement sur l’action principale (.btn-primaire). */
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.625rem;
-  min-height: 3.5rem;
-  padding: 0 1.625rem;
-  border-radius: theme('borderRadius.precis');
-  font-weight: 600;
-  font-size: 1.0625rem;
-  line-height: 1.2;
-  text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
-  transition: transform 120ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 200ms ease, filter 200ms ease,
-    border-color 200ms ease, background-color 200ms ease, color 200ms ease;
-}
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    min-height: 3.5rem;
+    padding: 0 1.625rem;
+    border-radius: theme('borderRadius.precis');
+    font-weight: 600;
+    font-size: 1.0625rem;
+    line-height: 1.2;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 120ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 200ms ease, filter 200ms ease,
+      border-color 200ms ease, background-color 200ms ease, color 200ms ease;
+  }
 
-.btn svg {
-  width: 1.25rem;
-  height: 1.25rem;
-  flex: none;
-}
+  .btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: none;
+  }
 
-.btn:active {
-  transform: scale(0.97);
-}
+  .btn:active {
+    transform: scale(0.97);
+  }
 
-.btn-primaire {
-  background: linear-gradient(180deg, theme('colors.accent.clair') 0%, theme('colors.accent.fonce') 100%);
-  color: #111316;
-  box-shadow: 0 0 0 1px rgba(240, 122, 53, 0.35), 0 14px 36px -12px rgba(224, 100, 28, 0.9),
-    inset 0 1px 0 rgba(255, 255, 255, 0.28);
-}
+  .btn-primaire {
+    background: linear-gradient(180deg, theme('colors.accent.clair') 0%, theme('colors.accent.fonce') 100%);
+    color: #111316;
+    box-shadow: 0 0 0 1px rgba(240, 122, 53, 0.35), 0 14px 36px -12px rgba(224, 100, 28, 0.9),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  }
 
-.btn-contour {
-  color: theme('colors.encre.DEFAULT');
-  border: 1px solid theme('colors.ligne.contour');
-  background: rgba(16, 18, 21, 0.7);
-}
+  .btn-contour {
+    color: theme('colors.encre.DEFAULT');
+    border: 1px solid theme('colors.ligne.contour');
+    background: rgba(16, 18, 21, 0.7);
+  }
 
-.btn-petit {
-  min-height: 2.75rem;
-  padding: 0 1.125rem;
-  font-size: 0.9375rem;
-}
+  .btn-petit {
+    min-height: 2.75rem;
+    padding: 0 1.125rem;
+    font-size: 0.9375rem;
+  }
 
-/* Barre d’appel du téléphone : 48 px de haut, texte un peu plus court. */
-.btn-barre {
-  min-height: 3rem;
-  padding: 0 1rem;
-  font-size: 0.9375rem;
+  /* Barre d’appel du téléphone : 48 px de haut, texte un peu plus court. */
+  .btn-barre {
+    min-height: 3rem;
+    padding: 0 1rem;
+    font-size: 0.9375rem;
+  }
+
+
+  /* ---------- Formulaires ---------- */
+  /* 16 px minimum : iOS ne zoome pas sur le champ. */
+  .etiquette {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: theme('colors.encre.DEFAULT');
+  }
+
+  .champ {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid theme('colors.ligne.contour');
+    border-radius: theme('borderRadius.precis');
+    background: theme('colors.graphite.800');
+    color: theme('colors.encre.DEFAULT');
+    font-size: 1rem;
+    line-height: 1.4;
+    transition: border-color 150ms ease;
+  }
+
+  .champ::placeholder {
+    color: theme('colors.encre.3');
+  }
+
+  /* Liste déroulante : flèche dessinée au trait (1,5 px), pas celle du navigateur. */
+  select.champ {
+    -webkit-appearance: none;
+    appearance: none;
+    padding-right: 2.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9ced5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.875rem center;
+    background-size: 1.25rem;
+  }
+
+  .champ:focus {
+    outline: 2px solid theme('colors.accent.DEFAULT');
+    outline-offset: 0;
+    border-color: theme('colors.accent.DEFAULT');
+  }
+
+  /* Menu du téléphone : se déroule en 200 ms, rien avec mouvement réduit. */
+  .menu-deroule {
+    animation: deroule 200ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  @keyframes deroule {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-deroule {
+      animation: none;
+    }
+  }
+
+  /* Apparition du message après l'envoi (300 ms), rien avec mouvement réduit. */
+  .apparition {
+    animation: apparition 300ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  @keyframes apparition {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .apparition {
+      animation: none;
+    }
+  }
+
+  /* Coins vifs (2 px) : barre du haut et premier écran. */
+  .btn-vif {
+    border-radius: theme('borderRadius.vif');
+  }
+
+  @media (hover: hover) {
+    .btn-primaire:hover {
+      filter: brightness(1.06);
+      box-shadow: 0 0 0 1px rgba(240, 122, 53, 0.5), 0 18px 40px -12px rgba(224, 100, 28, 1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-contour:hover {
+      border-color: theme('colors.accent.DEFAULT');
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn {
+      transition: box-shadow 200ms ease, filter 200ms ease, border-color 200ms ease, background-color 200ms ease;
+    }
+
+    .btn:active {
+      transform: none;
+    }
+  }
+
+  /* ---------- Logo d’origine (orange et noir) sur plaque claire ---------- */
+  /* Le noir du logo disparaîtrait sur le graphite : la plaque lui garde ses vraies couleurs. */
+
+  .logo-plaque {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.375rem 0.625rem;
+    border-radius: theme('borderRadius.vif');
+    background: #eceef1;
+    box-shadow: inset 0 0 0 1px rgba(16, 18, 21, 0.14), 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .logo-plaque img {
+    display: block;
+    width: auto;
+    height: 1.875rem;
+  }
+
+  @media (min-width: 768px) {
+    .logo-plaque img {
+      height: 2.125rem;
+    }
+  }
+
+  /* ============================================================
+     Reste du site : niveau « moyen » (proche de la version 2)
+     Fonds unis, filets, fiches, grille fine seulement par endroits.
+     ============================================================ */
+
+  .section {
+    padding: 4.5rem 0;
+    border-top: 1px solid theme('colors.ligne.DEFAULT');
+  }
+
+  @media (min-width: 768px) {
+    .section {
+      padding: 6rem 0;
+    }
+  }
+
+  .section-titre {
+    margin: 0;
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .section-intro {
+    margin: 1rem 0 0;
+    max-width: 46ch;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    color: theme('colors.encre.2');
+  }
+
+  /* Grille fine (niveau moyen), estompée sur les bords. */
+  .grille-fine {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+    background-position: -1px -1px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 30% 40%, #000 25%, transparent 100%);
+    mask-image: radial-gradient(ellipse 80% 70% at 30% 40%, #000 25%, transparent 100%);
+  }
+
+  /* Fiche : panneau à filets, coins de 4 px, repères d’angle orange. */
+  .fiche {
+    position: relative;
+    background: theme('colors.graphite.850');
+    border: 1px solid #2c3238;
+    border-radius: theme('borderRadius.precis');
+  }
+
+  .fiche-repere {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 0 solid theme('colors.accent.DEFAULT');
+  }
+
+  .fiche-repere.hg { top: -1px; left: -1px; border-top-width: 1px; border-left-width: 1px; }
+  .fiche-repere.hd { top: -1px; right: -1px; border-top-width: 1px; border-right-width: 1px; }
+  .fiche-repere.bg { bottom: -1px; left: -1px; border-bottom-width: 1px; border-left-width: 1px; }
+  .fiche-repere.bd { bottom: -1px; right: -1px; border-bottom-width: 1px; border-right-width: 1px; }
+
+  /* En-tête de fiche : du texte, donc en Sora (la monospace reste pour les données). */
+  .fiche-entete {
+    margin: 0;
+    padding: 0.875rem 1.25rem;
+    border-bottom: 1px solid theme('colors.graphite.700');
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: theme('colors.encre.DEFAULT');
+  }
+
+  .fiche-ligne {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border-top: 1px solid #23282e;
+  }
+
+  .fiche-ligne:first-child {
+    border-top: 0;
+  }
+
+  .fiche-icone {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid #343a42;
+    border-radius: theme('borderRadius.precis');
+    color: theme('colors.encre.2');
+  }
+
+  .fiche-icone svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .fiche-ligne strong {
+    display: block;
+    font-weight: 600;
+    font-size: 1.0625rem;
+    color: theme('colors.encre.DEFAULT');
+  }
+
+  .fiche-detail {
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.9375rem;
+    color: theme('colors.encre.3');
+  }
+
+  /* ============================================================
+     Premier écran de l’accueil (intensité « prononcée »)
+     Le reste du site garde un niveau plus calme.
+     ============================================================ */
+
+  .hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: calc(100svh - 4rem);
+    background: theme('colors.graphite.950');
+    border-bottom: 1px solid theme('colors.ligne.DEFAULT');
+  }
+
+  .hero .btn {
+    border-radius: theme('borderRadius.vif');
+  }
+
+  .hero-grille {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.065) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.065) 1px, transparent 1px),
+      linear-gradient(to right, rgba(255, 255, 255, 0.026) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
+    background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
+    background-position: -1px -1px;
+    -webkit-mask-image: linear-gradient(105deg, rgba(0, 0, 0, 0.35) 0%, #000 55%, rgba(0, 0, 0, 0.6) 100%);
+    mask-image: linear-gradient(105deg, rgba(0, 0, 0, 0.35) 0%, #000 55%, rgba(0, 0, 0, 0.6) 100%);
+  }
+
+  .hero-bandeau {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    min-height: 2.75rem;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid theme('colors.ligne.DEFAULT');
+    background: rgba(16, 18, 21, 0.9);
+    font-family: theme('fontFamily.mono');
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: theme('colors.encre.2');
+  }
+
+  .hero-bandeau b {
+    color: theme('colors.accent.DEFAULT');
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* Téléphone : version courte sur une seule ligne (étiquette à gauche, état à droite). */
+  .hero-bandeau-long,
+  .hero-zones {
+    display: none;
+  }
+
+  .hero-bandeau-court {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    white-space: nowrap;
+  }
+
+  /* Sous 360 px, l’étiquette s’abrège ; l’état reste toujours entier. */
+  .hero-bandeau-court > span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hero-bandeau-court b {
+    flex: none;
+  }
+
+  .hero-zones {
+    color: theme('colors.encre.3');
+  }
+
+  .hero-corps {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 84rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 0;
+  }
+
+  .hero-texte {
+    position: relative;
+    z-index: 2;
+    max-width: 38rem;
+  }
+
+  .hero-titre {
+    margin: 0 0 1.25rem;
+    max-width: 12ch;
+    font-weight: 700;
+    font-size: clamp(2.75rem, 7vw, 5.75rem);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+  }
+
+  .hero-titre em {
+    font-style: normal;
+    white-space: nowrap;
+    color: theme('colors.accent.DEFAULT');
+  }
+
+  .hero-sous-titre {
+    margin: 0;
+    max-width: 34ch;
+    font-size: clamp(1.125rem, 1.7vw, 1.3125rem);
+    line-height: 1.5;
+    color: theme('colors.encre.2');
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 2.25rem;
+  }
+
+  /* Roue dessinée au trait : un seul tracé pour les encoches, aucune image. */
+  .hero-roue {
+    position: relative;
+    z-index: 1;
+    align-self: flex-end;
+    width: 118%;
+    max-width: 32rem;
+    margin: 2.25rem -4.5rem -6rem 0;
+    aspect-ratio: 1;
+    contain: layout paint;
+  }
+
+  .hero-roue svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .hero-roue .trait,
+  .hero-roue .trait-fin,
+  .hero-roue .trait-accent,
+  .hero-roue .cote {
+    fill: none;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .hero-roue .trait {
+    stroke: #48505a;
+    stroke-width: 1.25;
+  }
+
+  .hero-roue .trait-fin {
+    stroke: #343b43;
+    stroke-width: 1;
+  }
+
+  .hero-roue .trait-accent {
+    stroke: theme('colors.accent.DEFAULT');
+    stroke-width: 1.25;
+  }
+
+  .hero-roue .cote {
+    stroke: #7d8691;
+    stroke-width: 1;
+    stroke-dasharray: 4 4;
+  }
+
+  .hero-roue .flanc {
+    font-family: theme('fontFamily.mono');
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    fill: theme('colors.accent.DEFAULT');
+  }
+
+  .hero-roue .cote-texte {
+    font-family: theme('fontFamily.mono');
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    fill: theme('colors.encre.2');
+  }
+
+  /* Cercles tracés : épaisseur en unités du dessin, sans vector-effect. Avec
+     non-scaling-stroke, Chrome applique le tiret à l’échelle de l’écran et le
+     cercle restait incomplet dès que la roue est affichée plus grande que son
+     viewBox (ordinateur). Épaisseurs choisies pour rester à ~1,25 px affichés. */
+  .hero-roue .trace {
+    vector-effect: none;
+  }
+
+  .hero-roue .trace.trait,
+  .hero-roue .trace.trait-accent {
+    stroke-width: 1.9;
+  }
+
+  .hero-roue .trace.trait-fin {
+    stroke-width: 1.5;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-roue .trace.trait,
+    .hero-roue .trace.trait-accent {
+      stroke-width: 0.9;
+    }
+
+    .hero-roue .trace.trait-fin {
+      stroke-width: 0.72;
+    }
+  }
+
+  /* Le tracé ne joue qu’au premier affichage (classe posée une fois par chargement). */
+  .hero-roue--trace .trace {
+    stroke-dasharray: 1;
+    animation: hero-trace 1100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hero-roue--trace .t2 {
+    animation-delay: 120ms;
+  }
+
+  .hero-roue--trace .t3 {
+    animation-delay: 240ms;
+  }
+
+  @keyframes hero-trace {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .hero-legende {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .hero-bandeau {
+      padding: 0.5rem 1.25rem;
+      font-size: 0.8125rem;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-bandeau-long {
+      display: inline;
+    }
+
+    .hero-bandeau-court {
+      display: none;
+    }
+
+    .hero-actions {
+      flex-direction: row;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero-zones {
+      display: block;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-corps {
+      padding: 3rem 2rem;
+    }
+
+    .hero-roue {
+      position: absolute;
+      right: -11rem;
+      top: 50%;
+      width: min(56vw, 54rem);
+      max-width: none;
+      margin: 0;
+      transform: translateY(-50%);
+    }
+
+    .hero-legende {
+      display: block;
+      position: absolute;
+      z-index: 2;
+      right: 2rem;
+      bottom: 2rem;
+      padding: 1rem 1.125rem;
+      border: 1px solid theme('colors.ligne.DEFAULT');
+      border-radius: theme('borderRadius.vif');
+      background: rgba(16, 18, 21, 0.88);
+      font-family: theme('fontFamily.mono');
+      font-size: 0.8125rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: theme('colors.encre.2');
+    }
+
+    .hero-legende-titre {
+      margin: 0 0 0.625rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid theme('colors.ligne.DEFAULT');
+      color: theme('colors.encre.3');
+    }
+
+    .hero-legende dl {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 0.375rem 1rem;
+      margin: 0;
+    }
+
+    .hero-legende dt {
+      color: theme('colors.accent.DEFAULT');
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .hero-legende dd {
+      margin: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-roue--trace .trace {
+      animation: none;
+      stroke-dasharray: none;
+    }
+  }
 }
 
 /* L’ancre du formulaire ne passe pas sous la barre du haut collante. */
 #demande {
   scroll-margin-top: 5.5rem;
-}
-
-/* ---------- Formulaires ---------- */
-/* 16 px minimum : iOS ne zoome pas sur le champ. */
-.etiquette {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: theme('colors.encre.DEFAULT');
-}
-
-.champ {
-  width: 100%;
-  min-height: 3rem;
-  padding: 0.75rem 1rem;
-  border: 1px solid theme('colors.ligne.contour');
-  border-radius: theme('borderRadius.precis');
-  background: theme('colors.graphite.800');
-  color: theme('colors.encre.DEFAULT');
-  font-size: 1rem;
-  line-height: 1.4;
-  transition: border-color 150ms ease;
-}
-
-.champ::placeholder {
-  color: theme('colors.encre.3');
-}
-
-/* Liste déroulante : flèche dessinée au trait (1,5 px), pas celle du navigateur. */
-select.champ {
-  -webkit-appearance: none;
-  appearance: none;
-  padding-right: 2.75rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9ced5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.875rem center;
-  background-size: 1.25rem;
-}
-
-.champ:focus {
-  outline: 2px solid theme('colors.accent.DEFAULT');
-  outline-offset: 0;
-  border-color: theme('colors.accent.DEFAULT');
-}
-
-/* Menu du téléphone : se déroule en 200 ms, rien avec mouvement réduit. */
-.menu-deroule {
-  animation: deroule 200ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-}
-
-@keyframes deroule {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .menu-deroule {
-    animation: none;
-  }
-}
-
-/* Apparition du message après l'envoi (300 ms), rien avec mouvement réduit. */
-.apparition {
-  animation: apparition 300ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-}
-
-@keyframes apparition {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .apparition {
-    animation: none;
-  }
-}
-
-/* Coins vifs (2 px) : barre du haut et premier écran. */
-.btn-vif {
-  border-radius: theme('borderRadius.vif');
-}
-
-@media (hover: hover) {
-  .btn-primaire:hover {
-    filter: brightness(1.06);
-    box-shadow: 0 0 0 1px rgba(240, 122, 53, 0.5), 0 18px 40px -12px rgba(224, 100, 28, 1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  }
-
-  .btn-contour:hover {
-    border-color: theme('colors.accent.DEFAULT');
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .btn {
-    transition: box-shadow 200ms ease, filter 200ms ease, border-color 200ms ease, background-color 200ms ease;
-  }
-
-  .btn:active {
-    transform: none;
-  }
-}
-
-/* ---------- Logo d’origine (orange et noir) sur plaque claire ---------- */
-/* Le noir du logo disparaîtrait sur le graphite : la plaque lui garde ses vraies couleurs. */
-
-.logo-plaque {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.375rem 0.625rem;
-  border-radius: theme('borderRadius.vif');
-  background: #eceef1;
-  box-shadow: inset 0 0 0 1px rgba(16, 18, 21, 0.14), 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-.logo-plaque img {
-  display: block;
-  width: auto;
-  height: 1.875rem;
-}
-
-@media (min-width: 768px) {
-  .logo-plaque img {
-    height: 2.125rem;
-  }
-}
-
-/* ============================================================
-   Reste du site : niveau « moyen » (proche de la version 2)
-   Fonds unis, filets, fiches, grille fine seulement par endroits.
-   ============================================================ */
-
-.section {
-  padding: 4.5rem 0;
-  border-top: 1px solid theme('colors.ligne.DEFAULT');
-}
-
-@media (min-width: 768px) {
-  .section {
-    padding: 6rem 0;
-  }
-}
-
-.section-titre {
-  margin: 0;
-  font-weight: 700;
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  text-wrap: balance;
-}
-
-.section-intro {
-  margin: 1rem 0 0;
-  max-width: 46ch;
-  font-size: 1.125rem;
-  line-height: 1.5;
-  color: theme('colors.encre.2');
-}
-
-/* Grille fine (niveau moyen), estompée sur les bords. */
-.grille-fine {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 56px 56px;
-  background-position: -1px -1px;
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 30% 40%, #000 25%, transparent 100%);
-  mask-image: radial-gradient(ellipse 80% 70% at 30% 40%, #000 25%, transparent 100%);
-}
-
-/* Fiche : panneau à filets, coins de 4 px, repères d’angle orange. */
-.fiche {
-  position: relative;
-  background: theme('colors.graphite.850');
-  border: 1px solid #2c3238;
-  border-radius: theme('borderRadius.precis');
-}
-
-.fiche-repere {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border: 0 solid theme('colors.accent.DEFAULT');
-}
-
-.fiche-repere.hg { top: -1px; left: -1px; border-top-width: 1px; border-left-width: 1px; }
-.fiche-repere.hd { top: -1px; right: -1px; border-top-width: 1px; border-right-width: 1px; }
-.fiche-repere.bg { bottom: -1px; left: -1px; border-bottom-width: 1px; border-left-width: 1px; }
-.fiche-repere.bd { bottom: -1px; right: -1px; border-bottom-width: 1px; border-right-width: 1px; }
-
-/* En-tête de fiche : du texte, donc en Sora (la monospace reste pour les données). */
-.fiche-entete {
-  margin: 0;
-  padding: 0.875rem 1.25rem;
-  border-bottom: 1px solid theme('colors.graphite.700');
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: theme('colors.encre.DEFAULT');
-}
-
-.fiche-ligne {
-  display: grid;
-  grid-template-columns: 2.5rem 1fr;
-  gap: 1rem;
-  align-items: center;
-  padding: 1rem 1.25rem;
-  border-top: 1px solid #23282e;
-}
-
-.fiche-ligne:first-child {
-  border-top: 0;
-}
-
-.fiche-icone {
-  display: grid;
-  place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 1px solid #343a42;
-  border-radius: theme('borderRadius.precis');
-  color: theme('colors.encre.2');
-}
-
-.fiche-icone svg {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.fiche-ligne strong {
-  display: block;
-  font-weight: 600;
-  font-size: 1.0625rem;
-  color: theme('colors.encre.DEFAULT');
-}
-
-.fiche-detail {
-  display: block;
-  margin-top: 0.125rem;
-  font-size: 0.9375rem;
-  color: theme('colors.encre.3');
-}
-
-/* ============================================================
-   Premier écran de l’accueil (intensité « prononcée »)
-   Le reste du site garde un niveau plus calme.
-   ============================================================ */
-
-.hero {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  min-height: calc(100svh - 4rem);
-  background: theme('colors.graphite.950');
-  border-bottom: 1px solid theme('colors.ligne.DEFAULT');
-}
-
-.hero .btn {
-  border-radius: theme('borderRadius.vif');
-}
-
-.hero-grille {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.065) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.065) 1px, transparent 1px),
-    linear-gradient(to right, rgba(255, 255, 255, 0.026) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
-  background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
-  background-position: -1px -1px;
-  -webkit-mask-image: linear-gradient(105deg, rgba(0, 0, 0, 0.35) 0%, #000 55%, rgba(0, 0, 0, 0.6) 100%);
-  mask-image: linear-gradient(105deg, rgba(0, 0, 0, 0.35) 0%, #000 55%, rgba(0, 0, 0, 0.6) 100%);
-}
-
-.hero-bandeau {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  min-height: 2.75rem;
-  margin: 0;
-  padding: 0.5rem 1rem;
-  border-bottom: 1px solid theme('colors.ligne.DEFAULT');
-  background: rgba(16, 18, 21, 0.9);
-  font-family: theme('fontFamily.mono');
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: theme('colors.encre.2');
-}
-
-.hero-bandeau b {
-  color: theme('colors.accent.DEFAULT');
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-/* Téléphone : version courte sur une seule ligne (étiquette à gauche, état à droite). */
-.hero-bandeau-long,
-.hero-zones {
-  display: none;
-}
-
-.hero-bandeau-court {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.75rem;
-  width: 100%;
-  white-space: nowrap;
-}
-
-/* Sous 360 px, l’étiquette s’abrège ; l’état reste toujours entier. */
-.hero-bandeau-court > span {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.hero-bandeau-court b {
-  flex: none;
-}
-
-.hero-zones {
-  color: theme('colors.encre.3');
-}
-
-.hero-corps {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  max-width: 84rem;
-  margin: 0 auto;
-  padding: 2.5rem 1.25rem 0;
-}
-
-.hero-texte {
-  position: relative;
-  z-index: 2;
-  max-width: 38rem;
-}
-
-.hero-titre {
-  margin: 0 0 1.25rem;
-  max-width: 12ch;
-  font-weight: 700;
-  font-size: clamp(2.75rem, 7vw, 5.75rem);
-  line-height: 0.98;
-  letter-spacing: -0.04em;
-}
-
-.hero-titre em {
-  font-style: normal;
-  white-space: nowrap;
-  color: theme('colors.accent.DEFAULT');
-}
-
-.hero-sous-titre {
-  margin: 0;
-  max-width: 34ch;
-  font-size: clamp(1.125rem, 1.7vw, 1.3125rem);
-  line-height: 1.5;
-  color: theme('colors.encre.2');
-}
-
-.hero-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-top: 2.25rem;
-}
-
-/* Roue dessinée au trait : un seul tracé pour les encoches, aucune image. */
-.hero-roue {
-  position: relative;
-  z-index: 1;
-  align-self: flex-end;
-  width: 118%;
-  max-width: 32rem;
-  margin: 2.25rem -4.5rem -6rem 0;
-  aspect-ratio: 1;
-  contain: layout paint;
-}
-
-.hero-roue svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.hero-roue .trait,
-.hero-roue .trait-fin,
-.hero-roue .trait-accent,
-.hero-roue .cote {
-  fill: none;
-  vector-effect: non-scaling-stroke;
-}
-
-.hero-roue .trait {
-  stroke: #48505a;
-  stroke-width: 1.25;
-}
-
-.hero-roue .trait-fin {
-  stroke: #343b43;
-  stroke-width: 1;
-}
-
-.hero-roue .trait-accent {
-  stroke: theme('colors.accent.DEFAULT');
-  stroke-width: 1.25;
-}
-
-.hero-roue .cote {
-  stroke: #7d8691;
-  stroke-width: 1;
-  stroke-dasharray: 4 4;
-}
-
-.hero-roue .flanc {
-  font-family: theme('fontFamily.mono');
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  fill: theme('colors.accent.DEFAULT');
-}
-
-.hero-roue .cote-texte {
-  font-family: theme('fontFamily.mono');
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  fill: theme('colors.encre.2');
-}
-
-/* Le tracé ne joue qu’au premier affichage (classe posée une fois par chargement). */
-.hero-roue--trace .trace {
-  stroke-dasharray: 1;
-  animation: hero-trace 1100ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.hero-roue--trace .t2 {
-  animation-delay: 120ms;
-}
-
-.hero-roue--trace .t3 {
-  animation-delay: 240ms;
-}
-
-@keyframes hero-trace {
-  from {
-    stroke-dashoffset: 1;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.hero-legende {
-  display: none;
-}
-
-@media (min-width: 640px) {
-  .hero-bandeau {
-    padding: 0.5rem 1.25rem;
-    font-size: 0.8125rem;
-    letter-spacing: 0.06em;
-  }
-
-  .hero-bandeau-long {
-    display: inline;
-  }
-
-  .hero-bandeau-court {
-    display: none;
-  }
-
-  .hero-actions {
-    flex-direction: row;
-  }
-}
-
-@media (min-width: 768px) {
-  .hero-zones {
-    display: block;
-  }
-}
-
-@media (min-width: 1024px) {
-  .hero-corps {
-    padding: 3rem 2rem;
-  }
-
-  .hero-roue {
-    position: absolute;
-    right: -11rem;
-    top: 50%;
-    width: min(56vw, 54rem);
-    max-width: none;
-    margin: 0;
-    transform: translateY(-50%);
-  }
-
-  .hero-legende {
-    display: block;
-    position: absolute;
-    z-index: 2;
-    right: 2rem;
-    bottom: 2rem;
-    padding: 1rem 1.125rem;
-    border: 1px solid theme('colors.ligne.DEFAULT');
-    border-radius: theme('borderRadius.vif');
-    background: rgba(16, 18, 21, 0.88);
-    font-family: theme('fontFamily.mono');
-    font-size: 0.8125rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: theme('colors.encre.2');
-  }
-
-  .hero-legende-titre {
-    margin: 0 0 0.625rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid theme('colors.ligne.DEFAULT');
-    color: theme('colors.encre.3');
-  }
-
-  .hero-legende dl {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 0.375rem 1rem;
-    margin: 0;
-  }
-
-  .hero-legende dt {
-    color: theme('colors.accent.DEFAULT');
-    font-weight: 600;
-    text-align: right;
-  }
-
-  .hero-legende dd {
-    margin: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-roue--trace .trace {
-    animation: none;
-    stroke-dasharray: none;
-  }
 }
