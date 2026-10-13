@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import Image from 'next/image'
+import { CheckIcon, ClockIcon, MailIcon, PhoneIcon, PinIcon } from '../icons'
+import { titreService } from '../services-liste.mjs'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -95,158 +96,180 @@ export default function ContactPage() {
     }
   }
 
+  // Service choisi sur la page Services (?service=huile) : prérempli dans le message.
+  // Lu dans le navigateur (la page est statique) ; un identifiant inconnu est ignoré.
+  useEffect(() => {
+    const titre = titreService(new URLSearchParams(window.location.search).get('service'))
+    if (titre) setFormData((prev) => (prev.message ? prev : { ...prev, message: `Service souhaité : ${titre}\n` }))
+  }, [])
+
+  // Après l'envoi, le message de résultat est amené sous la barre du haut.
+  const statusRef = useRef(null)
+  useEffect(() => {
+    if (!submitStatus || !statusRef.current) return
+    const reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    statusRef.current.scrollIntoView({ block: 'start', behavior: reduit ? 'auto' : 'smooth' })
+  }, [submitStatus])
+
   return (
-    <div className="min-h-screen bg-black">
-      <section className="relative py-20 bg-gradient-to-b from-gray-900 to-black">
+    <div className="min-h-screen">
+      <section className="relative overflow-hidden border-b border-ligne bg-graphite-950 py-12 md:py-16">
+        <div className="grille-fine" aria-hidden="true"></div>
+        <div className="container relative mx-auto px-4">
+          <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-bold leading-[1.02] tracking-[-0.035em]">Contactez-nous</h1>
+          <p className="mt-4 max-w-[46ch] text-[clamp(1.125rem,1.7vw,1.3125rem)] leading-normal text-encre-2">Prenez rendez-vous ou contactez-nous pour toute question</p>
+        </div>
+      </section>
+
+      <section className="section border-t-0 pt-10 md:pt-14">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-orange-500">Contactez-nous</h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">Prenez rendez-vous ou contactez-nous pour toute question</p>
-          </div>
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-14">
+            <div id="demande" className="fiche p-5 sm:p-8">
+              <span className="fiche-repere hg" aria-hidden="true"></span>
+              <span className="fiche-repere bd" aria-hidden="true"></span>
+              <h2 className="text-2xl font-bold tracking-[-0.02em] md:text-3xl">Demande de service</h2>
+              <p className="mt-2 text-encre-2">Décrivez votre besoin, un technicien vous recontacte rapidement.</p>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 mb-8">
-                <h2 className="text-3xl font-bold mb-6 text-orange-500">Informations de Contact</h2>
-                <div className="space-y-6">
-                  <div className="flex items-start">
-                    <div className="text-3xl mr-4">📞</div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-1">Téléphone</h3>
-                      <a href="tel:5146497372" className="text-orange-500 text-2xl hover:text-orange-400 transition-colors">514 649-7372</a>
-                      <p className="text-gray-400 text-sm mt-1">Disponible 7 jours sur 7</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="text-3xl mr-4">✉️</div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-1">Email</h3>
-                      <a href="mailto:info.mecanoexpress@gmail.com" className="text-orange-500 text-lg hover:text-orange-400 transition-colors">info.mecanoexpress@gmail.com</a>
-                      <p className="text-gray-400 text-sm mt-1">Réponse sous 24h</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="text-3xl mr-4">📍</div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-1">Zone de Service</h3>
-                      <p className="text-gray-300">Montréal, Laval, Rive-Nord, Rive-Sud</p>
-                      <p className="text-gray-400 text-sm mt-1">Service mobile - on vient à vous!</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="text-3xl mr-4">⏰</div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-1">Heures d ouverture</h3>
-                      <p className="text-gray-300">Lundi - Dimanche</p>
-                      <p className="text-gray-300">8h00 - 20h00</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div id="demande" className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
-                <Image
-                  src="/logo-mecanoexpress.png"
-                  alt="MecanoExpress"
-                  width={800}
-                  height={200}
-                  sizes="180px"
-                  className="mx-auto mb-4 h-11 w-auto"
-                />
-                <h2 className="text-3xl font-bold mb-2 text-center text-orange-500">Demande de service</h2>
-                <p className="text-gray-300 text-center mb-6">Décrivez votre besoin, un technicien vous recontacte rapidement.</p>
-
+              <div ref={statusRef} className="scroll-mt-24">
                 {submitStatus === 'success' && (
-                  <div className="bg-green-500/20 border border-green-500 rounded-lg p-4 mb-6">
-                    <p className="text-green-500 font-semibold">✓ Demande envoyée avec succès! Un technicien vous recontactera sous peu.</p>
+                  <div role="status" className="apparition mt-6 rounded-precis border border-accent bg-graphite-800 p-4">
+                    <p className="flex items-start gap-3 font-semibold text-encre">
+                      <CheckIcon className="mt-0.5 h-5 w-5 flex-none text-accent" />
+                      Demande envoyée. Un technicien vous rappelle rapidement au numéro indiqué.
+                    </p>
+                    <p className="mt-2 pl-8 text-encre-2">
+                      C’est urgent ? Appelez le <a href="tel:5146497372" className="chiffres whitespace-nowrap text-encre underline decoration-accent underline-offset-4">514 649-7372</a>.
+                    </p>
                   </div>
                 )}
 
                 {submitStatus === 'error' && (
-                  <div className="bg-red-500/20 border border-red-500 rounded-lg p-4 mb-6">
-                    <p className="text-red-500 font-semibold">✗ Erreur lors de l envoi. Veuillez réessayer ou nous appeler.</p>
+                  <div role="alert" className="apparition mt-6 rounded-precis border border-[#e5484d] bg-graphite-800 p-4">
+                    <p className="font-semibold text-encre">La demande n’a pas pu partir.</p>
+                    <p className="mt-1 text-encre-2">
+                      Réessayez, ou appelez-nous au <a href="tel:5146497372" className="chiffres whitespace-nowrap text-encre underline decoration-accent underline-offset-4">514 649-7372</a>.
+                    </p>
                   </div>
                 )}
 
                 {submitStatus === 'missing_contact' && (
-                  <div className="bg-red-500/20 border border-red-500 rounded-lg p-4 mb-6">
-                    <p className="text-red-500 font-semibold">✗ Merci d indiquer votre téléphone.</p>
+                  <div role="alert" className="apparition mt-6 rounded-precis border border-[#e5484d] bg-graphite-800 p-4">
+                    <p className="font-semibold text-encre">Indiquez votre téléphone pour qu’on puisse vous rappeler.</p>
                   </div>
                 )}
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-white font-semibold mb-2">Nom complet *</label>
-                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="Votre nom" />
-                  </div>
-
-                  <div>
-                    <label htmlFor="phone" className="block text-white font-semibold mb-2">Téléphone *</label>
-                    <input type="tel" id="phone" name="phone" autoComplete="tel" value={formData.phone} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="514-555-1234" />
-                  </div>
-
-                  <div className="relative" ref={addressWrapperRef}>
-                    <label htmlFor="address" className="block text-white font-semibold mb-2">Adresse *</label>
-                    <input type="text" id="address" name="address" autoComplete="street-address" value={formData.address} onChange={handleChange} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="Votre adresse" />
-                    {addressSuggestions.length > 0 && (
-                      <div className="absolute z-50 top-full left-0 right-0 mt-1 bg-gray-700 border border-gray-600 rounded-lg overflow-hidden shadow-xl">
-                        {addressSuggestions.map((label, i) => (
-                          <div key={i} onClick={() => selectAddress(label)} className="px-4 py-2 text-sm text-white hover:bg-gray-600 cursor-pointer">
-                            {label}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  <div>
-                    <label htmlFor="client_type" className="block text-white font-semibold mb-2">Type de client</label>
-                    <select id="client_type" name="client_type" value={formData.client_type} onChange={handleChange} className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors">
-                      <option value="residentiel">Résidentiel</option>
-                      <option value="business">Business / Entreprise</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-white font-semibold mb-2">Décrivez votre problème ou le service désiré *</label>
-                    <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows="4" className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors resize-none" placeholder="Ex: J'aimerais faire changer mes 4 pneus d'hiver."></textarea>
-                  </div>
-
-                  <button type="submit" disabled={isSubmitting} className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-4 rounded-full text-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
-                    {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
-                  </button>
-                </form>
               </div>
+
+              <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+                <div>
+                  <label htmlFor="name" className="etiquette">Nom complet *</label>
+                  <input type="text" id="name" name="name" autoComplete="name" value={formData.name} onChange={handleChange} required className="champ" placeholder="Votre nom" />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="etiquette">Téléphone *</label>
+                  <input type="tel" id="phone" name="phone" autoComplete="tel" value={formData.phone} onChange={handleChange} required className="champ" placeholder="514-555-1234" />
+                </div>
+
+                <div className="relative" ref={addressWrapperRef}>
+                  <label htmlFor="address" className="etiquette">Adresse *</label>
+                  <input type="text" id="address" name="address" autoComplete="street-address" value={formData.address} onChange={handleChange} required className="champ" placeholder="Votre adresse" />
+                  {addressSuggestions.length > 0 && (
+                    <div data-suggestions className="absolute left-0 right-0 top-full z-50 mt-1 overflow-hidden rounded-precis border border-ligne-contour bg-graphite-800 shadow-[0_16px_32px_-12px_rgba(0,0,0,0.6)]">
+                      {addressSuggestions.map((label, i) => (
+                        <button key={i} type="button" onClick={() => selectAddress(label)} className="block min-h-[2.75rem] w-full border-t border-ligne px-4 py-2.5 text-left text-[0.9375rem] text-encre first:border-t-0 hover:bg-graphite-700 focus-visible:bg-graphite-700">
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <label htmlFor="client_type" className="etiquette">Type de client</label>
+                  <select id="client_type" name="client_type" value={formData.client_type} onChange={handleChange} className="champ">
+                    <option value="residentiel">Résidentiel</option>
+                    <option value="business">Business / Entreprise</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="etiquette">Décrivez votre problème ou le service désiré *</label>
+                  <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows="4" className="champ resize-none" placeholder="Ex: J'aimerais faire changer mes 4 pneus d'hiver."></textarea>
+                </div>
+
+                <button type="submit" disabled={isSubmitting} className="btn btn-primaire w-full disabled:cursor-not-allowed disabled:opacity-60">
+                  {isSubmitting ? 'Envoi en cours…' : 'Envoyer ma demande'}
+                </button>
+                <p className="text-sm text-encre-3">* Champs obligatoires</p>
+              </form>
+            </div>
+
+            <div data-infos-contact className="self-start">
+              <h2 className="text-2xl font-bold tracking-[-0.02em] md:text-3xl">Informations de contact</h2>
+              <ul className="fiche mt-6">
+                <li className="fiche-ligne">
+                  <span className="fiche-icone" aria-hidden="true"><PhoneIcon /></span>
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-semibold text-encre-3">Téléphone</h3>
+                    <a href="tel:5146497372" className="chiffres text-xl text-encre transition-colors hover:text-accent">514 649-7372</a>
+                    <p className="text-sm text-encre-3">Disponible 7 jours sur 7</p>
+                  </div>
+                </li>
+                <li className="fiche-ligne">
+                  <span className="fiche-icone" aria-hidden="true"><MailIcon /></span>
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-semibold text-encre-3">Courriel</h3>
+                    <a href="mailto:info.mecanoexpress@gmail.com" className="break-all text-lg text-encre transition-colors hover:text-accent">info.mecanoexpress@gmail.com</a>
+                    <p className="text-sm text-encre-3">Réponse sous 24h</p>
+                  </div>
+                </li>
+                <li className="fiche-ligne">
+                  <span className="fiche-icone" aria-hidden="true"><PinIcon /></span>
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-semibold text-encre-3">Zone de service</h3>
+                    <p className="text-encre">Montréal, Laval, Rive-Nord, Rive-Sud</p>
+                    <p className="text-sm text-encre-3">Service mobile - on vient à vous!</p>
+                  </div>
+                </li>
+                <li className="fiche-ligne">
+                  <span className="fiche-icone" aria-hidden="true"><ClockIcon /></span>
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-semibold text-encre-3">Heures d’ouverture</h3>
+                    <p className="text-encre">Lundi - Dimanche</p>
+                    <p className="chiffres text-encre">8h00 - 20h00</p>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-16">
-            <h2 className="text-3xl font-bold mb-8 text-center text-orange-500">Notre Zone de Service</h2>
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div>
-                  <h3 className="text-xl font-bold text-orange-500 mb-3">📍 Montréal</h3>
-                  <ul className="text-gray-300 space-y-1"><li>• Westmount</li><li>• Outremont</li><li>• Verdun</li><li>• Rosemont</li><li>• Et tous les arrondissements</li></ul>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-orange-500 mb-3">📍 Laval</h3>
-                  <ul className="text-gray-300 space-y-1"><li>• Chomedey</li><li>• Fabreville</li><li>• Vimont</li><li>• Sainte-Rose</li><li>• Tous les secteurs</li></ul>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-orange-500 mb-3">📍 Rive-Nord</h3>
-                  <ul className="text-gray-300 space-y-1"><li>• Blainville</li><li>• Terrebonne</li><li>• Mirabel</li><li>• Saint-Jérôme</li><li>• Et environs</li></ul>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-orange-500 mb-3">📍 Rive-Sud</h3>
-                  <ul className="text-gray-300 space-y-1"><li>• Brossard</li><li>• Longueuil</li><li>• Saint-Hubert</li><li>• Boucherville</li><li>• Et plus encore</li></ul>
-                </div>
+      <section className="section">
+        <div className="container mx-auto px-4">
+          <h2 className="section-titre">Notre zone de service</h2>
+          <div className="mt-10 grid grid-cols-1 divide-y divide-ligne border-y border-ligne sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
+            {ZONES.map((zone) => (
+              <div key={zone.nom} className="py-6 lg:px-6 lg:first:pl-0">
+                <h3 className="flex items-center gap-2 text-lg font-semibold">
+                  <PinIcon className="h-5 w-5 text-accent" />
+                  {zone.nom}
+                </h3>
+                <ul className="mt-3 space-y-1.5 text-encre-2">
+                  {zone.villes.map((v) => <li key={v}>{v}</li>)}
+                </ul>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
     </div>
   )
 }
+
+const ZONES = [
+  { nom: 'Montréal', villes: ['Westmount', 'Outremont', 'Verdun', 'Rosemont', 'Et tous les arrondissements'] },
+  { nom: 'Laval', villes: ['Chomedey', 'Fabreville', 'Vimont', 'Sainte-Rose', 'Tous les secteurs'] },
+  { nom: 'Rive-Nord', villes: ['Blainville', 'Terrebonne', 'Mirabel', 'Saint-Jérôme', 'Et environs'] },
+  { nom: 'Rive-Sud', villes: ['Brossard', 'Longueuil', 'Saint-Hubert', 'Boucherville', 'Et plus encore'] },
+]

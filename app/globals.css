@@ -135,6 +135,60 @@ html {
   scroll-margin-top: 5.5rem;
 }
 
+/* ---------- Formulaires ---------- */
+/* 16 px minimum : iOS ne zoome pas sur le champ. */
+.etiquette {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: theme('colors.encre.DEFAULT');
+}
+
+.champ {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid theme('colors.ligne.contour');
+  border-radius: theme('borderRadius.precis');
+  background: theme('colors.graphite.800');
+  color: theme('colors.encre.DEFAULT');
+  font-size: 1rem;
+  line-height: 1.4;
+  transition: border-color 150ms ease;
+}
+
+.champ::placeholder {
+  color: theme('colors.encre.3');
+}
+
+.champ:focus {
+  outline: 2px solid theme('colors.accent.DEFAULT');
+  outline-offset: 0;
+  border-color: theme('colors.accent.DEFAULT');
+}
+
+/* Apparition du message après l'envoi (300 ms), rien avec mouvement réduit. */
+.apparition {
+  animation: apparition 300ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes apparition {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apparition {
+    animation: none;
+  }
+}
+
 /* Coins vifs (2 px) : barre du haut et premier écran. */
 .btn-vif {
   border-radius: theme('borderRadius.vif');

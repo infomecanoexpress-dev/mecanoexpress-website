@@ -21,6 +21,7 @@ colors:
   trait-roue: "#48505a"
   trait-fin: "#343b43"
   cote: "#7d8691"
+  erreur: "#e5484d"
 typography:
   display:
     fontFamily: "Sora, sans-serif"
@@ -47,6 +48,10 @@ typography:
     fontFamily: "Sora, sans-serif"
     fontSize: "0.9375rem"
     fontWeight: 600
+  input:
+    fontFamily: "Sora, sans-serif"
+    fontSize: "1rem"
+    fontWeight: 400
   lead:
     fontFamily: "Sora, sans-serif"
     fontSize: "clamp(1.125rem, 1.7vw, 1.3125rem)"
@@ -127,6 +132,7 @@ Un graphite froid, traversé par un seul orange.
 - **Encre 2** (#c9ced5) : texte courant, liens de navigation.
 - **Encre 3** (#a3abb5) : texte discret (jamais plus pâle).
 - **Plaque** (#eceef1) : fond clair du logo d’origine.
+- **Erreur** (#e5484d) : filet des messages d’erreur du formulaire, seulement. Ce n’est pas un deuxième accent.
 - **Dessin de la roue** (premier écran seulement) : grille rgba(255, 255, 255, 0.065), traits #48505a et #343b43, cotes en tirets #7d8691. Couleurs de dessin, jamais pour du texte.
 
 ### Named Rules
@@ -150,6 +156,7 @@ Un graphite froid, traversé par un seul orange.
 - **Lead** (400, `clamp(1.125rem, 1.7vw, 1.3125rem)`, interligne 1.5) : sous-titre du premier écran et des en-têtes de page.
 - **Body** (400, 1.125rem, interligne 1.5) : texte courant, en Encre 2, 34 à 70 caractères par ligne.
 - **Label** (600, 0.9375rem) : boutons et navigation.
+- **Input** (400, 1rem) : champs de formulaire. Jamais sous 16 px, sinon iOS zoome sur le champ.
 - **Data** (Azeret Mono 500, 0.8125rem, majuscules, +0.06em) : bandeau de saison, légendes, cotes. Le téléphone en monospace dans les boutons.
 - **Data court** (Azeret Mono 500, 0.75rem, +0.02em) : version téléphone du bandeau de saison. Jamais plus petit.
 
