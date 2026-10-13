@@ -1,16 +1,17 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowIcon, BalanceIcon, CheckIcon, DropIcon, PhoneIcon, PinIcon, RotateIcon, TireIcon, WrenchIcon } from '../icons'
+import { ArrowIcon, BalanceIcon, CheckIcon, DropIcon, FreinIcon, GaugeIcon, PhoneIcon, PinIcon, RotateIcon, TireIcon, WrenchIcon } from '../icons'
+import { SERVICES as LISTE } from '../services-liste.mjs'
 
 // Pas de photo de banque d'images : seulement de vraies photos de l'entreprise,
 // quand il y en aura. En attendant, des fiches à filets et des icônes au trait.
-const SERVICES = [
-  {
-    slug: 'pneus',
+// Les noms et l'ordre viennent de services-liste.mjs (la même liste que le formulaire) ;
+// ici, seulement ce qui s'affiche sur cette page.
+const DETAILS = {
+  pneus: {
     Icone: TireIcon,
-    title: 'Changement de pneus hiver et été',
-    description: 'Service mobile de changement de pneus à domicile à Montréal, Laval et les alentours. On se déplace chez vous pour tes pneus hiver ou été – pas besoin d\'aller au garage !',
+    description: 'Pose et permutation de vos pneus d’été et d’hiver. Balancement inclus. On se déplace chez vous à Montréal, Laval et les alentours : pas besoin d’aller au garage !',
     features: [
       'Installation complète des 4 pneus',
       'Serrage au couple recommandé',
@@ -19,10 +20,8 @@ const SERVICES = [
       'Service rapide (30-45 minutes)'
     ],
   },
-  {
-    slug: 'equilibrage',
+  equilibrage: {
     Icone: BalanceIcon,
-    title: 'Équilibrage des roues',
     description: 'Équilibrage professionnel de vos roues pour éliminer les vibrations et prolonger la durée de vie de vos pneus.',
     features: [
       'Équilibrage électronique précis',
@@ -32,10 +31,8 @@ const SERVICES = [
       'Garantie satisfaction'
     ],
   },
-  {
-    slug: 'rotation',
+  rotation: {
     Icone: RotateIcon,
-    title: 'Rotation des pneus',
     description: 'Rotation régulière de vos pneus pour assurer une usure uniforme et maximiser leur durée de vie.',
     features: [
       'Rotation selon recommandations du fabricant',
@@ -45,10 +42,8 @@ const SERVICES = [
       'Rapport d\'inspection inclus'
     ],
   },
-  {
-    slug: 'crevaison',
+  crevaison: {
     Icone: PinIcon,
-    title: 'Réparation de crevaison',
     description: 'Service d\'urgence pour réparation de crevaison sur place. Nous venons à vous rapidement!',
     features: [
       'Intervention rapide',
@@ -58,30 +53,31 @@ const SERVICES = [
       'Disponible 7 jours sur 7'
     ],
   },
-  {
-    slug: 'huile',
+  huile: {
     Icone: DropIcon,
-    title: 'Changement d’huile',
-    description: 'Changement d’huile à domicile ou au travail, sans aller au garage.',
+    description: 'Changement d’huile et de filtre, avec inspection rapide des niveaux et des points d’usure. À domicile ou au travail, sans aller au garage.',
     features: [
       'Auto, pick-up, Sprinter et camion cube',
       'Particuliers et flottes d’entreprise',
       'Sur place, chez vous ou au travail'
     ],
   },
-  {
-    slug: 'mecanique',
+  mecanique: {
     Icone: WrenchIcon,
-    title: 'Mécanique générale',
     description: 'On fait à peu près tout en mécanique, directement chez vous ou au travail. Décrivez votre besoin, on vous dit ce qu’on peut faire sur place.',
+    // Textes fournis par MecanoExpress le 2026-10-13 (pneus et huile ont leur propre carte).
+    travaux: [
+      { Icone: GaugeIcon, titre: 'Diagnostic', description: 'Lecture des codes et diagnostic complet pour trouver la cause d’un voyant allumé ou d’un bruit suspect.' },
+      { Icone: FreinIcon, titre: 'Freins', description: 'Inspection, remplacement des plaquettes, des disques et des étriers, et purge du liquide de frein.' },
+    ],
     features: [
       'Sur place, chez vous ou au travail',
       'Particuliers et flottes d’entreprise'
     ],
-    // Contenu à fournir par MecanoExpress (voir le rapport d'amélioration).
-    aRemplir: 'liste des travaux de mécanique offerts',
   },
-]
+}
+
+const SERVICES = LISTE.map((s) => ({ slug: s.slug, title: s.titre, travaux: [], ...DETAILS[s.slug] }))
 
 export default function ServicesPage() {
   return (
@@ -124,18 +120,18 @@ export default function ServicesPage() {
                 </div>
               </div>
               <ul className="fiche self-start">
+                {service.travaux.map((t) => (
+                  <li key={t.titre} data-travail className="fiche-ligne items-start">
+                    <span className="fiche-icone" aria-hidden="true"><t.Icone /></span>
+                    <span><strong>{t.titre}</strong><span className="fiche-detail">{t.description}</span></span>
+                  </li>
+                ))}
                 {service.features.map((feature) => (
                   <li key={feature} className="fiche-ligne">
                     <span className="fiche-icone" aria-hidden="true"><CheckIcon /></span>
                     <span className="text-encre">{feature}</span>
                   </li>
                 ))}
-                {service.aRemplir && (
-                  <li className="fiche-ligne">
-                    <span className="fiche-icone border-dashed" aria-hidden="true"></span>
-                    <span className="rounded-precis border border-dashed border-accent px-2 py-1 font-mono text-sm text-encre">[À REMPLIR : {service.aRemplir}]</span>
-                  </li>
-                )}
               </ul>
             </div>
           </div>

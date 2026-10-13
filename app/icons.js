@@ -125,6 +125,16 @@ export function GaugeIcon({ className = 'w-5 h-5' }) {
   )
 }
 
+export function FreinIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} {...trait}>
+      <circle cx="11" cy="13" r="7.5" />
+      <circle cx="11" cy="13" r="2" />
+      <path d="M11.83 3.54A9.5 9.5 0 0 1 19.61 8.99L16.44 10.46A6 6 0 0 0 11.52 7.02Z" />
+    </svg>
+  )
+}
+
 export function ShieldIcon({ className = 'w-5 h-5' }) {
   return (
     <svg className={className} {...trait}>
