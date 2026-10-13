@@ -123,6 +123,18 @@ html {
   font-size: 0.9375rem;
 }
 
+/* Barre d’appel du téléphone : 48 px de haut, texte un peu plus court. */
+.btn-barre {
+  min-height: 3rem;
+  padding: 0 1rem;
+  font-size: 0.9375rem;
+}
+
+/* L’ancre du formulaire ne passe pas sous la barre du haut collante. */
+#demande {
+  scroll-margin-top: 5.5rem;
+}
+
 /* Coins vifs (2 px) : barre du haut et premier écran. */
 .btn-vif {
   border-radius: theme('borderRadius.vif');

@@ -146,7 +146,7 @@ export default function ContactPage() {
             </div>
 
             <div>
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
+              <div id="demande" className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
                 <Image
                   src="/logo-mecanoexpress.png"
                   alt="MecanoExpress"

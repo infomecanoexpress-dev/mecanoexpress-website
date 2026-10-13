@@ -32,10 +32,11 @@ export default function RootLayout({ children }) {
     <meta property="og:title" content="Mecano Express | Changement de Pneus à Domicile Montréal" />
     <meta property="og:description" content="Service mobile de changement de pneus à domicile à Montréal, Laval, Rive-Nord et Rive-Sud. Appelez 514 649-7372" />
 </head>
-      <body className="font-sans bg-graphite-900 text-encre">
+      <body className="font-sans bg-graphite-900 text-encre pb-[calc(4.25rem+env(safe-area-inset-bottom))] md:pb-0">
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <BarreAppel />
       </body>
     </html>
   )
@@ -111,6 +112,21 @@ function Navbar() {
         )}
       </div>
     </nav>
+  )
+}
+
+// Téléphone : appeler ou demander un service, toujours à portée de pouce.
+function BarreAppel() {
+  return (
+    <div data-barre-appel className="fixed inset-x-0 bottom-0 z-40 border-t border-ligne bg-graphite-950/95 px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] md:hidden">
+      <div className="grid grid-cols-[auto_1fr] gap-2">
+        <a href="tel:5146497372" className="btn btn-contour btn-vif btn-barre">
+          <PhoneIcon />
+          Appeler
+        </a>
+        <Link href="/contact#demande" className="btn btn-primaire btn-vif btn-barre">Demander un service</Link>
+      </div>
+    </div>
   )
 }
 
