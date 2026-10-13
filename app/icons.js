@@ -91,6 +91,30 @@ export function TruckIcon({ className = 'w-5 h-5' }) {
   )
 }
 
+export function BalanceIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} {...trait}>
+      <path d="M12 3v18M7 21h10M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z" />
+    </svg>
+  )
+}
+
+export function RotateIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} {...trait}>
+      <path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5" />
+    </svg>
+  )
+}
+
+export function CheckIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} {...trait}>
+      <path d="M5 12.5l4.5 4.5L19 7.5" />
+    </svg>
+  )
+}
+
 export function ExternalIcon({ className = 'w-4 h-4' }) {
   return (
     <svg className={className} {...trait}>
