@@ -5,7 +5,7 @@ import { Sora, Azeret_Mono } from 'next/font/google'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { CloseIcon, MailIcon, MenuIcon, PhoneIcon, PinIcon } from './icons'
 
 // Sora pour le texte, Azeret Mono pour les données (téléphone, dates, tailles de pneus).
@@ -54,6 +54,21 @@ function LogoPlaque({ sizes, priority = false }) {
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
+  const boutonMenu = useRef(null)
+
+  // Le menu se ferme en changeant de page, et avec Échap (le focus revient au bouton).
+  useEffect(() => setIsMenuOpen(false), [pathname])
+  useEffect(() => {
+    if (!isMenuOpen) return
+    const surTouche = (e) => {
+      if (e.key === 'Escape') {
+        setIsMenuOpen(false)
+        boutonMenu.current?.focus()
+      }
+    }
+    document.addEventListener('keydown', surTouche)
+    return () => document.removeEventListener('keydown', surTouche)
+  }, [isMenuOpen])
 
   return (
     <nav className="sticky top-0 z-50 border-b border-ligne bg-graphite-950 shadow-[inset_0_2px_0_#e0641c]">
@@ -78,6 +93,7 @@ function Navbar() {
           </div>
 
           <button
+            ref={boutonMenu}
             type="button"
             className="md:hidden -mr-2 flex h-11 w-11 items-center justify-center text-encre"
             aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
@@ -90,7 +106,7 @@ function Navbar() {
         </div>
 
         {isMenuOpen && (
-          <div id="menu-mobile" className="md:hidden mt-2.5 border-t border-ligne pb-4">
+          <div id="menu-mobile" className="menu-deroule md:hidden mt-2.5 border-t border-ligne pb-4">
             <div className="flex flex-col">
               {LIENS.map((l) => (
                 <Link
