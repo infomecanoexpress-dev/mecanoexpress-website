@@ -73,7 +73,7 @@ export default function ContactPage() {
                       <a href="tel:5146497372" className="text-orange-500 text-2xl hover:text-orange-400 transition-colors">
                         514 649-7372
                       </a>
-                      <p className="text-gray-400 text-sm mt-1">Disponible 7 jours sur 7</p>
+                      <p className="text-gray-400 text-sm mt-1">7 jours sur 7 pendant la saison des pneus</p>
                     </div>
                   </div>
                   
@@ -84,7 +84,7 @@ export default function ContactPage() {
                       <a href="mailto:info.mecanoexpress@gmail.com" className="text-orange-500 text-lg hover:text-orange-400 transition-colors">
                         info.mecanoexpress@gmail.com
                       </a>
-                      <p className="text-gray-400 text-sm mt-1">Réponse sous 24h</p>
+                      <p className="text-gray-400 text-sm mt-1">Réponse en moins de 24 h pendant la saison des pneus</p>
                     </div>
                   </div>
                   
@@ -101,7 +101,7 @@ export default function ContactPage() {
                     <div className="text-3xl mr-4">⏰</div>
                     <div>
                       <h3 className="text-xl font-bold text-white mb-1">Heures d'ouverture</h3>
-                      <p className="text-gray-300">Lundi - Dimanche</p>
+                      <p className="text-gray-300">Lundi - Dimanche en saison des pneus</p>
                       <p className="text-gray-300">8h00 - 20h00</p>
                     </div>
                   </div>

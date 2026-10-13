@@ -17,7 +17,7 @@ const DETAILS = {
       'Serrage au couple recommandé',
       'Vérification de la pression',
       'Inspection visuelle des freins',
-      'Service rapide (30-45 minutes)'
+      'Service rapide (environ 45 minutes)'
     ],
   },
   equilibrage: {
@@ -38,8 +38,7 @@ const DETAILS = {
       'Rotation selon recommandations du fabricant',
       'Inspection de l\'usure',
       'Vérification de l\'alignement visuel',
-      'Ajustement de la pression',
-      'Rapport d\'inspection inclus'
+      'Ajustement de la pression'
     ],
   },
   crevaison: {
@@ -50,7 +49,7 @@ const DETAILS = {
       'Réparation professionnelle',
       'Installation de la roue de secours si nécessaire',
       'Vérification de tous les pneus',
-      'Disponible 7 jours sur 7'
+      '7 jours sur 7 pendant la saison des pneus'
     ],
   },
   huile: {

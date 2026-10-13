@@ -212,7 +212,7 @@ export default function ContactPage() {
                   <div className="min-w-0">
                     <h3 className="text-sm font-semibold text-encre-3">Téléphone</h3>
                     <a href="tel:5146497372" className="chiffres text-xl text-encre transition-colors hover:text-accent">514 649-7372</a>
-                    <p className="text-sm text-encre-3">Disponible 7 jours sur 7</p>
+                    <p className="text-sm text-encre-3">7 jours sur 7 pendant la saison des pneus</p>
                   </div>
                 </li>
                 <li className="fiche-ligne">
@@ -220,7 +220,7 @@ export default function ContactPage() {
                   <div className="min-w-0">
                     <h3 className="text-sm font-semibold text-encre-3">Courriel</h3>
                     <a href="mailto:info.mecanoexpress@gmail.com" className="text-lg text-encre transition-colors hover:text-accent">info.mecanoexpress<wbr />@gmail.com</a>
-                    <p className="text-sm text-encre-3">Réponse sous 24h</p>
+                    <p className="text-sm text-encre-3">Réponse en moins de 24 h pendant la saison des pneus</p>
                   </div>
                 </li>
                 <li className="fiche-ligne">
@@ -235,7 +235,7 @@ export default function ContactPage() {
                   <span className="fiche-icone" aria-hidden="true"><ClockIcon /></span>
                   <div className="min-w-0">
                     <h3 className="text-sm font-semibold text-encre-3">Heures d’ouverture</h3>
-                    <p className="text-encre">Lundi - Dimanche</p>
+                    <p className="text-encre">Lundi - Dimanche en saison des pneus</p>
                     <p className="chiffres text-encre">8h00 - 20h00</p>
                   </div>
                 </li>
