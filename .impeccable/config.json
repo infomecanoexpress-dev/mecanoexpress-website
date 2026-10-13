@@ -36,6 +36,15 @@
         ],
         "createdAt": "2026-10-13T13:59:35.019Z",
         "reason": "brief de l'utilisateur (2026-10-13) : 'des grilles subtiles' ; surface de mesure (roue cotée) du premier écran"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#000",
+        "files": [
+          "app/globals.css"
+        ],
+        "createdAt": "2026-10-13T14:07:18.339Z",
+        "reason": "faux positif : couleur opaque d'un mask-image (grilles), pas une couleur peinte"
       }
     ]
   }

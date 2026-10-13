@@ -45,6 +45,69 @@ export function PinIcon({ className = 'w-5 h-5' }) {
   )
 }
 
+export function TireIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} {...trait}>
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 3v3M12 18v3M3 12h3M18 12h3" />
+    </svg>
+  )
+}
+
+export function DropIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} {...trait}>
+      <path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z" />
+    </svg>
+  )
+}
+
+export function WrenchIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} {...trait}>
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+    </svg>
+  )
+}
+
+export function CarIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} {...trait}>
+      <path d="M5 16V11l2-5h10l2 5v5M3 16h18v3H3zM5 11h14" />
+      <circle cx="7.5" cy="16" r="1.5" />
+      <circle cx="16.5" cy="16" r="1.5" />
+    </svg>
+  )
+}
+
+export function TruckIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} {...trait}>
+      <path d="M2 6h11v10H2zM13 9h4l4 4v3h-8" />
+      <circle cx="6" cy="17.5" r="1.75" />
+      <circle cx="17" cy="17.5" r="1.75" />
+    </svg>
+  )
+}
+
+export function ExternalIcon({ className = 'w-4 h-4' }) {
+  return (
+    <svg className={className} {...trait}>
+      <path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />
+    </svg>
+  )
+}
+
+// Étoile pleine (note des avis) : forme pleine, pas un glyphe ★.
+export function StarIcon({ className = 'w-4 h-4' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" />
+    </svg>
+  )
+}
+
 export function MenuIcon({ className = 'w-6 h-6' }) {
   return (
     <svg className={className} {...trait}>

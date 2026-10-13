@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { ArrowIcon, PhoneIcon } from './icons'
+import { ArrowIcon, CarIcon, DropIcon, ExternalIcon, PhoneIcon, PinIcon, StarIcon, TireIcon, TruckIcon, WrenchIcon } from './icons'
 import { saisonPneus } from './saison.mjs'
 
 export default function Home() {
@@ -11,6 +10,7 @@ export default function Home() {
     <div>
       <HeroSection />
       <ServicesSection />
+      <FlotteSection />
       <ZonesSection />
       <TestimonialsSection />
     </div>
@@ -116,34 +116,83 @@ function HeroSection() {
 
 function ServicesSection() {
   const services = [
-    { icon: '❄️', title: 'Pneus Hiver', description: "Installation complète de pneus d'hiver pour une conduite sécuritaire" },
-    { icon: '☀️', title: 'Pneus Été', description: "Changement de pneus d'été pour une performance optimale" },
-    { icon: '⚖️', title: 'Équilibrage', description: 'Équilibrage professionnel pour une conduite douce et stable' },
-    { icon: '🔄', title: 'Rotation', description: 'Rotation des pneus pour prolonger leur durée de vie' },
-    { icon: '🔧', title: 'Réparation Crevaison', description: 'Réparation rapide de crevaison sur place' },
-    { icon: '🚗', title: 'Tous Véhicules', description: 'Service pour voitures de luxe et régulières' }
+    { Icone: TireIcon, titre: 'Pneus hiver et été', detail: 'Changement, équilibrage, rotation' },
+    { Icone: PinIcon, titre: 'Réparation de crevaison', detail: 'Sur place, rapidement' },
+    { Icone: DropIcon, titre: 'Changement d’huile', detail: 'Auto, pick-up, Sprinter, camion cube' },
+    { Icone: WrenchIcon, titre: 'Mécanique générale', detail: 'Particuliers et flottes d’entreprise' },
+    { Icone: CarIcon, titre: 'Tous véhicules', detail: 'Voitures de luxe et régulières' },
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,107,0,0.1),transparent_50%)]"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(255,107,0,0.1),transparent_50%)]"></div>
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-orange-500">Nos Services</h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">Des services complets de changement de pneus et d entretien, directement chez vous</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
-          {services.map((service, index) => (
-            <div key={index} className="group bg-gradient-to-br from-gray-700/80 to-gray-800/80 backdrop-blur-sm p-8 rounded-2xl border-2 border-gray-600 hover:border-orange-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10">
-              <div className="w-16 h-16 flex items-center justify-center rounded-xl bg-orange-500/10 text-4xl mb-5 group-hover:bg-orange-500/20 transition-colors duration-300">{service.icon}</div>
-              <h3 className="text-2xl font-bold mb-2 text-orange-400">{service.title}</h3>
-              <p className="text-gray-300">{service.description}</p>
+    <section className="section">
+      <div className="container mx-auto px-4">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
+          <div>
+            <h2 className="section-titre">Nos services</h2>
+            <p className="section-intro">Des services complets de changement de pneus et d’entretien, directement chez vous.</p>
+            <div className="mt-8">
+              <Link href="/services" className="btn btn-contour">
+                Voir tous les services
+                <ArrowIcon />
+              </Link>
             </div>
-          ))}
+          </div>
+          <div className="fiche">
+            <span className="fiche-repere hg" aria-hidden="true"></span>
+            <span className="fiche-repere hd" aria-hidden="true"></span>
+            <span className="fiche-repere bg" aria-hidden="true"></span>
+            <span className="fiche-repere bd" aria-hidden="true"></span>
+            <p className="fiche-entete">On se déplace : chez vous ou au travail</p>
+            <ul>
+              {services.map(({ Icone, titre, detail }) => (
+                <li key={titre} className="fiche-ligne">
+                  <span className="fiche-icone" aria-hidden="true"><Icone /></span>
+                  <span><strong>{titre}</strong><span className="fiche-detail">{detail}</span></span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <div className="text-center mt-12">
-          <Link href="/services" className="inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-3 rounded-full font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300">Voir tous les services →</Link>
+      </div>
+    </section>
+  )
+}
+
+function FlotteSection() {
+  return (
+    <section className="section relative overflow-hidden bg-graphite-950">
+      <div className="grille-fine" aria-hidden="true"></div>
+      <div className="container relative mx-auto px-4">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
+          <div>
+            <h2 className="section-titre">Entreprises et flottes</h2>
+            <p className="section-intro">Plusieurs véhicules à entretenir ? On se déplace à votre entreprise et on s’occupe des véhicules sur place.</p>
+            <p className="mt-6 flex items-center gap-3 text-encre-3">
+              <TruckIcon className="h-5 w-5 flex-none text-encre-2" />
+              <span><span className="text-encre-2">Changement d’huile :</span> auto, pick-up, Sprinter, camion cube</span>
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link href="/contact#demande" className="btn btn-primaire">
+                Demander un service
+                <ArrowIcon />
+              </Link>
+              <a href="tel:5146497372" className="btn btn-contour">
+                <PhoneIcon />
+                <span className="chiffres">514 649-7372</span>
+              </a>
+            </div>
+          </div>
+          <figure className="fiche p-6 md:p-8">
+            <span className="fiche-repere hg" aria-hidden="true"></span>
+            <span className="fiche-repere bd" aria-hidden="true"></span>
+            <blockquote className="text-lg leading-relaxed text-encre md:text-xl">
+              « Ils ont fait plusieurs véhicules pour les changements de pneus durant la tempête au début de l’hiver. »
+            </blockquote>
+            <figcaption className="mt-5 flex items-center gap-3 text-sm text-encre-3">
+              <Etoiles />
+              <span>Wahib Semlali · avis Google</span>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -159,36 +208,45 @@ function ZonesSection() {
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 relative">
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-orange-500">Zones Couvertes</h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">Nous nous déplaçons dans toute la région métropolitaine de Montréal</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {zones.map((zone, index) => (
-            <div key={index} className="group bg-gradient-to-br from-gray-700/80 to-gray-800/80 p-6 rounded-2xl border-2 border-gray-600 hover:border-orange-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10">
-              <h3 className="text-2xl font-bold mb-4 text-orange-500 flex items-center">
-                <span className="text-3xl mr-2">📍</span> {zone.name}
+    <section className="section">
+      <div className="container mx-auto px-4">
+        <h2 className="section-titre">Zones couvertes</h2>
+        <p className="section-intro">Nous nous déplaçons dans toute la région métropolitaine de Montréal.</p>
+        <div className="mt-10 grid grid-cols-1 divide-y divide-ligne border-y border-ligne sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
+          {zones.map((zone) => (
+            <div key={zone.name} className="py-6 sm:px-0 lg:px-6 lg:first:pl-0">
+              <h3 className="flex items-center gap-2 text-lg font-semibold">
+                <PinIcon className="h-5 w-5 text-accent" />
+                {zone.name}
               </h3>
-              <ul className="space-y-2">
-                {zone.cities.map((city, idx) => (
-                  <li key={idx} className="text-gray-300 flex items-center">
-                    <span className="text-orange-500 mr-2 font-bold">✓</span> {city}
-                  </li>
+              <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5 text-encre-2 lg:grid-cols-1">
+                {zone.cities.map((city) => (
+                  <li key={city}>{city}</li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-        <div className="bg-gradient-to-r from-orange-500/20 to-orange-600/20 border-2 border-orange-500/50 rounded-2xl p-8 text-center">
-          <p className="text-xl text-gray-200">
-            <span className="text-orange-500 font-bold">🚗 Zone pas listée?</span> Contactez-nous! Nous desservons plusieurs autres secteurs.
+        <div className="fiche mt-10 flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-lg text-encre-2">
+            <span className="font-semibold text-encre">Zone pas listée ?</span> Contactez-nous ! Nous desservons plusieurs autres secteurs.
           </p>
-          <a href="tel:5146497372" className="inline-block mt-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300">📞 514 649-7372</a>
+          <a href="tel:5146497372" className="btn btn-contour flex-none">
+            <PhoneIcon />
+            <span className="chiffres">514 649-7372</span>
+          </a>
         </div>
       </div>
     </section>
+  )
+}
+
+// Note de 5 sur 5, dessinée (le nom accessible remplace les cinq étoiles).
+function Etoiles() {
+  return (
+    <span role="img" aria-label="5 étoiles sur 5" className="flex gap-0.5 text-accent">
+      {[0, 1, 2, 3, 4].map((i) => <StarIcon key={i} />)}
+    </span>
   )
 }
 
@@ -200,36 +258,31 @@ function TestimonialsSection() {
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+    <section className="section">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-orange-500">Ce que nos clients disent</h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">De vrais avis de nos clients sur Google</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-orange-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10">
-              <div className="flex items-center mb-4">
-                <div className="w-16 h-16 rounded-full bg-orange-500 flex items-center justify-center text-2xl font-bold mr-4">{testimonial.name.charAt(0)}</div>
-                <div>
-                  <h4 className="text-xl font-bold text-white">{testimonial.name}</h4>
-                  <div className="flex">
-                    {[...Array(testimonial.rating)].map((_, i) => (<span key={i} className="text-orange-500 text-lg">★</span>))}
-                  </div>
-                </div>
-              </div>
-              <p className="text-gray-300 italic">{testimonial.text}</p>
-            </div>
+        <h2 className="section-titre">Ce que nos clients disent</h2>
+        <p className="section-intro">De vrais avis de nos clients sur Google.</p>
+        <div className="mt-10 grid grid-cols-1 divide-y divide-ligne border-y border-ligne md:grid-cols-3 md:divide-x md:divide-y-0">
+          {testimonials.map((t) => (
+            <figure key={t.name} className="flex flex-col gap-5 py-8 md:px-8 md:first:pl-0 md:last:pr-0">
+              <Etoiles />
+              <blockquote className="flex-1 leading-relaxed text-encre-2">« {t.text} »</blockquote>
+              <figcaption className="flex items-center gap-3">
+                <span className="flex h-10 w-10 flex-none items-center justify-center rounded-precis border border-ligne-forte bg-graphite-800 font-semibold text-accent" aria-hidden="true">{t.name.charAt(0)}</span>
+                <span className="font-semibold text-encre">{t.name}</span>
+              </figcaption>
+            </figure>
           ))}
         </div>
-        <div className="text-center mt-12">
+        <div className="mt-10">
           <a
             href="https://g.page/r/CdvmX_7mbx1qEAE/review"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-white/10 border-2 border-orange-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-500 transition-all duration-300"
+            className="btn btn-contour"
           >
-            Voir tous nos avis sur Google →
+            Voir tous nos avis sur Google
+            <ExternalIcon />
           </a>
         </div>
       </div>
