@@ -35,16 +35,16 @@ function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 backdrop-blur-md border-b border-orange-500/30 shadow-lg shadow-orange-500/20">
-      <div className="container mx-auto px-4 py-3">
+      <div className="container mx-auto px-4 py-2.5">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2 transform hover:scale-110 transition-transform duration-300">
-            <Image 
-              src="https://customer-assets.emergentagent.com/job_tire-mobile-mtl/artifacts/8sfn157u_Untitled-1-03-Photoroom.png?v=2" 
-              alt="Mecano Logo" 
-              width={500} 
-              height={150}
-              className="h-40 w-auto object-contain drop-shadow-[0_2px_10px_rgba(255,107,0,0.35)]"
-              unoptimized
+          <Link href="/" aria-label="MecanoExpress, accueil" className="flex items-center">
+            <Image
+              src="/logo-mecanoexpress.png"
+              alt="MecanoExpress"
+              width={800}
+              height={200}
+              sizes="200px"
+              className="h-10 md:h-12 w-auto"
               priority
             />
           </Link>
@@ -95,13 +95,13 @@ function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <Image 
-              src="https://customer-assets.emergentagent.com/job_tire-mobile-mtl/artifacts/8sfn157u_Untitled-1-03-Photoroom.png?v=2" 
-              alt="Mecano Logo" 
-              width={300} 
-              height={90}
-              className="h-32 w-auto object-contain mb-4 drop-shadow-[0_2px_10px_rgba(255,107,0,0.3)]"
-              unoptimized
+            <Image
+              src="/logo-mecanoexpress.png"
+              alt="MecanoExpress"
+              width={800}
+              height={200}
+              sizes="200px"
+              className="h-12 w-auto mb-4"
             />
             <p className="text-gray-400 text-sm">Service mobile de changement de pneus à domicile</p>
           </div>

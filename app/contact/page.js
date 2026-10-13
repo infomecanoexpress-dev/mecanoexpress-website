@@ -148,12 +148,12 @@ export default function ContactPage() {
             <div>
               <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
                 <Image
-                  src="https://i.imgur.com/GnreRdD.png"
+                  src="/logo-mecanoexpress.png"
                   alt="MecanoExpress"
-                  width={180}
-                  height={46}
-                  unoptimized
-                  className="mx-auto mb-4"
+                  width={800}
+                  height={200}
+                  sizes="180px"
+                  className="mx-auto mb-4 h-11 w-auto"
                 />
                 <h2 className="text-3xl font-bold mb-2 text-center text-orange-500">Demande de service</h2>
                 <p className="text-gray-300 text-center mb-6">Décrivez votre besoin, un technicien vous recontacte rapidement.</p>
