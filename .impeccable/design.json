@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-13T09:56:50-04:00",
+  "generatedAt": "2026-10-13T10:23:38-04:00",
   "title": "Design System: MecanoExpress — site public",
   "extensions": {
     "colorMeta": {
@@ -41,6 +41,24 @@
         "tonalRamp": [
           "#eceef1"
         ]
+      },
+      "erreur": {
+        "role": "status",
+        "displayName": "Erreur",
+        "canonical": "#e5484d",
+        "tonalRamp": [
+          "#e5484d"
+        ]
+      },
+      "dessin": {
+        "role": "neutral",
+        "displayName": "Dessin de la roue",
+        "canonical": "#48505a",
+        "tonalRamp": [
+          "#343b43",
+          "#48505a",
+          "#7d8691"
+        ]
       }
     },
     "typographyMeta": {
@@ -67,6 +85,18 @@
       "data": {
         "displayName": "Données",
         "purpose": "Azeret Mono : téléphone, dates, compte à rebours, tailles de pneus. Jamais pour les titres ni les liens."
+      },
+      "lead": {
+        "displayName": "Sous-titre",
+        "purpose": "Sora 400, clamp(1.125rem, 1.7vw, 1.3125rem), sous les titres de page."
+      },
+      "data-court": {
+        "displayName": "Données (téléphone)",
+        "purpose": "Azeret Mono 500, 0.75rem : bandeau de saison au téléphone. Jamais plus petit."
+      },
+      "input": {
+        "displayName": "Champ",
+        "purpose": "Sora 400, 1rem : champs de formulaire (pas de zoom iOS)."
       }
     },
     "shadows": [
