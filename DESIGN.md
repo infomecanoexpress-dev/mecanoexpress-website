@@ -162,7 +162,8 @@ Un graphite froid, traversé par un seul orange.
 
 ## Layout
 
-Conteneur centré (jusqu’à 84rem au premier écran, `container` Tailwind ailleurs), marges de 1.25rem au téléphone. Sections empilées avec 5rem de marge verticale. Lecture de gauche à droite, titre aligné à gauche au premier écran. La barre du haut est collante. Au téléphone, les liens passent dans un menu.
+**Un seul conteneur, fluide** (`.container`, `globals.css`) : toute la largeur jusqu’à 84rem, partout (barre du haut, bandeau de saison, premier écran, sections, pied de page). Tous les bords tombent au même endroit. Marges : 1rem au téléphone, 2rem à l’ordinateur (`px-4 lg:px-8`). Le conteneur à paliers de Tailwind est désactivé.
+**La taille de base grandit avec l’écran**, avec la même pente que le CRM : 16 px pile jusqu’à 1440 px de large, environ 19 px à 1920 et 23,5 px à 2560. Tout est en rem (y compris les grilles), donc tout suit. Le téléphone ne change pas. Au premier écran, la roue ne dépasse jamais la hauteur de l’écran : `min(56vw, 54rem, 100svh - 7.5rem)`. Sections empilées avec 5rem de marge verticale. Lecture de gauche à droite, titre aligné à gauche au premier écran. La barre du haut est collante. Au téléphone, les liens passent dans un menu.
 
 Le premier écran tient en `min-height: calc(100svh - 4rem)`. Le titre et les deux boutons y sont visibles au téléphone (375 × 812) comme à l’ordinateur (1440 × 900).
 

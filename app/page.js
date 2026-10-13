@@ -125,7 +125,7 @@ function ServicesSection() {
 
   return (
     <section className="section">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
           <div>
             <h2 className="section-titre">Nos services</h2>
@@ -162,7 +162,7 @@ function FlotteSection() {
   return (
     <section className="section relative overflow-hidden bg-graphite-950">
       <div className="grille-fine" aria-hidden="true"></div>
-      <div className="container relative mx-auto px-4">
+      <div className="container relative mx-auto px-4 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
           <div>
             <h2 className="section-titre">Entreprises et flottes</h2>
@@ -209,7 +209,7 @@ function ZonesSection() {
 
   return (
     <section className="section">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 lg:px-8">
         <h2 className="section-titre">Zones couvertes</h2>
         <p className="section-intro">Nous nous déplaçons dans toute la région métropolitaine de Montréal.</p>
         <div className="mt-10 grid grid-cols-1 divide-y divide-ligne border-y border-ligne sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
@@ -259,7 +259,7 @@ function TestimonialsSection() {
 
   return (
     <section className="section">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 lg:px-8">
         <h2 className="section-titre">Ce que nos clients disent</h2>
         <p className="section-intro">De vrais avis de nos clients sur Google.</p>
         <div className="mt-10 grid grid-cols-1 divide-y divide-ligne border-y border-ligne md:grid-cols-3 md:divide-x md:divide-y-0">

@@ -115,14 +115,14 @@ export default function ContactPage() {
     <div className="min-h-screen">
       <section className="relative overflow-hidden border-b border-ligne bg-graphite-950 py-12 md:py-16">
         <div className="grille-fine" aria-hidden="true"></div>
-        <div className="container relative mx-auto px-4">
+        <div className="container relative mx-auto px-4 lg:px-8">
           <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-bold leading-[1.02] tracking-[-0.035em]">Contactez-nous</h1>
           <p className="mt-4 max-w-[46ch] text-[clamp(1.125rem,1.7vw,1.3125rem)] leading-normal text-encre-2">Prenez rendez-vous ou contactez-nous pour toute question</p>
         </div>
       </section>
 
       <section className="section border-t-0 pt-10 md:pt-14">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-14">
             <div id="demande" className="fiche p-5 sm:p-8">
               <span className="fiche-repere hg" aria-hidden="true"></span>
@@ -246,7 +246,7 @@ export default function ContactPage() {
       </section>
 
       <section className="section">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 lg:px-8">
           <h2 className="section-titre">Notre zone de service</h2>
           <div className="mt-10 grid grid-cols-1 divide-y divide-ligne border-y border-ligne sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
             {ZONES.map((zone) => (

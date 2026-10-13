@@ -83,7 +83,7 @@ export default function ServicesPage() {
     <div className="min-h-screen">
       <section className="relative overflow-hidden border-b border-ligne bg-graphite-950 py-14 md:py-20">
         <div className="grille-fine" aria-hidden="true"></div>
-        <div className="container relative mx-auto px-4">
+        <div className="container relative mx-auto px-4 lg:px-8">
           <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-bold leading-[1.02] tracking-[-0.035em]">Nos services</h1>
           <p className="mt-5 max-w-[46ch] text-[clamp(1.125rem,1.7vw,1.3125rem)] leading-normal text-encre-2">
             Service mobile de changement de pneus à domicile à Montréal, Laval et les alentours. Service impeccable pour chars de luxe ou réguliers.
@@ -101,7 +101,7 @@ export default function ServicesPage() {
 
       {SERVICES.map((service) => (
         <article key={service.slug} id={service.slug} data-service className="section scroll-mt-20 first-of-type:border-t-0">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 lg:px-8">
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
               <div>
                 <span className="fiche-icone h-12 w-12" aria-hidden="true"><service.Icone /></span>
@@ -138,7 +138,7 @@ export default function ServicesPage() {
       ))}
 
       <section className="section bg-graphite-950">
-        <div className="container mx-auto flex flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between">
+        <div className="container mx-auto flex flex-col gap-6 px-4 lg:px-8 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="section-titre">Un besoin pour votre véhicule ?</h2>
             <p className="section-intro">Décrivez-le, un technicien vous recontacte rapidement.</p>

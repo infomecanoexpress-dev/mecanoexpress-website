@@ -22,5 +22,8 @@ module.exports = {
       borderRadius: { precis: '4px', vif: '2px' },
     },
   },
+  // Conteneur maison (globals.css) : fluide jusqu'à 84rem, comme le premier écran.
+  // Celui de Tailwind avance par paliers en px et ne suivait pas la taille de base.
+  corePlugins: { container: false },
   plugins: [],
 }

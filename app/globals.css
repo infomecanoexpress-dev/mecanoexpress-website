@@ -14,7 +14,12 @@
     color-scheme: dark;
   }
 
+  /* Taille de base qui grandit avec l'écran, comme le CRM (même pente) : 16 px pile
+     jusqu'à 1440 px de large (la taille de référence), ~19 px à 1920, ~23,5 px à 2560.
+     Tout le site est en rem, donc tout suit. Le minimum à 100 % respecte la taille
+     de texte choisie dans le navigateur. */
   html {
+    font-size: clamp(100%, calc(0.675vw + 6.28px), 200%);
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
@@ -65,6 +70,13 @@
 }
 
 @layer components {
+  /* Conteneur unique : barre du haut, sections et pied de page partagent les bords
+     du premier écran (84rem au plus, marges px-4, lg:px-8 dans le balisage). */
+  .container {
+    width: 100%;
+    max-width: 84rem;
+  }
+
   /* Chiffres et données (téléphone, dates, tailles de pneus) : monospace. */
   .chiffres {
     font-family: theme('fontFamily.mono');
@@ -313,7 +325,7 @@
     pointer-events: none;
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-    background-size: 56px 56px;
+    background-size: 3.5rem 3.5rem;
     background-position: -1px -1px;
     -webkit-mask-image: radial-gradient(ellipse 80% 70% at 30% 40%, #000 25%, transparent 100%);
     mask-image: radial-gradient(ellipse 80% 70% at 30% 40%, #000 25%, transparent 100%);
@@ -418,7 +430,7 @@
       linear-gradient(to bottom, rgba(255, 255, 255, 0.065) 1px, transparent 1px),
       linear-gradient(to right, rgba(255, 255, 255, 0.026) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
-    background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
+    background-size: 6rem 6rem, 6rem 6rem, 1.5rem 1.5rem, 1.5rem 1.5rem;
     background-position: -1px -1px;
     -webkit-mask-image: linear-gradient(105deg, rgba(0, 0, 0, 0.35) 0%, #000 55%, rgba(0, 0, 0, 0.6) 100%);
     mask-image: linear-gradient(105deg, rgba(0, 0, 0, 0.35) 0%, #000 55%, rgba(0, 0, 0, 0.6) 100%);
@@ -674,15 +686,22 @@
   }
 
   @media (min-width: 1024px) {
+    /* Bord du conteneur (84rem centré, marge de 2rem), calculé sur toute la largeur. */
+    .hero-bandeau {
+      padding-inline: max(2rem, calc((100% - 84rem) / 2 + 2rem));
+    }
+
     .hero-corps {
       padding: 3rem 2rem;
     }
 
+    /* La roue déborde à droite (voulu), mais jamais en haut ni en bas :
+       elle ne dépasse pas la hauteur du premier écran sous le bandeau. */
     .hero-roue {
       position: absolute;
       right: -11rem;
       top: 50%;
-      width: min(56vw, 54rem);
+      width: min(56vw, 54rem, calc(100svh - 7.5rem));
       max-width: none;
       margin: 0;
       transform: translateY(-50%);
@@ -692,7 +711,7 @@
       display: block;
       position: absolute;
       z-index: 2;
-      right: 2rem;
+      right: max(2rem, calc((100% - 84rem) / 2 + 2rem));
       bottom: 2rem;
       padding: 1rem 1.125rem;
       border: 1px solid theme('colors.ligne.DEFAULT');

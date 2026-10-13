@@ -72,7 +72,7 @@ function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 border-b border-ligne bg-graphite-950 shadow-[inset_0_2px_0_#e0641c]">
-      <div className="container mx-auto px-4 py-2.5">
+      <div className="container mx-auto px-4 lg:px-8 py-2.5">
         <div className="flex items-center justify-between gap-4">
           <Link href="/" aria-label="MecanoExpress, accueil" className="flex items-center">
             <LogoPlaque sizes="(min-width: 768px) 190px, 170px" priority />
@@ -171,7 +171,7 @@ function Footer() {
 
   return (
     <footer className="border-t border-ligne bg-graphite-950">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 lg:px-8 py-12">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           <div>
             <LogoPlaque sizes="190px" />

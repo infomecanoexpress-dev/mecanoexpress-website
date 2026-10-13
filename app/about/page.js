@@ -31,7 +31,7 @@ export default function AboutPage() {
     <div className="min-h-screen">
       <section className="relative overflow-hidden border-b border-ligne bg-graphite-950 py-14 md:py-20">
         <div className="grille-fine" aria-hidden="true"></div>
-        <div className="container relative mx-auto px-4">
+        <div className="container relative mx-auto px-4 lg:px-8">
           <h1 className="max-w-[18ch] text-[clamp(2.5rem,6vw,4rem)] font-bold leading-[1.02] tracking-[-0.035em]">À propos de Mecano Express</h1>
           <p className="mt-5 max-w-[46ch] text-[clamp(1.125rem,1.7vw,1.3125rem)] leading-normal text-encre-2">
             Votre service mobile de confiance pour le changement de pneus à Montréal
@@ -40,7 +40,7 @@ export default function AboutPage() {
       </section>
 
       <section className="section border-t-0">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
             <div>
               <h2 className="section-titre">Notre histoire</h2>
@@ -78,7 +78,7 @@ export default function AboutPage() {
       </section>
 
       <section className="section">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
             <h2 className="section-titre">Nos valeurs</h2>
             <ul className="fiche">
@@ -97,7 +97,7 @@ export default function AboutPage() {
       </section>
 
       <section className="section">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
             <div>
               <h2 className="section-titre">Notre zone de service</h2>
@@ -119,7 +119,7 @@ export default function AboutPage() {
       </section>
 
       <section className="section bg-graphite-950">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 lg:px-8">
           <h2 className="section-titre">Contactez-nous</h2>
           <div className="mt-10 grid grid-cols-1 divide-y divide-ligne border-y border-ligne md:grid-cols-3 md:divide-x md:divide-y-0">
             <div className="flex gap-4 py-6 md:px-6 md:first:pl-0">

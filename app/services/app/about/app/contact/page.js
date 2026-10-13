@@ -50,7 +50,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-black">
       <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 text-orange-500">
               Contactez-nous
