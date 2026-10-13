@@ -107,6 +107,33 @@ export function RotateIcon({ className = 'w-5 h-5' }) {
   )
 }
 
+export function ClockIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} {...trait}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </svg>
+  )
+}
+
+export function GaugeIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} {...trait}>
+      <path d="M4.5 17a8.5 8.5 0 1 1 15 0" />
+      <path d="M12 13l4-4M12 13h.01" />
+    </svg>
+  )
+}
+
+export function ShieldIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} {...trait}>
+      <path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z" />
+      <path d="M9 12l2 2 4-4" />
+    </svg>
+  )
+}
+
 export function CheckIcon({ className = 'w-5 h-5' }) {
   return (
     <svg className={className} {...trait}>

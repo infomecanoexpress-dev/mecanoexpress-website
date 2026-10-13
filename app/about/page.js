@@ -1,136 +1,149 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
+import { ArrowIcon, ClockIcon, GaugeIcon, MailIcon, PhoneIcon, PinIcon, ShieldIcon } from '../icons'
+
+// Pas de photo de banque d'images : une vraie photo de l'entreprise prendra
+// place ici quand elle sera fournie. En attendant, la fiche d'identité.
+const FICHE = [
+  { libelle: 'Activité', valeur: 'Mécanique mobile, chez vous ou au travail' },
+  { libelle: 'Service principal', valeur: 'Pneus : changement hiver/été, équilibrage, rotation, crevaison' },
+  { libelle: 'Aussi', valeur: 'Changement d’huile, mécanique générale' },
+  { libelle: 'Clients', valeur: 'Particuliers et entreprises' },
+  { libelle: 'Zone', valeur: 'Montréal, Laval, Rive-Nord, Rive-Sud' },
+]
+
+const VALEURS = [
+  { Icone: ClockIcon, titre: 'Fiabilité', texte: 'Nous sommes toujours à l’heure et respectons nos engagements.' },
+  { Icone: GaugeIcon, titre: 'Rapidité', texte: 'Service express sans compromis sur la qualité.' },
+  { Icone: ShieldIcon, titre: 'Qualité', texte: 'Équipement moderne et techniques professionnelles.' },
+]
+
+const ZONES = [
+  { nom: 'Montréal', detail: 'Tous les arrondissements incluant Westmount, Outremont, Verdun, Rosemont et plus' },
+  { nom: 'Laval', detail: 'Toute la ville de Laval et ses secteurs' },
+  { nom: 'Rive-Nord', detail: 'Blainville, Terrebonne, Mirabel, Saint-Jérôme et environs' },
+  { nom: 'Rive-Sud', detail: 'Brossard, Longueuil, Saint-Hubert, Boucherville et plus' },
+]
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-black">
-      <section className="relative py-20 bg-gradient-to-b from-gray-900 to-black">
+    <div className="min-h-screen">
+      <section className="relative overflow-hidden border-b border-ligne bg-graphite-950 py-14 md:py-20">
+        <div className="grille-fine" aria-hidden="true"></div>
+        <div className="container relative mx-auto px-4">
+          <h1 className="max-w-[18ch] text-[clamp(2.5rem,6vw,4rem)] font-bold leading-[1.02] tracking-[-0.035em]">À propos de Mecano Express</h1>
+          <p className="mt-5 max-w-[46ch] text-[clamp(1.125rem,1.7vw,1.3125rem)] leading-normal text-encre-2">
+            Votre service mobile de confiance pour le changement de pneus à Montréal
+          </p>
+        </div>
+      </section>
+
+      <section className="section border-t-0">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-orange-500">
-              À propos de Mecano Express
-            </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Votre service mobile de confiance pour le changement de pneus à Montréal
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
-            <div className="relative h-96 rounded-2xl overflow-hidden">
-              <Image
-                src="https://images.unsplash.com/photo-1619642737579-a7474bee1044"
-                alt="Professional mechanic"
-                fill
-                className="object-cover"
-              />
-            </div>
-            
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
             <div>
-              <h2 className="text-4xl font-bold mb-6 text-orange-500">Notre Histoire</h2>
-              <div className="space-y-4 text-gray-300 text-lg">
+              <h2 className="section-titre">Notre histoire</h2>
+              <div className="mt-6 max-w-[62ch] space-y-4 text-lg leading-relaxed text-encre-2">
                 <p>
-                  <strong className="text-white">Mecano Express</strong> est un service fiable et rapide de mécanique mobile à Montréal.
+                  <strong className="font-semibold text-encre">Mecano Express</strong> est un service fiable et rapide de mécanique mobile à Montréal.
                 </p>
                 <p>
-                  Nous avons créé Mecano Express avec une vision simple : rendre le changement de pneus aussi facile et pratique que possible. Plus besoin de perdre du temps dans les garages ou de prendre rendez-vous des semaines à l avance.
+                  Nous avons créé Mecano Express avec une vision simple : rendre le changement de pneus aussi facile et pratique que possible. Plus besoin de perdre du temps dans les garages ou de prendre rendez-vous des semaines à l’avance.
                 </p>
                 <p>
-                  Notre service mobile vous permet de faire changer vos pneus directement chez vous, à votre travail, ou n importe où à Montréal et ses environs.
+                  Notre service mobile vous permet de faire changer vos pneus directement chez vous, à votre travail, ou n’importe où à Montréal et ses environs.
                 </p>
               </div>
             </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-12 rounded-2xl border border-gray-700 mb-20">
-            <h2 className="text-4xl font-bold mb-8 text-center text-orange-500">Nos Valeurs</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="text-6xl mb-4">🎯</div>
-                <h3 className="text-2xl font-bold text-white mb-3">Fiabilité</h3>
-                <p className="text-gray-300">Nous sommes toujours à l heure et respectons nos engagements.</p>
+            <div data-fiche-identite className="fiche self-start">
+              <span className="fiche-repere hg" aria-hidden="true"></span>
+              <span className="fiche-repere bd" aria-hidden="true"></span>
+              <p className="fiche-entete">Fiche d’identité</p>
+              <dl>
+              {FICHE.map((f) => (
+                <div key={f.libelle} className="grid gap-1 border-t border-[#23282e] px-5 py-4 first-of-type:border-t-0 sm:grid-cols-[9rem_1fr] sm:gap-4">
+                  <dt className="font-mono text-[0.8125rem] uppercase tracking-[0.06em] text-encre-3">{f.libelle}</dt>
+                  <dd className="text-encre">{f.valeur}</dd>
+                </div>
+              ))}
+              <div className="grid gap-1 border-t border-[#23282e] px-5 py-4 sm:grid-cols-[9rem_1fr] sm:gap-4">
+                <dt className="font-mono text-[0.8125rem] uppercase tracking-[0.06em] text-encre-3">Téléphone</dt>
+                <dd><a href="tel:5146497372" className="chiffres text-encre transition-colors hover:text-accent">514 649-7372</a></dd>
               </div>
-              <div className="text-center">
-                <div className="text-6xl mb-4">⚡</div>
-                <h3 className="text-2xl font-bold text-white mb-3">Rapidité</h3>
-                <p className="text-gray-300">Service express sans compromis sur la qualité.</p>
-              </div>
-              <div className="text-center">
-                <div className="text-6xl mb-4">🏆</div>
-                <h3 className="text-2xl font-bold text-white mb-3">Qualité</h3>
-                <p className="text-gray-300">Équipement moderne et techniques professionnelles.</p>
-              </div>
+              </dl>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+      <section className="section">
+        <div className="container mx-auto px-4">
+          <h2 className="section-titre">Nos valeurs</h2>
+          <div className="mt-10 grid grid-cols-1 divide-y divide-ligne border-y border-ligne md:grid-cols-3 md:divide-x md:divide-y-0">
+            {VALEURS.map((v) => (
+              <div key={v.titre} className="py-8 md:px-8 md:first:pl-0 md:last:pr-0">
+                <span className="fiche-icone h-12 w-12" aria-hidden="true"><v.Icone /></span>
+                <h3 className="mt-5 text-xl font-semibold">{v.titre}</h3>
+                <p className="mt-2 text-encre-2">{v.texte}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container mx-auto px-4">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
             <div>
-              <h2 className="text-4xl font-bold mb-6 text-orange-500">Notre Zone de Service</h2>
-              <p className="text-gray-300 text-lg mb-6">Nous couvrons toute l île de Montréal, Laval, la Rive-Nord et la Rive-Sud.</p>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <span className="text-orange-500 text-2xl mr-4">📍</span>
+              <h2 className="section-titre">Notre zone de service</h2>
+              <p className="section-intro">Nous couvrons toute l’île de Montréal, Laval, la Rive-Nord et la Rive-Sud.</p>
+            </div>
+            <ul className="fiche">
+              {ZONES.map((z) => (
+                <li key={z.nom} className="fiche-ligne">
+                  <span className="fiche-icone" aria-hidden="true"><PinIcon /></span>
                   <div>
-                    <h3 className="text-xl font-bold text-white mb-1">Montréal</h3>
-                    <p className="text-gray-400">Tous les arrondissements incluant Westmount, Outremont, Verdun, Rosemont et plus</p>
+                    <h3 className="text-[1.0625rem] font-semibold">{z.nom}</h3>
+                    <span className="fiche-detail">{z.detail}</span>
                   </div>
-                </div>
-                <div className="flex items-start">
-                  <span className="text-orange-500 text-2xl mr-4">📍</span>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-1">Laval</h3>
-                    <p className="text-gray-400">Toute la ville de Laval et ses secteurs</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <span className="text-orange-500 text-2xl mr-4">📍</span>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-1">Rive-Nord</h3>
-                    <p className="text-gray-400">Blainville, Terrebonne, Mirabel, Saint-Jérôme et environs</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <span className="text-orange-500 text-2xl mr-4">📍</span>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-1">Rive-Sud</h3>
-                    <p className="text-gray-400">Brossard, Longueuil, Saint-Hubert, Boucherville et plus</p>
-                  </div>
-                </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-graphite-950">
+        <div className="container mx-auto px-4">
+          <h2 className="section-titre">Contactez-nous</h2>
+          <div className="mt-10 grid grid-cols-1 divide-y divide-ligne border-y border-ligne md:grid-cols-3 md:divide-x md:divide-y-0">
+            <div className="flex gap-4 py-6 md:px-6 md:first:pl-0">
+              <span className="fiche-icone flex-none" aria-hidden="true"><PhoneIcon /></span>
+              <div className="min-w-0">
+                <h3 className="text-sm font-semibold text-encre-3">Téléphone</h3>
+                <a href="tel:5146497372" className="chiffres mt-1 inline-block text-xl text-encre transition-colors hover:text-accent">514 649-7372</a>
               </div>
             </div>
-            
-            <div className="relative h-96 rounded-2xl overflow-hidden">
-              <Image
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64"
-                alt="Service area"
-                fill
-                className="object-cover"
-              />
+            <div className="flex gap-4 py-6 md:px-6">
+              <span className="fiche-icone flex-none" aria-hidden="true"><MailIcon /></span>
+              <div className="min-w-0">
+                <h3 className="text-sm font-semibold text-encre-3">Courriel</h3>
+                <a href="mailto:info.mecanoexpress@gmail.com" className="mt-1 inline-block break-all text-lg text-encre transition-colors hover:text-accent">info.mecanoexpress@gmail.com</a>
+              </div>
+            </div>
+            <div className="flex gap-4 py-6 md:px-6">
+              <span className="fiche-icone flex-none" aria-hidden="true"><PinIcon /></span>
+              <div className="min-w-0">
+                <h3 className="text-sm font-semibold text-encre-3">Service</h3>
+                <p className="mt-1 text-lg text-encre">Montréal et environs</p>
+              </div>
             </div>
           </div>
-
-          <div className="bg-gradient-to-r from-orange-500/20 to-orange-600/20 border-2 border-orange-500 rounded-2xl p-12 text-center">
-            <h2 className="text-4xl font-bold mb-6 text-white">Contactez-nous</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-              <div>
-                <div className="text-4xl mb-3">📞</div>
-                <h3 className="text-xl font-bold text-orange-500 mb-2">Téléphone</h3>
-                <a href="tel:5146497372" className="text-white text-2xl hover:text-orange-300 transition-colors">514 649-7372</a>
-              </div>
-              <div>
-                <div className="text-4xl mb-3">✉️</div>
-                <h3 className="text-xl font-bold text-orange-500 mb-2">Email</h3>
-                <a href="mailto:info.mecanoexpress@gmail.com" className="text-white text-xl hover:text-orange-300 transition-colors">info.mecanoexpress@gmail.com</a>
-              </div>
-              <div>
-                <div className="text-4xl mb-3">📍</div>
-                <h3 className="text-xl font-bold text-orange-500 mb-2">Service</h3>
-                <p className="text-white text-xl">Montréal et environs</p>
-              </div>
-            </div>
-            <Link href="/contact" className="inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300">
+          <div className="mt-10">
+            <Link href="/contact#demande" className="btn btn-primaire">
               Prendre rendez-vous
+              <ArrowIcon />
             </Link>
           </div>
         </div>
