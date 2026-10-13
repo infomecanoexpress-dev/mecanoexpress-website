@@ -5,5 +5,38 @@
       "maxFindings": 5,
       "maxChars": 8000
     }
+  },
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "theme('fontfamily.sans')",
+        "createdAt": "2026-10-13T13:59:34.660Z",
+        "reason": "faux positif : theme('fontFamily.sans') = var(--font-sora), Sora déclarée dans DESIGN.md (vérifié 2026-10-13)"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "theme('fontfamily.mono')",
+        "createdAt": "2026-10-13T13:59:34.766Z",
+        "reason": "faux positif : theme('fontFamily.mono') = var(--font-azeret), Azeret Mono déclarée dans DESIGN.md (vérifié 2026-10-13)"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(0, 0, 0, 0.35)",
+        "createdAt": "2026-10-13T13:59:34.881Z",
+        "reason": "faux positif : alpha d'un mask-image de la grille, pas une couleur peinte"
+      },
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "app/globals.css"
+        ],
+        "createdAt": "2026-10-13T13:59:35.019Z",
+        "reason": "brief de l'utilisateur (2026-10-13) : 'des grilles subtiles' ; surface de mesure (roue cotée) du premier écran"
+      }
+    ]
   }
 }

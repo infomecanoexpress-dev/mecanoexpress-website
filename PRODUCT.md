@@ -35,11 +35,17 @@ On se déplace chez le client, et on est rapide et ponctuel. Tous les véhicules
 - Pages : accueil, services, à propos, contact.
 - Contact : 514-649-7372 · info.mecanoexpress@gmail.com.
 - Il n'y a pas de prix publiés sur le site. Ne pas en ajouter sans confirmation.
+- Le site est généré au build (pages statiques sur Vercel). Tout ce qui dépend de la date du jour (compte à rebours des pneus d'hiver, année du pied de page) se calcule dans le navigateur.
 
 ## Brand Commitments
 
-- Nom : **MecanoExpress**, aussi écrit « Mecano Express ». Logo : `../logo.png`.
+- Nom : **MecanoExpress**, aussi écrit « Mecano Express ». Logo d'origine (orange et noir) : `../logo.png`, version web `public/logo-mecanoexpress-original.png`.
 - Le ton est direct et familier, en québécois (« tes pneus », « chars »).
+- **Direction visuelle décidée par l'utilisateur (2026-10-13) : « futuriste sobre ».** Base graphite foncé, un seul accent vif (l'orange du logo, #e0641c), typo géométrique nette (Sora), données en monospace (Azeret Mono : téléphone, dates, tailles de pneus comme 225/65R17), lignes fines, grilles discrètes, coins précis, icônes au trait. Lueur ou dégradé **seulement** sur le bouton d'action principal, texte graphite sur l'orange. Micro-animations rapides et utiles, qui respectent `prefers-reduced-motion`. Doit rester crédible pour une entreprise de mécanique.
+- **À éviter :** néon partout, dégradés violet-bleu « style IA », effets glitch, polices sci-fi, fonds animés lourds, texte peu contrasté (tout doit se lire au soleil sur un téléphone).
+- **Intensité :** le premier écran de l'accueil est « prononcé » (version 3 choisie le 2026-10-13). Le reste des pages garde un niveau plus calme, proche de la version 2.
+- **Logo :** le logo d'origine est **orange et noir**. Sur le graphite, il est toujours posé sur une plaque claire, pour garder ses vraies couleurs. Le logo et le nom restent reconnaissables.
+- **Photos :** seulement de vraies photos de l'entreprise. Aucune photo de banque d'images (Unsplash, Pexels…). Pour l'instant, il n'y en a aucune à fournir au site.
 
 ## Evidence on Hand
 

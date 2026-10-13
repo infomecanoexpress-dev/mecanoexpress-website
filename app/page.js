@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { PhoneIcon } from './icons'
+import { ArrowIcon, PhoneIcon } from './icons'
+import { saisonPneus } from './saison.mjs'
 
 export default function Home() {
   return (
@@ -16,48 +17,98 @@ export default function Home() {
   )
 }
 
-function HeroSection() {
-  // Le hero grandit avec son contenu (pas de h-screen + overflow-hidden, qui
-  // coupait les boutons) : titre et boutons d'action dans le premier écran,
-  // au téléphone comme à l'ordinateur.
-  return (
-    <section className="relative flex items-center justify-center overflow-hidden min-h-[calc(100svh-4rem)] py-16 md:py-24">
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="https://images.unsplash.com/photo-1643700973089-baa86a1ab9ee"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover opacity-50"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/80 via-gray-800/70 to-gray-900/90"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 via-transparent to-orange-500/5"></div>
-      </div>
+// Encoches de la bande de roulement : un seul tracé (léger au téléphone).
+const ENCOCHES = Array.from({ length: 72 }, (_, i) => {
+  const a = (i * 5 * Math.PI) / 180
+  const r1 = i % 2 ? 266 : 260
+  const p = (r) => `${(300 + r * Math.cos(a)).toFixed(1)} ${(300 + r * Math.sin(a)).toFixed(1)}`
+  return `M${p(r1)}L${p(282)}`
+}).join('')
 
-      <div className="relative z-10 container mx-auto px-4 text-center">
-        <div className="animate-fade-in-up">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(255,107,0,0.25)]">
-            Changement de pneus chez vous, sans effort !
+const GOUJONS = [0, 72, 144, 216, 288].map((deg) => {
+  const a = ((deg - 90) * Math.PI) / 180
+  return { cx: (300 + 84 * Math.cos(a)).toFixed(1), cy: (300 + 84 * Math.sin(a)).toFixed(1) }
+})
+
+// La roue se dessine une seule fois par chargement de page, pas à chaque
+// retour sur l’accueil.
+let roueDejaTracee = false
+
+function HeroSection() {
+  const [saison, setSaison] = useState(null)
+  const [tracer] = useState(() => !roueDejaTracee)
+  useEffect(() => {
+    setSaison(saisonPneus())
+    roueDejaTracee = true
+  }, [])
+
+  return (
+    <section className="hero">
+      <div className="hero-grille" aria-hidden="true"></div>
+      <p className="hero-bandeau">
+        {/* Avant le calcul dans le navigateur : la règle seule, toujours vraie. */}
+        <span className="hero-bandeau-long">
+          {saison ? saison.texte : 'Pneus d’hiver obligatoires'}
+          {(!saison || saison.dates) && ' · 1 déc. – 15 mars'}
+          {saison && <> · <b>{saison.etat}</b></>}
+        </span>
+        <span className="hero-bandeau-court">
+          <span>{saison ? saison.texteCourt : 'Pneus d’hiver obligatoires'}</span>
+          <b>{saison ? saison.etatCourt : '1 déc. – 15 mars'}</b>
+        </span>
+        <span className="hero-zones">Montréal · Laval · Rive-Nord · Rive-Sud</span>
+      </p>
+      <div className="hero-corps">
+        <div className="hero-texte">
+          <h1 className="hero-titre">
+            Changement de pneus <em>chez vous</em>, sans effort !
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Service mobile professionnel à Montréal, Laval, Rive-Nord et Rive-Sud
+          <p className="hero-sous-titre">
+            Service mobile professionnel à Montréal, Laval, <span className="sans-coupure">Rive-Nord</span> et <span className="sans-coupure">Rive-Sud</span>
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-orange-500/50 hover:scale-105"
-            >
+          <div className="hero-actions">
+            <Link href="/contact" className="btn btn-primaire">
               Prendre RDV
+              <ArrowIcon />
             </Link>
-            <a
-              href="tel:5146497372"
-              className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md text-white border-2 border-orange-500 px-8 py-4 rounded-full text-lg font-semibold hover:bg-orange-500 transition-all duration-300 hover:scale-105"
-            >
-              <PhoneIcon /> 514 649-7372
+            <a href="tel:5146497372" className="btn btn-contour">
+              <PhoneIcon />
+              <span className="chiffres">514 649-7372</span>
             </a>
           </div>
         </div>
+        <div className={`hero-roue${tracer ? ' hero-roue--trace' : ''}`} aria-hidden="true">
+          <svg viewBox="0 0 600 600">
+            <defs>
+              <path id="hero-flanc" d="M 300 300 m -243 0 a 243 243 0 1 1 486 0 a 243 243 0 1 1 -486 0" />
+            </defs>
+            <circle className="trait trace" pathLength="1" cx="300" cy="300" r="282" />
+            <circle className="trait-fin trace t2" pathLength="1" cx="300" cy="300" r="258" />
+            <circle className="trait-fin trace t2" pathLength="1" cx="300" cy="300" r="226" />
+            <circle className="trait-accent trace t3" pathLength="1" cx="300" cy="300" r="170" />
+            <circle className="trait-fin" cx="300" cy="300" r="150" />
+            <circle className="trait-fin" cx="300" cy="300" r="46" />
+            <circle className="trait-fin" cx="300" cy="300" r="16" />
+            {GOUJONS.map((g) => <circle key={g.cx} className="trait-fin" cx={g.cx} cy={g.cy} r="9" />)}
+            <path className="trait-fin" d={ENCOCHES} />
+            <text className="flanc"><textPath href="#hero-flanc" startOffset="12%">225/65R17</textPath></text>
+            <path className="cote" d="M 130 300 H 470" />
+            <path className="trait-accent" d="M 130 290 V 310 M 470 290 V 310" />
+            <text className="cote-texte" x="192" y="289" textAnchor="middle">17 PO</text>
+            <path className="cote" d="M 300 130 V 18" />
+            <path className="trait-accent" d="M 290 130 H 310 M 290 18 H 310" />
+            <text className="cote-texte" x="316" y="80">FLANC 65 %</text>
+          </svg>
+        </div>
+      </div>
+      <div className="hero-legende">
+        <p className="hero-legende-titre">Lire la taille sur le flanc · ex. 225/65R17</p>
+        <dl>
+          <dt>225</dt><dd>Largeur (mm)</dd>
+          <dt>65</dt><dd>Flanc (% de la largeur)</dd>
+          <dt>R</dt><dd>Radial</dd>
+          <dt>17</dt><dd>Jante (po)</dd>
+        </dl>
       </div>
     </section>
   )

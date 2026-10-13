@@ -1,84 +1,96 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-13T08:54:17-04:00",
+  "generatedAt": "2026-10-13T09:56:50-04:00",
   "title": "Design System: MecanoExpress — site public",
   "extensions": {
     "colorMeta": {
-      "orange": {
+      "accent": {
         "role": "primary",
-        "displayName": "Orange gyrophare",
-        "canonical": "#f97316",
+        "displayName": "Orange du logo",
+        "canonical": "#e0641c",
         "tonalRamp": [
-          "#431407",
-          "#7c2d12",
-          "#9a3412",
-          "#c2410c",
-          "#ea580c",
-          "#f97316",
-          "#fdba74",
-          "#ffedd5"
+          "#3a1a07",
+          "#6b2c0c",
+          "#9a3f12",
+          "#c25418",
+          "#d95c15",
+          "#e0641c",
+          "#f07a35",
+          "#f9b48a"
         ]
       },
-      "night": {
+      "graphite": {
         "role": "neutral",
-        "displayName": "Nuit",
-        "canonical": "#111827",
+        "displayName": "Graphite",
+        "canonical": "#121417",
         "tonalRamp": [
-          "#030712",
-          "#111827",
-          "#1f2937",
-          "#374151",
-          "#4b5563",
-          "#9ca3af",
-          "#d1d5db",
-          "#f3f4f6"
+          "#101215",
+          "#121417",
+          "#16191d",
+          "#1c2025",
+          "#262b31",
+          "#3a4048",
+          "#a3abb5",
+          "#f4f5f7"
+        ]
+      },
+      "plaque": {
+        "role": "neutral",
+        "displayName": "Plaque du logo",
+        "canonical": "#eceef1",
+        "tonalRamp": [
+          "#eceef1"
         ]
       }
     },
     "typographyMeta": {
       "display": {
-        "displayName": "Hero",
-        "purpose": "Titre du hero, en dégradé orange."
+        "displayName": "Titre du premier écran",
+        "purpose": "Sora 700, un ou deux mots en orange, sans dégradé."
       },
       "headline": {
         "displayName": "Titre de section",
-        "purpose": "Nos Services, Zones Couvertes…"
+        "purpose": "Sora 700, en encre."
       },
       "title": {
-        "displayName": "Titre de carte",
-        "purpose": "Services et zones."
+        "displayName": "Titre de ligne ou de panneau",
+        "purpose": "Sora 600."
       },
       "body": {
         "displayName": "Texte",
-        "purpose": "Sous-titres et paragraphes, gris doux."
+        "purpose": "Sora 400, Encre 2."
       },
       "label": {
         "displayName": "Bouton / lien",
-        "purpose": "Boutons et navigation."
+        "purpose": "Sora 600."
+      },
+      "data": {
+        "displayName": "Données",
+        "purpose": "Azeret Mono : téléphone, dates, compte à rebours, tailles de pneus. Jamais pour les titres ni les liens."
       }
     },
     "shadows": [
       {
-        "name": "glow",
-        "value": "drop-shadow(0 4px 14px rgba(255, 107, 0, 0.25))",
-        "purpose": "Lueur orange sous le logo et les titres."
-      },
-      {
-        "name": "button-glow",
-        "value": "0 10px 15px -3px rgba(249, 115, 22, 0.5)",
-        "purpose": "Survol des boutons orange."
+        "name": "lueur-principale",
+        "value": "0 0 0 1px rgba(240,122,53,.35), 0 14px 36px -12px rgba(224,100,28,.9), inset 0 1px 0 rgba(255,255,255,.28)",
+        "purpose": "Seulement sous le bouton d’action principal."
       }
     ],
     "motion": [
       {
-        "name": "fade-in-up",
-        "value": "0.7s ease-out",
-        "purpose": "Apparition des blocs."
+        "name": "appui",
+        "value": "transform 120ms cubic-bezier(.2,.8,.2,1)",
+        "purpose": "scale(.97) sur les boutons à l’appui."
       },
       {
-        "name": "hover",
-        "value": "300ms",
-        "purpose": "Survol des liens, cartes et boutons."
+        "name": "couleur",
+        "value": "150–200ms ease",
+        "purpose": "Liens, filets, survol (souris seulement)."
+      },
+      {
+        "name": "trace-roue",
+        "value": "1100ms cubic-bezier(.16,1,.3,1), une fois par chargement",
+        "purpose": "Roue du premier écran ; aucune animation avec mouvement réduit."
       }
     ],
     "breakpoints": [
@@ -101,66 +113,79 @@
       "name": "Bouton principal",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Prendre RDV, Voir les services.",
-      "html": "<button class=\"ds-btn\">Prendre RDV maintenant</button>",
-      "css": ".ds-btn { font-family: Montserrat, sans-serif; background: linear-gradient(90deg, #f97316, #ea580c); color: #fff; font-weight: 600; padding: .75rem 2rem; border: none; border-radius: 9999px; cursor: pointer; transition: all .3s; } .ds-btn:hover { background: linear-gradient(90deg, #ea580c, #c2410c); box-shadow: 0 10px 15px -3px rgba(249,115,22,.5); } .ds-btn:focus-visible { outline: 2px solid #fb923c; outline-offset: 2px; }"
+      "description": "Prendre RDV. Seul élément avec dégradé et lueur.",
+      "html": "<button class=\"ds-btn\">Prendre RDV</button>",
+      "css": ".ds-btn { font-family: Sora, sans-serif; background: linear-gradient(180deg, #f07a35, #d95c15); color: #111316; font-weight: 600; font-size: 1.0625rem; min-height: 3.5rem; padding: 0 1.625rem; border: none; border-radius: 4px; cursor: pointer; box-shadow: 0 0 0 1px rgba(240,122,53,.35), 0 14px 36px -12px rgba(224,100,28,.9), inset 0 1px 0 rgba(255,255,255,.28); transition: transform 120ms cubic-bezier(.2,.8,.2,1), filter 200ms; } .ds-btn:hover { filter: brightness(1.06); } .ds-btn:active { transform: scale(.97); } .ds-btn:focus-visible { outline: 2px solid #e0641c; outline-offset: 3px; }"
     },
     {
       "name": "Bouton contour",
       "kind": "button",
-      "refersTo": "button-ghost-outline",
-      "description": "Action secondaire du hero (téléphone).",
-      "html": "<button class=\"ds-btn-ghost\">📞 514 649-7372</button>",
-      "css": ".ds-btn-ghost { font-family: Montserrat, sans-serif; background: rgba(255,255,255,.1); backdrop-filter: blur(12px); color: #fff; border: 2px solid #f97316; font-weight: 600; padding: 1rem 2rem; border-radius: 9999px; cursor: pointer; transition: all .3s; } .ds-btn-ghost:hover { background: #f97316; } .ds-btn-ghost:focus-visible { outline: 2px solid #fb923c; outline-offset: 2px; }"
+      "refersTo": "button-outline",
+      "description": "Appel (téléphone en monospace), actions secondaires.",
+      "html": "<a class=\"ds-btn-c\" href=\"tel:5146497372\"><span style=\"font-family:'Azeret Mono',monospace\">514 649-7372</span></a>",
+      "css": ".ds-btn-c { display: inline-flex; align-items: center; font-family: Sora, sans-serif; color: #f4f5f7; background: rgba(16,18,21,.7); border: 1px solid #4b535c; border-radius: 4px; min-height: 3.5rem; padding: 0 1.625rem; font-weight: 600; text-decoration: none; transition: border-color 200ms; } .ds-btn-c:hover { border-color: #e0641c; }"
     },
     {
-      "name": "Carte de service",
+      "name": "Plaque du logo",
+      "kind": "brand",
+      "refersTo": "logo-plate",
+      "description": "Logo d’origine orange et noir, toujours sur la plaque claire.",
+      "html": "<span class=\"ds-plaque\"><img src=\"/logo-mecanoexpress-original.png\" alt=\"MecanoExpress\" height=\"34\"></span>",
+      "css": ".ds-plaque { display: inline-flex; padding: .375rem .625rem; border-radius: 2px; background: #eceef1; box-shadow: inset 0 0 0 1px rgba(16,18,21,.14); } .ds-plaque img { display: block; height: 2.125rem; width: auto; }"
+    },
+    {
+      "name": "Panneau fiche",
       "kind": "card",
-      "refersTo": "card-service",
-      "description": "Carte de la grille des services.",
-      "html": "<div class=\"ds-card\"><div class=\"ds-ico\">❄️</div><div class=\"ds-t\">Pneus Hiver</div><p class=\"ds-p\">Installation complète de pneus d'hiver.</p></div>",
-      "css": ".ds-card { font-family: Montserrat, sans-serif; background: linear-gradient(180deg, #1f2937, #111827); border: 1px solid rgba(107,114,128,.4); border-radius: 1rem; padding: 1.5rem; color: #d1d5db; transition: border-color .3s; } .ds-card:hover { border-color: rgba(249,115,22,.5); } .ds-ico { width: 4rem; height: 4rem; display: flex; align-items: center; justify-content: center; border-radius: .75rem; background: rgba(249,115,22,.1); font-size: 2rem; margin-bottom: 1.25rem; } .ds-t { color: #fb923c; font-weight: 700; font-size: 1.5rem; margin-bottom: .5rem; } .ds-p { margin: 0; }"
-    },
-    {
-      "name": "Navigation",
-      "kind": "nav",
-      "refersTo": "nav",
-      "description": "Barre collante du haut.",
-      "html": "<nav class=\"ds-nav\"><span class=\"ds-logo\">MECANOEXPRESS</span><a>Accueil</a><a>Services</a><a>Contact</a><button class=\"ds-cta\">Prendre RDV</button></nav>",
-      "css": ".ds-nav { font-family: Montserrat, sans-serif; display: flex; align-items: center; gap: 2rem; padding: .75rem 1rem; background: linear-gradient(90deg, #111827, #1f2937, #111827); border-bottom: 1px solid rgba(249,115,22,.3); } .ds-logo { color: #f97316; font-weight: 800; margin-right: auto; } .ds-nav a { color: #d1d5db; cursor: pointer; transition: color .3s; } .ds-nav a:hover { color: #f97316; } .ds-cta { font-family: Montserrat, sans-serif; background: linear-gradient(90deg, #f97316, #ea580c); color: #fff; border: none; border-radius: 9999px; padding: .5rem 1.5rem; font-weight: 600; }"
+      "refersTo": "panel",
+      "description": "Liste d’informations à filets (services, contact).",
+      "html": "<div class=\"ds-fiche\"><p class=\"ds-fiche-h\">On se déplace</p><p class=\"ds-fiche-l\"><strong>Pneus hiver et été</strong><br>Changement, équilibrage, rotation</p></div>",
+      "css": ".ds-fiche { background: #16191d; border: 1px solid #2c3238; border-radius: 4px; color: #f4f5f7; font-family: Sora, sans-serif; } .ds-fiche-h { margin: 0; padding: .875rem 1.25rem; border-bottom: 1px solid #262b31; font-family: 'Azeret Mono', monospace; font-size: .8125rem; text-transform: uppercase; letter-spacing: .06em; color: #c9ced5; } .ds-fiche-l { margin: 0; padding: 1rem 1.25rem; color: #a3abb5; } .ds-fiche-l strong { color: #f4f5f7; }"
     }
   ],
   "narrative": {
-    "northStar": "Le gyrophare",
-    "overview": "Un site de nuit, éclairé par un seul orange vif, comme le gyrophare d'un véhicule de service sur le bord de la route. Fonds en dégradés presque noirs, titres et boutons orange, texte gris clair, photo de mécanicien assombrie en haut de l'accueil.",
+    "northStar": "La fiche technique",
+    "overview": "Un site graphite, net comme un dessin de cotation d’atelier. Un seul orange, celui du logo, désigne ce qui compte. Lignes fines, grilles discrètes, coins précis, données en monospace. Premier écran prononcé, reste du site à un niveau moyen.",
     "keyCharacteristics": [
-      "Fond sombre en dégradés (gris 900 → 800 → noir).",
-      "Un orange unique (orange 500), décliné du 400 au 600, pour les titres, les boutons et les lueurs.",
-      "Montserrat partout, titres en gras (700).",
-      "Boutons en pilule, cartes à coins de 1rem avec bordure translucide.",
-      "Mise en page centrée, en sections de 5rem de hauteur de marge."
+      "Fonds graphite (#101215 à #1c2025), sans dégradé de fond ni photo de banque d’images.",
+      "Un seul accent : l’orange du logo (#e0641c). Dégradé et lueur seulement sur le bouton principal.",
+      "Sora pour le texte, Azeret Mono pour les données.",
+      "Filets de 1 px, coins de 2 px (premier écran, barre) ou 4 px (reste).",
+      "Contraste lisible au soleil : texte courant 11.7:1, discret 7.9:1, boutons orange 5.3:1 (texte graphite)."
     ],
     "rules": [
       {
-        "name": "The Single Beacon Rule",
-        "body": "L'orange est la seule couleur vive du site. Les autres teintes sont des gris.",
+        "name": "La règle du seul orange",
+        "body": "L’orange du logo est la seule couleur vive. Pas de deuxième accent, pas de néon, pas de dégradé violet-bleu.",
         "section": "colors"
       },
       {
-        "name": "The Glow Not Shadow Rule",
-        "body": "Ce qui doit ressortir s'éclaire en orange. On n'ajoute pas d'ombres noires portées.",
+        "name": "La règle de la lueur unique",
+        "body": "Dégradé et lueur colorée seulement sur le bouton d’action principal.",
+        "section": "elevation"
+      },
+      {
+        "name": "La règle du soleil",
+        "body": "Aucun texte sous 4.5:1 ; texte discret pas plus pâle qu’Encre 3 ; texte graphite sur l’orange.",
+        "section": "colors"
+      },
+      {
+        "name": "La règle du filet",
+        "body": "Ce qui se détache reçoit un filet de 1 px ou un fond un cran plus clair, pas une ombre.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "Do garder l'orange comme seule couleur vive, du 400 au 600.",
-      "Do utiliser des pilules pour toute action et des cartes à coins de 1rem.",
-      "Do écrire les titres en Montserrat 700, et le texte courant en gris doux sur fond sombre."
+      "Do garder l’orange du logo comme seul accent.",
+      "Do poser le logo d’origine orange et noir sur la plaque claire.",
+      "Do écrire les données en Azeret Mono et le reste en Sora.",
+      "Do n’utiliser que de vraies photos de l’entreprise."
     ],
     "donts": [
-      "Don't introduire une deuxième couleur d'accent.",
-      "Don't utiliser d'ombres noires lourdes : la profondeur passe par la lueur orange et les dégradés.",
-      "Don't mettre du texte noir ou très foncé sur le fond sombre (le mot « EXPRESS » du logo y est presque invisible)."
+      "Don't utiliser de photo de banque d’images.",
+      "Don't mettre de néon, de dégradé violet-bleu, d’effet glitch ni de police sci-fi.",
+      "Don't animer un fond ni faire rebondir quoi que ce soit en boucle.",
+      "Don't écrire en blanc sur l’orange.",
+      "Don't calculer une date au build : la page est statique."
     ]
   }
 }
