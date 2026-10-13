@@ -219,7 +219,7 @@ export default function ContactPage() {
                   <span className="fiche-icone" aria-hidden="true"><MailIcon /></span>
                   <div className="min-w-0">
                     <h3 className="text-sm font-semibold text-encre-3">Courriel</h3>
-                    <a href="mailto:info.mecanoexpress@gmail.com" className="break-all text-lg text-encre transition-colors hover:text-accent">info.mecanoexpress@gmail.com</a>
+                    <a href="mailto:info.mecanoexpress@gmail.com" className="text-lg text-encre transition-colors hover:text-accent">info.mecanoexpress<wbr />@gmail.com</a>
                     <p className="text-sm text-encre-3">Réponse sous 24h</p>
                   </div>
                 </li>

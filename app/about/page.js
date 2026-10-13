@@ -63,12 +63,12 @@ export default function AboutPage() {
               <dl>
               {FICHE.map((f) => (
                 <div key={f.libelle} className="grid gap-1 border-t border-[#23282e] px-5 py-4 first-of-type:border-t-0 sm:grid-cols-[9rem_1fr] sm:gap-4">
-                  <dt className="font-mono text-[0.8125rem] uppercase tracking-[0.06em] text-encre-3">{f.libelle}</dt>
+                  <dt className="text-sm font-medium text-encre-3">{f.libelle}</dt>
                   <dd className="text-encre">{f.valeur}</dd>
                 </div>
               ))}
               <div className="grid gap-1 border-t border-[#23282e] px-5 py-4 sm:grid-cols-[9rem_1fr] sm:gap-4">
-                <dt className="font-mono text-[0.8125rem] uppercase tracking-[0.06em] text-encre-3">Téléphone</dt>
+                <dt className="text-sm font-medium text-encre-3">Téléphone</dt>
                 <dd><a href="tel:5146497372" className="chiffres text-encre transition-colors hover:text-accent">514 649-7372</a></dd>
               </div>
               </dl>
@@ -79,15 +79,19 @@ export default function AboutPage() {
 
       <section className="section">
         <div className="container mx-auto px-4">
-          <h2 className="section-titre">Nos valeurs</h2>
-          <div className="mt-10 grid grid-cols-1 divide-y divide-ligne border-y border-ligne md:grid-cols-3 md:divide-x md:divide-y-0">
-            {VALEURS.map((v) => (
-              <div key={v.titre} className="py-8 md:px-8 md:first:pl-0 md:last:pr-0">
-                <span className="fiche-icone h-12 w-12" aria-hidden="true"><v.Icone /></span>
-                <h3 className="mt-5 text-xl font-semibold">{v.titre}</h3>
-                <p className="mt-2 text-encre-2">{v.texte}</p>
-              </div>
-            ))}
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
+            <h2 className="section-titre">Nos valeurs</h2>
+            <ul className="fiche">
+              {VALEURS.map((v) => (
+                <li key={v.titre} className="fiche-ligne">
+                  <span className="fiche-icone" aria-hidden="true"><v.Icone /></span>
+                  <div>
+                    <h3 className="text-[1.0625rem] font-semibold">{v.titre}</h3>
+                    <span className="fiche-detail">{v.texte}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -129,7 +133,7 @@ export default function AboutPage() {
               <span className="fiche-icone flex-none" aria-hidden="true"><MailIcon /></span>
               <div className="min-w-0">
                 <h3 className="text-sm font-semibold text-encre-3">Courriel</h3>
-                <a href="mailto:info.mecanoexpress@gmail.com" className="mt-1 inline-block break-all text-lg text-encre transition-colors hover:text-accent">info.mecanoexpress@gmail.com</a>
+                <a href="mailto:info.mecanoexpress@gmail.com" className="mt-1 inline-block text-lg text-encre transition-colors hover:text-accent">info.mecanoexpress<wbr />@gmail.com</a>
               </div>
             </div>
             <div className="flex gap-4 py-6 md:px-6">
@@ -142,7 +146,7 @@ export default function AboutPage() {
           </div>
           <div className="mt-10">
             <Link href="/contact#demande" className="btn btn-primaire">
-              Prendre rendez-vous
+              Prendre RDV
               <ArrowIcon />
             </Link>
           </div>

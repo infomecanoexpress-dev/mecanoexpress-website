@@ -61,12 +61,12 @@ function HeroSection() {
       <div className="hero-corps">
         <div className="hero-texte">
           <h1 className="hero-titre">
-            Changement de pneus <em>chez vous</em>, sans effort !
+            Changement de{'\u00a0'}pneus <em>chez vous</em>, sans{'\u00a0'}effort{'\u00a0'}!
           </h1>
           <p className="hero-sous-titre">
             Service mobile professionnel à Montréal, Laval, <span className="sans-coupure">Rive-Nord</span> et <span className="sans-coupure">Rive-Sud</span>
           </p>
-          <div className="hero-actions">
+          <div className="hero-actions" data-cta-premier-ecran>
             <Link href="/contact" className="btn btn-primaire">
               Prendre RDV
               <ArrowIcon />
@@ -173,7 +173,7 @@ function FlotteSection() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/contact#demande" className="btn btn-primaire">
-                Demander un service
+                Prendre RDV
                 <ArrowIcon />
               </Link>
               <a href="tel:5146497372" className="btn btn-contour">

@@ -113,8 +113,8 @@ export default function ServicesPage() {
                 <h2 className="mt-5 text-[clamp(1.75rem,3.2vw,2.5rem)] font-bold leading-[1.08] tracking-[-0.03em]">{service.title}</h2>
                 <p className="mt-4 max-w-[52ch] text-lg leading-normal text-encre-2">{service.description}</p>
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <Link href={`/contact?service=${service.slug}#demande`} className="btn btn-contour">
-                    Réserver ce service
+                  <Link href={`/contact?service=${service.slug}#demande`} className="btn btn-contour" aria-label={`Prendre RDV : ${service.title}`}>
+                    Prendre RDV
                     <ArrowIcon />
                   </Link>
                   <a href="tel:5146497372" className="inline-flex min-h-[2.75rem] items-center gap-2 px-1 text-encre-2 transition-colors hover:text-encre">
@@ -150,7 +150,7 @@ export default function ServicesPage() {
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link href="/contact#demande" className="btn btn-primaire">
-              Demander un service
+              Prendre RDV
               <ArrowIcon />
             </Link>
             <a href="tel:5146497372" className="btn btn-contour">

@@ -131,16 +131,34 @@ function Navbar() {
   )
 }
 
-// Téléphone : appeler ou demander un service, toujours à portée de pouce.
+// Téléphone : appeler ou prendre RDV, toujours à portée de pouce. Sur l'accueil,
+// elle attend que les boutons du premier écran soient passés : une seule action
+// lumineuse à la fois.
 function BarreAppel() {
+  const pathname = usePathname()
+  const [cachee, setCachee] = useState(false)
+  useEffect(() => {
+    const cible = document.querySelector('[data-cta-premier-ecran]')
+    if (!cible || !('IntersectionObserver' in window)) {
+      setCachee(false)
+      return
+    }
+    const obs = new IntersectionObserver(([e]) => setCachee(e.isIntersecting), { threshold: 0 })
+    obs.observe(cible)
+    return () => obs.disconnect()
+  }, [pathname])
+
   return (
-    <div data-barre-appel className="fixed inset-x-0 bottom-0 z-40 border-t border-ligne bg-graphite-950/95 px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] md:hidden">
+    <div
+      data-barre-appel
+      className={`fixed inset-x-0 bottom-0 z-40 border-t border-ligne bg-graphite-950/95 px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] transition-[transform,visibility] duration-200 ease-out motion-reduce:transition-none md:hidden ${cachee ? 'invisible translate-y-full' : 'visible translate-y-0'}`}
+    >
       <div className="grid grid-cols-[auto_1fr] gap-2">
         <a href="tel:5146497372" className="btn btn-contour btn-vif btn-barre">
           <PhoneIcon />
           Appeler
         </a>
-        <Link href="/contact#demande" className="btn btn-primaire btn-vif btn-barre">Demander un service</Link>
+        <Link href="/contact#demande" className="btn btn-primaire btn-vif btn-barre">Prendre RDV</Link>
       </div>
     </div>
   )
@@ -173,7 +191,7 @@ function Footer() {
             <h3 className="mb-4 text-sm font-semibold text-encre">Contact</h3>
             <ul className="space-y-3 text-encre-3">
               <li className="flex items-center gap-2.5"><PhoneIcon className="h-4 w-4 flex-none text-encre-2" /><a href="tel:5146497372" className="chiffres transition-colors hover:text-encre">514 649-7372</a></li>
-              <li className="flex items-center gap-2.5"><MailIcon className="h-4 w-4 flex-none text-encre-2" /><a href="mailto:info.mecanoexpress@gmail.com" className="break-all transition-colors hover:text-encre">info.mecanoexpress@gmail.com</a></li>
+              <li className="flex items-center gap-2.5"><MailIcon className="h-4 w-4 flex-none text-encre-2" /><a href="mailto:info.mecanoexpress@gmail.com" className="transition-colors hover:text-encre">info.mecanoexpress<wbr />@gmail.com</a></li>
               <li className="flex items-center gap-2.5"><PinIcon className="h-4 w-4 flex-none text-encre-2" />Montréal, Laval, Rive-Nord/Sud</li>
             </ul>
           </div>
